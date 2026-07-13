@@ -1,11 +1,15 @@
 import assert from "node:assert/strict";
 import { createServer } from "node:http";
+import { join } from "node:path";
 import test from "node:test";
 
 import { createTileServiceHandler } from "../src/handler";
 
 async function withService(run: (origin: string) => Promise<void>): Promise<void> {
-  const handler = createTileServiceHandler({ repositoryRoot: process.cwd() });
+  const handler = createTileServiceHandler({
+    repositoryRoot: process.cwd(),
+    tileArtifactRoot: join(process.cwd(), "public/tiles"),
+  });
   const server = createServer((request, response) => {
     void handler(request, response);
   });
