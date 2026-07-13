@@ -19,13 +19,16 @@
     "typecheck": "tsc --noEmit",
     "model:study": ".venv/bin/python model-lab/run_study.py --cases 2000000",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "model:national-study": ".venv/bin/python model-lab/run_national_study.py",
+    "test:national-study": "node scripts/validate-national-study.mjs",
+    "geo:ccaa-svg": "node --import tsx pipelines/geography/build-ccaa-svg.ts",
+    "model:export-national": "node --import tsx pipelines/fiscal-lab/export-model.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
     "drizzle-orm": "0.45.2",
     "lucide-react": "^1.24.0",
-    "maplibre-gl": "^5.24.0",
     "next": "16.2.10",
     "react": "19.2.6",
     "react-dom": "19.2.6",

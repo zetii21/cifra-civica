@@ -1,24 +1,22 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import { CircleAlert, Layers3, Search } from "lucide-react";
+import { useMemo, useState } from "react";
+import Link from "next/link";
+import { ArrowRight, Layers3, Search } from "lucide-react";
 import { Notice, StatusBadge } from "./Ui";
+import { SpainMap, SPAIN_MAP_VERSION } from "./SpainMap";
 import { AUTONOMOUS_COMMUNITIES } from "@/lib/domain";
-
-// Public demo tiles are intentionally same-origin so no runtime endpoint or
-// user context is exposed to a third-party host.
-const TILE_BASE = "";
 
 const metrics = [
   { id: "demo_mean_fiscal_change_eur", label: "Cambio fiscal medio", unit: "€ / año", kind: "Simulado DEMO" },
   { id: "demo_median_fiscal_change_eur", label: "Cambio fiscal mediano", unit: "€ / año", kind: "Simulado DEMO" },
   { id: "demo_share_gain_above_500", label: "Hogares por encima del umbral", unit: "%", kind: "Simulado DEMO" },
-  { id: "demo_model_uncertainty_class", label: "Incertidumbre del modelo", unit: "clase", kind: "Modelo DEMO" },
 ];
 
-const demoRows = AUTONOMOUS_COMMUNITIES.slice(0, 14).map((community, index) => ({
+const demoRows = AUTONOMOUS_COMMUNITIES.map((community, index) => ({
   code: community.code,
   name: community.name,
+  support: community.support,
   mean: ((index * 173) % 980) - 260,
   median: ((index * 137) % 760) - 180,
   share: 34 + ((index * 7) % 43),
@@ -28,88 +26,29 @@ const demoRows = AUTONOMOUS_COMMUNITIES.slice(0, 14).map((community, index) => (
 function metricValue(row: (typeof demoRows)[number], metric: string): string {
   if (metric === "demo_median_fiscal_change_eur") return `${row.median >= 0 ? "+" : ""}${row.median} €`;
   if (metric === "demo_share_gain_above_500") return `${row.share} %`;
-  if (metric === "demo_model_uncertainty_class") return row.uncertainty;
   return `${row.mean >= 0 ? "+" : ""}${row.mean} €`;
 }
 
+function metricNumber(row: (typeof demoRows)[number], metric: string): number {
+  if (metric === "demo_median_fiscal_change_eur") return row.median;
+  if (metric === "demo_share_gain_above_500") return row.share;
+  return row.mean;
+}
+
 export function ExplorerClient() {
-  const mapContainer = useRef<HTMLDivElement | null>(null);
   const [metric, setMetric] = useState(metrics[0].id);
   const [query, setQuery] = useState("");
-  const [threshold, setThreshold] = useState(500);
-  const [mapState, setMapState] = useState<"loading" | "ready" | "unavailable">("loading");
+  const [selected, setSelected] = useState<string | undefined>(undefined);
   const selectedMetric = metrics.find((candidate) => candidate.id === metric) ?? metrics[0];
   const filteredRows = useMemo(
     () => demoRows.filter((row) => row.name.toLocaleLowerCase("es").includes(query.toLocaleLowerCase("es"))),
     [query],
   );
-
-  useEffect(() => {
-    if (!mapContainer.current) return;
-    let cancelled = false;
-    let mapInstance: import("maplibre-gl").Map | undefined;
-    void import("maplibre-gl")
-      .then(({ default: maplibregl }) => {
-        if (cancelled || !mapContainer.current) return;
-        mapInstance = new maplibregl.Map({
-          container: mapContainer.current,
-          center: [-3.7, 40.15],
-          zoom: 4.25,
-          minZoom: 3.5,
-          maxZoom: 10,
-          attributionControl: false,
-          style: {
-            version: 8,
-            sources: {
-              "cifra-civica-demo": {
-                type: "vector",
-                tiles: [`${TILE_BASE}/tiles/demo-es-2027.1/{z}/{x}/{y}.mvt`],
-                minzoom: 0,
-                maxzoom: 10,
-              },
-            },
-            layers: [
-              { id: "background", type: "background", paint: { "background-color": "#e8ece5" } },
-              {
-                id: "autonomous-fill",
-                type: "fill",
-                source: "cifra-civica-demo",
-                "source-layer": "autonomous_communities",
-                paint: {
-                  "fill-color": [
-                    "match",
-                    ["get", "territorial_support"],
-                    "unsupported",
-                    "#c6c8c2",
-                    "partial",
-                    "#d6aa62",
-                    "#4c9686",
-                  ],
-                  "fill-opacity": 0.82,
-                  "fill-outline-color": "#f8f6ef",
-                },
-              },
-              {
-                id: "municipality-lines",
-                type: "line",
-                source: "cifra-civica-demo",
-                "source-layer": "municipalities",
-                minzoom: 6,
-                paint: { "line-color": "#173f3e", "line-width": 0.55, "line-opacity": 0.45 },
-              },
-            ],
-          },
-        });
-        mapInstance.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
-        mapInstance.on("load", () => !cancelled && setMapState("ready"));
-        mapInstance.on("error", () => !cancelled && setMapState("unavailable"));
-      })
-      .catch(() => !cancelled && setMapState("unavailable"));
-    return () => {
-      cancelled = true;
-      mapInstance?.remove();
-    };
-  }, []);
+  const mapValues = useMemo(
+    () => Object.fromEntries(demoRows.map((row) => [row.code, metricNumber(row, metric)])),
+    [metric],
+  );
+  const selectedRow = demoRows.find((row) => row.code === selected);
 
   return (
     <div className="explorer-layout">
@@ -122,40 +61,50 @@ export function ExplorerClient() {
           </select>
         </div>
         <div className="field search-field">
-          <label htmlFor="place-search">Buscar lugar</label>
-          <div><Search size={16} aria-hidden="true" /><input id="place-search" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Comunidad o municipio" /></div>
+          <label htmlFor="place-search">Buscar comunidad</label>
+          <div><Search size={16} aria-hidden="true" /><input id="place-search" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Comunidad autónoma" /></div>
         </div>
-        <div className="field range-field">
-          <label htmlFor="threshold">Umbral de ganancia: {threshold} €</label>
-          <input id="threshold" type="range" min="0" max="2000" step="100" value={threshold} onChange={(event) => setThreshold(Number(event.target.value))} />
-        </div>
+        {selectedRow ? (
+          <div className="control-heading" aria-live="polite">
+            <div>
+              <span>Selección</span>
+              <strong>{selectedRow.name}</strong>
+              <p className="field-help">
+                {selectedMetric.label}: {metricValue(selectedRow, metric)} · incertidumbre {selectedRow.uncertainty}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <p className="field-help">Toca o navega con el teclado por el mapa para fijar una comunidad.</p>
+        )}
         <div className="map-legend" aria-label="Leyenda del mapa">
-          <strong>Leyenda territorial</strong>
-          <span><i className="legend-supported" /> Arquitectura soportada</span>
-          <span><i className="legend-partial" /> Cobertura parcial</span>
-          <span><i className="legend-unsupported" /> No compatible</span>
-          <span><i className="legend-hatched" /> Incertidumbre / DEMO</span>
+          <strong>Leyenda</strong>
+          <span><i className="legend-negative" /> Valores negativos</span>
+          <span><i className="legend-neutral" /> Próximo a cero</span>
+          <span><i className="legend-positive" /> Valores positivos</span>
         </div>
         <Notice tone="warning" title="Capa sintética">
           Los valores listados son fixtures reproducibles, no estadísticas oficiales ni
-          estimaciones publicables. El servicio de teselas solo contiene geometría de muestra.
+          estimaciones publicables. Para mover palancas reales de ingresos y gasto usa el{" "}
+          <Link href="/laboratorio">laboratorio fiscal <ArrowRight size={13} aria-hidden="true" /></Link>.
         </Notice>
       </aside>
 
       <div className="explorer-main">
-        <div className="map-shell">
-          <div ref={mapContainer} className="map-container" role="img" aria-label="Mapa vectorial de España con cobertura territorial del modelo" />
+        <div className="map-shell map-shell-svg">
           <div className="map-overlay-top">
-            <StatusBadge tone="demo">DEMO · MVT</StatusBadge>
-            <span>Geografía demo-es-2027.1</span>
+            <StatusBadge tone="demo">DEMO · SVG</StatusBadge>
+            <span>Geografía {SPAIN_MAP_VERSION} (NUTS-2, © EuroGeographics)</span>
           </div>
-          {mapState !== "ready" ? (
-            <div className="map-state" role="status">
-              <CircleAlert aria-hidden="true" />
-              <strong>{mapState === "loading" ? "Cargando teselas vectoriales…" : "Servicio local de teselas no disponible"}</strong>
-              <span>{mapState === "unavailable" ? "La tabla accesible permanece disponible aunque las teselas no se hayan podido cargar." : ""}</span>
-            </div>
-          ) : null}
+          <SpainMap
+            values={mapValues}
+            formatValue={(value) =>
+              metric === "demo_share_gain_above_500" ? `${Math.round(value)} %` : `${value >= 0 ? "+" : ""}${Math.round(value)} € / año`
+            }
+            metricLabel={`${selectedMetric.label} (${selectedMetric.unit}, valores DEMO)`}
+            selectedCode={selected}
+            onSelect={setSelected}
+          />
           <div className="demo-watermark" aria-hidden="true">DEMO · NO OFICIAL</div>
         </div>
 
@@ -163,7 +112,7 @@ export function ExplorerClient() {
           <div className="linked-chart-heading"><div><span>Distribución vinculada</span><h2>{selectedMetric.label}</h2></div><StatusBadge tone="demo">{selectedMetric.kind}</StatusBadge></div>
           <div className="bar-list" aria-hidden="true">
             {filteredRows.slice(0, 8).map((row) => {
-              const raw = metric === "demo_share_gain_above_500" ? row.share : metric === "demo_median_fiscal_change_eur" ? row.median : row.mean;
+              const raw = metricNumber(row, metric);
               return <div key={row.code}><span>{row.name}</span><i style={{ width: `${Math.max(8, Math.min(100, Math.abs(raw) / 10))}%` }} className={raw < 0 ? "negative-bar" : ""} /><b>{metricValue(row, metric)}</b></div>;
             })}
           </div>

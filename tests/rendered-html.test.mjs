@@ -120,6 +120,7 @@ test("server-renders the public product routes with the Spanish civic shell", as
   const routes = [
     ["/", "Cifra Cívica — simulador fiscal transparente", "Tu economía, explicada sin pedirte el voto."],
     ["/calculator", "Calculadora fiscal · Cifra Cívica", "Una estimación que enseña sus cuentas."],
+    ["/laboratorio", "Laboratorio fiscal de España · Cifra Cívica", "El presupuesto de España, en tus manos."],
     ["/privacy", "Privacidad · Cifra Cívica", "Tus circunstancias no son un perfil político."],
     ["/scenarios", "Cifra Cívica — simulador fiscal transparente", "Políticas que se pueden inspeccionar."],
     [

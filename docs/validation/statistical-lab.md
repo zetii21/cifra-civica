@@ -86,3 +86,16 @@ make model-study
 ```
 
 Una corrida pequeña requiere `--allow-small-report` y no puede presentarse como referencia.
+
+## Estudio del laboratorio nacional
+
+`model-lab/run_national_study.py` es el estudio de referencia del laboratorio fiscal agregado. Su diseño:
+
+- exporta el modelo completo (segmentos, escalas, instrumentos, partidas, factores de calibración y 12 escenarios dorados) desde el motor TypeScript con `pipelines/fiscal-lab/export-model.ts`;
+- reimplementa la aritmética de forma independiente en NumPy y exige que ambos motores coincidan en los escenarios dorados con una desviación máxima del 0,5 %;
+- expande cada segmento en una malla determinista de cuantiles lognormales que preserva la media (sin números aleatorios);
+- barre de forma exhaustiva cada tramo estatal del IRPF, cada tramo del ahorro, cada escala autonómica y foral, cada instrumento y cada partida, además de todas las combinaciones por pares de tramos estatales y los cruces tramo × ahorro;
+- comprueba neutralidad de la referencia, conservación territorial, monotonía de las curvas de ingreso y aditividad de pares;
+- cuenta cada aplicación de parámetro-caso desde las formas exactas de los arrays y escribe `model-lab/artifacts/national-study-report.json`.
+
+El gate de CI (`scripts/validate-national-study.mjs`) rehash-ea las entradas declaradas: cualquier cambio en `lib/fiscal-lab/` o en el modelo exportado sin reejecutar el estudio bloquea la integración.

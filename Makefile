@@ -68,12 +68,17 @@ typecheck: ## Comprobar tipos TypeScript y Python disponible
 model-validate: ## Validar manifiestos exactos de modelo y espacio de estados
 	node scripts/validate-coverage.mjs
 	node scripts/validate-model-study.mjs
+	node scripts/validate-national-study.mjs
 	@if test -f $(API_DIR)/model-manifest.json; then \
 	  cd $(API_DIR) && ../../$(PY) -m app.manifest --check model-manifest.json; \
 	else echo "Falta $(API_DIR)/model-manifest.json"; exit 1; fi
 
 model-study: ## Ejecutar el estudio estadístico reproducible completo (2M hogares sintéticos)
 	npm run model:study
+
+model-national-study: ## Reexportar el modelo del laboratorio y ejecutar el estudio nacional completo
+	npm run model:export-national
+	npm run model:national-study
 
 policy-validate: ## Validar políticas, procedencia y reglas de publicación
 	@if test -f $(API_DIR)/scripts/validate_policy_registry.py; then \

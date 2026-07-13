@@ -1,0 +1,57 @@
+import { readFile, writeFile } from "node:fs/promises";
+
+const reportUrl = new URL("../model-lab/artifacts/national-study-report.json", import.meta.url);
+const manifestUrl = new URL("../model-manifest/national-coverage.json", import.meta.url);
+
+const report = JSON.parse(await readFile(reportUrl, "utf8"));
+
+const manifest = {
+  $schema: "https://json-schema.org/draft/2020-12/schema",
+  modelId: "cifra-civica-national-lab-2027",
+  metric: "executed_parameter_case_applications",
+  metricVersion: "1.0.0",
+  asOf: report.generatedAt.slice(0, 10),
+  declaredEvaluatedCount: report.coverage.parameterCaseApplications,
+  variantEvaluations: report.coverage.variantEvaluations,
+  microUnits: report.coverage.microUnits,
+  targetRange: {
+    minimum: 200000000000,
+    maximum: 600000000000,
+  },
+  dimensions: {
+    communities: {
+      count: report.coverage.communities,
+      description: "17 autonomous communities plus Ceuta and Melilla",
+    },
+    incomeBands: {
+      count: report.coverage.incomeBands,
+      description: "Nine lower deciles plus a four-way split of the top decile",
+    },
+    familyTypes: {
+      count: report.coverage.familyTypes,
+      description: "Single-person, couple, couple with children, single-parent and other households",
+    },
+    ageBands: {
+      count: report.coverage.ageBands,
+      description: "Main-earner age bands: under 30, 30-44, 45-64 and 65 or older",
+    },
+    quantilesPerSegment: {
+      count: report.coverage.quantilesPerSegment,
+      description: "Deterministic mean-preserving lognormal quantile grid inside every segment",
+    },
+    levers: {
+      count: report.coverage.leverCount,
+      description: "IRPF state and savings brackets, autonomous scales, every other instrument and every spending programme",
+    },
+  },
+  sourceReport: "model-lab/artifacts/national-study-report.json",
+  interpretation:
+    "This is the exact number of parameter-case applications (synthetic unit × fiscal parameter cells) executed by the committed national reference study, counted from real array shapes at every vectorised operation. It is not a count of stored people, database rows, legal constants, AI weights or precomputed results.",
+  privacy:
+    "No unit corresponds to a real person. The synthetic population is built from published aggregate statistics only and every run is reproducible from committed inputs.",
+};
+
+await writeFile(manifestUrl, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+console.log(
+  `National coverage manifest written: ${manifest.declaredEvaluatedCount.toLocaleString("es-ES")} evaluated parameter-case applications`,
+);

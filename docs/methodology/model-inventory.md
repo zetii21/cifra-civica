@@ -120,3 +120,12 @@ Un R² alto no compensa MAE, errores de cola o discontinuidades fiscales. Los re
 - Un parámetro sin fuente no se promociona.
 - Una dependencia de IA futura se inventaría con proveedor, versión, datos, propósito y evaluación, pero permanecería fuera de la ruta numérica.
 - Cambiar motor o backend exige ADR, inventario/evidencia propios, equivalencia por casos si se afirma y nueva model version.
+
+## Laboratorio fiscal nacional y su recuento ejecutado
+
+El laboratorio de `/laboratorio` es un segundo sistema determinista, separado del cálculo personal: trabaja únicamente con agregados públicos (población, deciles de renta, recaudación y gasto de referencia) y nunca recibe datos de un hogar concreto. Su tamaño se informa con dos números distintos y no intercambiables:
+
+1. **Estados direccionables del motor personal** (`model-manifest/coverage.json`): 61.980.085.440, sin cambios.
+2. **Aplicaciones de parámetro-caso ejecutadas** (`model-manifest/national-coverage.json`): el número exacto de celdas (unidad sintética × parámetro fiscal) que el estudio de referencia del laboratorio calculó de verdad, acumulado desde las formas reales de los arrays en cada operación vectorizada. El estudio (`model-lab/run_national_study.py`) exige un mínimo de 200.000 millones y su validador (`scripts/validate-national-study.mjs`) verifica la firma de entradas, la equivalencia entre el motor TypeScript y el reimplementado en NumPy, las invariantes y la igualdad entre manifiesto e informe.
+
+Las mismas salvaguardas de honestidad aplican: ninguna de las dos cifras son pesos de IA, personas, filas almacenadas ni evidencia normativa. Medir trabajo ejecutado no sustituye a los casos dorados ni a los benchmarks oficiales; solo describe la profundidad del barrido determinista comprometido en el repositorio.

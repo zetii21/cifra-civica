@@ -34,6 +34,10 @@ Estas fuentes oficiales y de referencia proceden de la investigación del proyec
 | Tributación autonómica | [Ministerio de Hacienda: libro electrónico](https://www.hacienda.gob.es/es-ES/Areas%20Tematicas/Financiacion%20Autonomica/Paginas/Libro%20electronico.aspx) | Fuente normativa secundaria/índice | Confirmar en norma primaria aplicable |
 | Foral Navarra | [Normativa de Hacienda de Navarra](https://www.navarra.es/es/web/normativa-hacienda/normativa) | Extensión futura | No aplicar territorio común mientras no esté validado |
 | Límites geográficos | [INE Datos abiertos](https://www.ine.es/dyngs/DAB/index.htm?cid=1389) | Geometrías y nomenclátores | Versionar códigos, CRS, fecha y licencia |
+| Límites CCAA del mapa | [Eurostat GISCO NUTS 2024](https://ec.europa.eu/eurostat/web/gisco/geodata/statistical-units/territorial-units-statistics) | Mapa SVG interactivo del laboratorio y el explorador (1:10M, © EuroGeographics) | Generalización estadística; nunca delimitación legal |
+| Recaudación agregada | [AEAT Informe Anual de Recaudación](https://sede.agenciatributaria.gob.es/Sede/datosabiertos/catalogo/hacienda/Informe_Anual_de_Recaudacion_Tributaria.shtml) | Referencias aproximadas del laboratorio nacional | Cifras redondeadas y etiquetadas; no liquidaciones |
+| Gasto consolidado | [IGAE Contabilidad nacional de las AAPP](https://www.igae.pap.hacienda.gob.es/sitios/igae/es-ES/Contabilidad/ContabilidadNacional/Paginas/inicio.aspx) | Partidas de gasto de referencia del laboratorio | Consolidación y clasificación COFOG aproximadas |
+| Tributos cedidos | [Ministerio de Hacienda: recaudación tributos cedidos](https://www.hacienda.gob.es/es-ES/Areas%20Tematicas/Financiacion%20Autonomica/Paginas/Estadisticas.aspx) | Referencias por comunidad (ITP-AJD, ISD, patrimonio, juego) | Ejercicios heterogéneos; se documenta el año usado |
 
 Las normas primarias aplicables (BOE y boletines autonómicos) prevalecen para parámetros legales. Una noticia, discurso, manifiesto o nota de partido puede documentar una propuesta, pero no una baseline legislada.
 

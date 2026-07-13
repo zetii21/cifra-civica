@@ -13,11 +13,16 @@ Los cambios materiales indican versiones de aplicación, modelo, política, dato
 - CI, contenedores no root y manifiestos auditables de modelo/cobertura.
 - Enrutamiento de simulación por Worker del mismo origen, con FastAPI principal y contingencia edge server-side identificada.
 - Estudio estadístico reproducible con inputs hasheados, entorno fijado y artefacto firmado por checksum.
+- Laboratorio fiscal nacional (`/laboratorio`): tipos editables de IRPF por tramos (estatal, autonómico y foral aproximado), ahorro y plusvalías, IVA, carburantes, tabaco, alcohol, electricidad, juego, loterías, patrimonio, sucesiones, ITP-AJD, sociedades y cotizaciones; partidas de gasto ajustables (pensiones, sanidad, educación, defensa, carreteras y más) a escala estatal o por comunidad.
+- Impacto distributivo instantáneo por decil de renta, tipo de familia, edad y comunidad, con grupos más y menos afectados.
+- Mapa SVG interactivo de España con las 17 comunidades y 2 ciudades autónomas (GISCO NUTS-2 2024, © EuroGeographics), accesible por teclado, usado por el laboratorio y el explorador; sustituye a las teselas DEMO rectangulares.
+- Estudio nacional de referencia con doble motor (TypeScript ↔ NumPy), barridos exhaustivos de palancas y recuento auditable de más de 200.000 millones de aplicaciones de parámetro-caso, validado en CI (`scripts/validate-national-study.mjs` y `model-manifest/national-coverage.json`).
 
 ### Limitations
 
 - La referencia 2027 traslada explícitamente reglas revisadas de ejercicios anteriores y conserva incertidumbre alta.
 - No hay fidelidad foral para Navarra o País Vasco.
+- El laboratorio nacional usa agregados aproximados de 2024, elasticidades acotadas y escalas forales aproximadas señaladas; no es una liquidación oficial.
 - Fixtures territoriales y escenarios de comparación son sintéticos DEMO.
 - Los benchmarks agregados oficiales permanecen no evaluados hasta disponer de artefactos alineados y revisados.
 - `edge_api` es una contingencia aproximada visible y no acredita paridad fiscal universal con `python_api`.

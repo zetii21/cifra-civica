@@ -100,6 +100,12 @@ Las fuentes atraviesan estados `raw → staging → curated → calibrated → p
 
 Las teselas son MVT o un artefacto equivalente preparado, nunca GeoJSON nacional completo. Una métrica incluye clasificación `official`, `modelled`, `calibrated` o `synthetic_demo`, además de vintage, cobertura, incertidumbre y supresión. La [ADR-0004](adr/0004-geospatial-publication.md) fija la frontera.
 
+El mapa interactivo de comunidades usa un artefacto SVG preproyectado (`data/fixtures/geography/spain-ccaa-svg.json`) generado desde los límites estadísticos GISCO NUTS-2 2024 (© EuroGeographics) por `pipelines/geography/build-ccaa-svg.ts`, con procedencia y checksum registrados. El navegador nunca proyecta ni descarga geografía cruda.
+
+## Laboratorio fiscal nacional
+
+`lib/fiscal-lab/` define un modelo agregado versionado (población sintética por segmentos, escalas de IRPF del registro de políticas, instrumentos tributarios, partidas de gasto, elasticidades e incidencia). El componente `app/laboratorio/` lo evalúa en el navegador porque no interviene ningún dato personal: solo agregados públicos comprometidos en el repositorio. El estudio de referencia (`model-lab/run_national_study.py`) reimplementa la aritmética en NumPy, verifica la equivalencia con el motor TypeScript sobre escenarios dorados exportados y deja un recuento auditable de aplicaciones de parámetro-caso validado en CI.
+
 ## Despliegue
 
 El despliegue completo separa:

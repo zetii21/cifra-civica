@@ -12,7 +12,7 @@ El repositorio implementa un MVP orientado a producción, pero cada escenario co
 
 - Sin cuenta obligatoria ni perfiles políticos.
 - Cálculos personales efímeros: no se persisten cuerpos de petición o respuesta.
-- El navegador nunca contiene ni ejecuta aritmética fiscal: usa un `POST` del mismo origen.
+- El navegador nunca contiene ni ejecuta la aritmética fiscal personal: usa un `POST` del mismo origen. El laboratorio nacional de `/laboratorio` sí calcula en el navegador, pero exclusivamente sobre agregados públicos versionados; jamás recibe datos de un hogar.
 - Motores deterministas identificados en cada resultado; ninguna IA generativa modifica importes.
 - Fuentes, supuestos, cobertura, incertidumbre y versiones visibles.
 - Navarra y País Vasco no reciben reglas de territorio común por sustitución.
@@ -27,6 +27,8 @@ El repositorio implementa un MVP orientado a producción, pero cada escenario co
 | Worker web | `worker/` | Ruta del mismo origen, límites, cabeceras y proxy sin persistencia |
 | API de simulación | `services/simulation-api/` | Contrato canónico FastAPI y motor Python principal |
 | Contingencia edge | `lib/edge-simulation-api.ts` | Implementación aproximada, server-side y visiblemente etiquetada para Sites sin upstream |
+| Laboratorio nacional | `lib/fiscal-lab/`, `app/laboratorio/` | Palancas agregadas de impuestos y gasto por Estado y comunidad, impacto distributivo y mapa interactivo |
+| Estudio nacional | `model-lab/run_national_study.py` | Doble motor TypeScript↔NumPy, barridos exhaustivos y recuento auditable de aplicaciones de parámetro-caso |
 | Registro de políticas | `policy-registry/` | Reglas, parámetros, fuentes y estados versionados |
 | Geografía y publicación | `packages/geography/`, `pipelines/` | Fixtures, controles de divulgación y teselas |
 | Documentación y gobierno | `docs/` | Método, validación, privacidad, seguridad y operaciones |

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import study from "@/model-lab/artifacts/study-report.json";
+import nationalStudy from "@/model-lab/artifacts/national-study-report.json";
 import { MethodologyNav } from "@/components/MethodologyNav";
 import { Eyebrow, Notice, StatusBadge } from "@/components/Ui";
 
@@ -129,6 +130,59 @@ export default function StatisticalStudyPage() {
             </tbody>
           </table>
         </div>
+
+        <h2>Estudio del laboratorio fiscal nacional</h2>
+        <p>
+          El laboratorio de ingresos y gasto agregados tiene su propio estudio de
+          referencia. Un segundo motor, independiente y vectorizado, reproduce los{" "}
+          {nationalStudy.engineEquivalence.scenarios} escenarios dorados del motor de la
+          web con una desviación máxima del{" "}
+          {(nationalStudy.engineEquivalence.maxRelativeGap * 100).toLocaleString("es-ES", { maximumFractionDigits: 2 })}{" "}
+          %, y después recorre de forma exhaustiva cada tramo del IRPF, la escala del
+          ahorro, cada tributo y cada partida de gasto, incluidas todas las
+          combinaciones por pares de tramos estatales.
+        </p>
+        <div className="table-scroll">
+          <table className="map-data-table">
+            <caption>Recuento auditable del estudio nacional comprometido en el repositorio</caption>
+            <thead>
+              <tr><th>Magnitud</th><th>Valor</th><th>Qué es</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Aplicaciones de parámetro-caso</th>
+                <td>{nationalStudy.coverage.parameterCaseApplications.toLocaleString("es-ES")}</td>
+                <td>Celdas (unidad sintética × parámetro fiscal) realmente calculadas</td>
+              </tr>
+              <tr>
+                <th scope="row">Evaluaciones de variante</th>
+                <td>{nationalStudy.coverage.variantEvaluations.toLocaleString("es-ES")}</td>
+                <td>Configuraciones de palancas evaluadas sobre la población completa</td>
+              </tr>
+              <tr>
+                <th scope="row">Unidades sintéticas</th>
+                <td>{nationalStudy.coverage.microUnits.toLocaleString("es-ES")}</td>
+                <td>Malla determinista de cuantiles: sin microdatos ni personas reales</td>
+              </tr>
+              <tr>
+                <th scope="row">Palancas cubiertas</th>
+                <td>{nationalStudy.coverage.leverCount.toLocaleString("es-ES")}</td>
+                <td>Tramos de IRPF y ahorro, escalas autonómicas, tributos y partidas</td>
+              </tr>
+              <tr>
+                <th scope="row">Violaciones de monotonía</th>
+                <td>{nationalStudy.invariants.monotonicity.violations.toLocaleString("es-ES")}</td>
+                <td>Sobre {nationalStudy.invariants.monotonicity.checked.toLocaleString("es-ES")} pares consecutivos comprobados</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          El recuento mide trabajo determinista ejecutado y contado desde las formas
+          exactas de los arrays; no son pesos de una red neuronal, personas ni filas
+          almacenadas. Cualquier cambio en el modelo del laboratorio invalida la firma
+          del informe y obliga a reejecutar el estudio.
+        </p>
 
         <h2>Velocidad y decisión de arquitectura</h2>
         <p>

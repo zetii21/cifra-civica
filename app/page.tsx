@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Eyebrow, Notice, StatusBadge } from "@/components/Ui";
 import study from "@/model-lab/artifacts/study-report.json";
+import nationalCoverage from "@/model-manifest/national-coverage.json";
 
 export default function Home() {
   return (
@@ -135,12 +136,16 @@ export default function Home() {
       <section className="coverage-band" aria-label="Cobertura combinatoria del modelo">
         <div className="shell coverage-band-inner">
           <div>
-            <span>Espacio auditado · motor Python</span>
-            <strong>61.980.085.440</strong>
+            <span>Trabajo auditado · dos manifiestos públicos</span>
+            <strong>{(61_980_085_440 + nationalCoverage.declaredEvaluatedCount).toLocaleString("es-ES")}</strong>
           </div>
           <p>
-            estados deterministas de cálculo o validación del motor Python canónico. La
-            cifra se deriva de un manifiesto público. Además se han ejecutado {study.coverage.exactScenarioEvaluations.toLocaleString("es-ES")} pruebas exactas; el modo edge se identifica por separado y no hereda esta evidencia.
+            61.980.085.440 estados deterministas direccionables del motor personal más{" "}
+            {nationalCoverage.declaredEvaluatedCount.toLocaleString("es-ES")} aplicaciones de
+            parámetro-caso ejecutadas por el estudio del laboratorio nacional, junto a{" "}
+            {study.coverage.exactScenarioEvaluations.toLocaleString("es-ES")} pruebas exactas de hogar.
+            Cada cifra sale de un manifiesto auditable: son estados y evaluaciones deterministas,
+            nunca pesos de una IA ni personas.
           </p>
           <Link href="/methodology/statistical-study">Ver las pruebas <ArrowRight size={16} aria-hidden="true" /></Link>
         </div>
@@ -203,18 +208,19 @@ export default function Home() {
           </article>
           <article className="feature-card feature-map">
             <div className="feature-icon"><Map aria-hidden="true" /></div>
-            <StatusBadge tone="demo">TERRITORIO</StatusBadge>
-            <h2>Un mapa que diferencia dato y estimación.</h2>
+            <StatusBadge tone="official">TERRITORIO</StatusBadge>
+            <h2>El presupuesto de España, palanca a palanca.</h2>
             <p>
-              Explora el contexto territorial con capas oficiales o simuladas claramente
-              marcadas, controles de incertidumbre y supresión de celdas pequeñas.
+              Sube o baja el IRPF por tramos, los carburantes, el juego o el patrimonio;
+              mueve el gasto en educación, defensa o carreteras, y mira sobre un mapa
+              interactivo qué comunidades, familias, edades y rentas ganan o pierden.
             </p>
-            <div className="mini-map" aria-hidden="true">
-              {Array.from({ length: 18 }, (_, index) => (
-                <span key={index} style={{ opacity: 0.22 + (index % 5) * 0.13 }} />
-              ))}
-            </div>
-            <Link href="/explorer">Explorar el mapa <ArrowRight size={17} aria-hidden="true" /></Link>
+            <ul className="check-list">
+              <li><Check aria-hidden="true" /> Palancas estatales y de cada comunidad</li>
+              <li><Check aria-hidden="true" /> Impacto por renta, familia y edad</li>
+              <li><Check aria-hidden="true" /> Efecto en déficit e ingresos al instante</li>
+            </ul>
+            <Link href="/laboratorio">Abrir el laboratorio <ArrowRight size={17} aria-hidden="true" /></Link>
           </article>
         </div>
       </section>

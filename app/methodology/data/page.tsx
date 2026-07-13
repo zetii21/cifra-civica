@@ -6,9 +6,12 @@ export const metadata: Metadata = { title: "Datos y procedencia" };
 
 const sources = [
   ["AEAT", "IRPF y Renta Web Open", "Reglas y contraste", "Oficial"],
+  ["AEAT", "Informe anual de recaudación", "Referencias del laboratorio nacional", "Oficial agregado"],
+  ["IGAE", "Contabilidad de las AAPP", "Partidas de gasto del laboratorio", "Oficial agregado"],
   ["INE ECV", "Condiciones de vida", "Microsimulación futura", "Acceso público anonimizado"],
   ["INE ADRH", "Atlas de renta", "Contexto territorial", "Oficial agregado"],
   ["Seguridad Social", "Cotización y pensiones", "Parámetros y contraste", "Oficial"],
+  ["Eurostat GISCO", "NUTS-2 2024 (© EuroGeographics)", "Mapa interactivo de comunidades", "Oficial generalizado"],
   ["EUROMOD", "Modelo España", "Benchmark metodológico", "Acceso condicionado"],
 ];
 
@@ -25,7 +28,7 @@ export default function DataMethodologyPage() {
       <div className="data-source-table-wrap">
         <table className="data-source-table">
           <thead><tr><th>Publicador</th><th>Fuente</th><th>Uso</th><th>Naturaleza</th></tr></thead>
-          <tbody>{sources.map(([publisher, source, use, kind]) => <tr key={publisher}><th scope="row">{publisher}</th><td>{source}</td><td>{use}</td><td><StatusBadge tone={kind.includes("Oficial") ? "official" : "neutral"}>{kind}</StatusBadge></td></tr>)}</tbody>
+          <tbody>{sources.map(([publisher, source, use, kind]) => <tr key={`${publisher}-${source}`}><th scope="row">{publisher}</th><td>{source}</td><td>{use}</td><td><StatusBadge tone={kind.includes("Oficial") ? "official" : "neutral"}>{kind}</StatusBadge></td></tr>)}</tbody>
         </table>
       </div>
       <div className="prose-content">

@@ -3,6 +3,7 @@ import { ArrowUpRight, Menu } from "lucide-react";
 
 const links = [
   { href: "/calculator", label: "Calculadora" },
+  { href: "/laboratorio", label: "Laboratorio" },
   { href: "/scenarios", label: "Escenarios" },
   { href: "/explorer", label: "Mapa" },
   { href: "/methodology", label: "Método" },

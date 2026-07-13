@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0",
+  "datasetId": "cifra-civica-ccaa-svg-2024-v1",
+  "dataMode": "official_generalised",
+  "sourceName": "Eurostat GISCO NUTS 2024 statistical boundaries (level 2)",
+  "publisher": "Eurostat / EuroGeographics",
+  "sourceReference": "https://ec.europa.eu/eurostat/web/gisco/geodata/statistical-units/territorial-units-statistics",
+  "accessDate": "2026-07-13",
+  "publicationDate": "2024",
+  "dataPeriod": "NUTS 2024 classification",
+  "geographicCoverage": "Spain: 17 autonomous communities and 2 autonomous cities (NUTS-2)",
+  "licenceOrReuseConditions": "Free reuse with mandatory attribution: © EuroGeographics for the administrative boundaries. Generalised for statistical mapping; not for legal use.",
+  "checksum": "5449ca332b715b0a6e87dc21ec59af91cb256e8b551f5eef2813df1181447c8e",
+  "checksumAlgorithm": "sha256",
+  "originalFilename": "data/fixtures/geography/nuts2-es-2024.geojson",
+  "inputChecksum": "a8eee8dbd95171115f88130b8796cabe30eb43e77c5049737ebedcdfa5d8f3b4",
+  "transformVersion": "geography-ccaa-svg-builder/1.0.0",
+  "transformationSteps": [
+    "Extract the 19 Spanish NUTS-2 features from the GISCO 1:10M GeoJSON distribution.",
+    "Project with an equirectangular fit (standard parallel 40°N) into a 960×780 frame.",
+    "Relocate the Canary Islands into a framed cartographic inset in the Atlantic corner.",
+    "Emit one SVG path, label anchor and metadata entry per community, sorted by INE code."
+  ],
+  "qualityWarnings": [
+    "Boundaries are generalised (1:10M) for fast statistical visualisation only.",
+    "Ceuta and Melilla are drawn near-invisible at this scale; the UI adds tappable markers."
+  ],
+  "outputTables": [
+    "spain_ccaa_svg"
+  ]
+}
