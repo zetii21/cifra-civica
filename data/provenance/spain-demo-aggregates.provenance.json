@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0",
+  "datasetId": "cifra-civica-demo-aggregates-2027-v1",
+  "dataMode": "demo_synthetic",
+  "sourceName": "Cifra Cívica deterministic synthetic aggregate generator",
+  "publisher": "Cifra Cívica",
+  "sourceReference": "urn:cifra-civica:demo:synthetic-aggregates:v1",
+  "accessDate": "2026-07-13",
+  "publicationDate": "2026-07-13",
+  "dataPeriod": "DEMO 2027",
+  "geographicCoverage": "Autonomous communities/cities and sample municipalities from the DEMO geography fixture",
+  "licenceOrReuseConditions": "CC0 synthetic development fixture; not suitable for substantive analysis.",
+  "checksum": "ec9a992dd1863581577b1202f4cf11ad32c5c265e9e4d698fe28e6a0c4ef9041",
+  "checksumAlgorithm": "sha256",
+  "originalFilename": "packages/geography/demo-source.ts",
+  "transformVersion": "aggregate-demo-generator/1.0.0",
+  "transformationSteps": [
+    "Derive deterministic pseudo-random aggregate values from stable project geography codes.",
+    "Attach synthetic sample size, calibration and combined sampling/model uncertainty fields.",
+    "Apply primary disclosure controls and physically remove suppressed values.",
+    "Round publishable values according to uncertainty and add DEMO watermark to every cell."
+  ],
+  "qualityWarnings": [
+    "DEMO — every populated metric is synthetic and must not be presented as an official or real-world estimate.",
+    "Official metric definitions are catalogued without bundled values to prevent fabricated official context.",
+    "No household or survey microdata is included."
+  ],
+  "outputTables": [
+    "demo_metric_definitions",
+    "demo_aggregate_metric_cells"
+  ],
+  "responsibleMaintainer": "data-governance@cifra-civica.invalid",
+  "pipelineStage": "published",
+  "containsRestrictedMicrodata": false,
+  "containsAdministrativeTaxpayerMicrodata": false,
+  "outputChecksums": {
+    "data/fixtures/aggregates/spain-demo-metrics.json": "a925c937d76a5477752336d241e0f5ab09eef49bf3f0fe0f89030d259739d3ec"
+  }
+}

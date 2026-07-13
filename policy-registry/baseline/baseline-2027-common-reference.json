@@ -1,0 +1,56 @@
+{
+  "id": "baseline-2027-common-reference",
+  "slug": "referencia-comun-2027",
+  "publicName": "Referencia normativa revisada — traslado técnico a 2027",
+  "shortDescription": "Referencia informativa para 2027 que traslada parámetros estatutarios revisados de IRPF autonómico 2025 y Seguridad Social 2026; no afirma conocer la legislación que estará vigente en 2027.",
+  "origin": "Modelo base de Cifra Cívica a partir de fuentes oficiales",
+  "taxYear": 2027,
+  "status": "simulated",
+  "validationStatus": "source_reviewed",
+  "territorialScope": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "17"],
+  "fiscalRegimeScope": ["common"],
+  "effectiveFrom": "2027-01-01",
+  "effectiveTo": "2027-12-31",
+  "supersedes": [],
+  "inheritedBaseline": null,
+  "legalOrProposalSources": [
+    "source-boe-lirpf-consolidated-2026",
+    "source-hacienda-autonomic-2025",
+    "source-boe-social-security-2026",
+    "source-seg-social-rates-2026"
+  ],
+  "interpretationNotes": [
+    "El año de simulación 2027 es posterior a las referencias normativas disponibles y revisadas.",
+    "La cuota autonómica usa escalas y mínimos del compendio oficial del ejercicio 2025, actualizado el 29 de abril de 2026.",
+    "Las cotizaciones usan la normativa del ejercicio 2026 y una distribución uniforme de remuneración entre los meses trabajados."
+  ],
+  "assumptions": [
+    "Se mantienen técnicamente en 2027 los últimos parámetros revisados únicamente para permitir una referencia comparable.",
+    "No se aplican deducciones estatales o autonómicas que requieran hechos documentales no solicitados.",
+    "Las prestaciones introducidas por el usuario se suman como flujo de caja; si su tratamiento fiscal es desconocido se tratan como exentas y se advierte."
+  ],
+  "parameterSet": "es-common-reference-2026-v1",
+  "parameterOverrides": {},
+  "formulaOverrides": {},
+  "knownLimitations": [
+    "No es una declaración de IRPF ni un cálculo oficial de una administración pública.",
+    "No representa legislación 2027 validada; requiere una actualización normativa antes de uso electoral público.",
+    "No incluye deducciones autonómicas detalladas, retenciones, pagos a cuenta, tributación patrimonial, consumo, IVA ni IGIC.",
+    "El tratamiento de autónomos, plusvalías, pérdidas y prestaciones es una aproximación de alcance limitado."
+  ],
+  "testCaseIds": ["household-zero-income", "household-single-worker", "household-married-with-child"],
+  "aggregateBenchmarkIds": [],
+  "reviewedBy": ["revisión técnica de fuentes oficiales pendiente de validación fiscal independiente"],
+  "lastReviewedAt": "2026-07-13",
+  "modelCompatibility": ">=0.1.0",
+  "policyVersion": "2027.reference.1",
+  "publicChangelog": [
+    {"date": "2026-07-13", "description": "Primera referencia trazable para pruebas del producto 2027."}
+  ],
+  "methodologyPath": "methodology/referencia-comun-2027.md",
+  "published": true,
+  "isSynthetic": false,
+  "carryForwardFromTaxYear": 2026,
+  "uncertaintyStatus": "high"
+}
+

@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/zetii21/cifra-civica/main/infra/deployment/release-metadata.schema.json",
+  "title": "Cifra Cívica release metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "applicationVersion",
+    "sourceCommit",
+    "contractVersion",
+    "calculationBackend",
+    "modelVersion",
+    "policyRegistryCommit",
+    "dataPipelineVersion",
+    "geographyVersion",
+    "buildDate",
+    "syntheticFixturesEnabled",
+    "artifactDigests",
+    "modelInventory",
+    "validationSummary",
+    "knownLimitations"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "applicationVersion": { "type": "string", "minLength": 1 },
+    "sourceCommit": { "type": "string", "minLength": 7 },
+    "contractVersion": { "type": "string", "pattern": "^v[0-9]+$" },
+    "calculationBackend": { "enum": ["python_api", "edge_api"] },
+    "modelVersion": { "type": "string", "minLength": 1 },
+    "policyRegistryCommit": { "type": "string", "minLength": 7 },
+    "dataPipelineVersion": { "type": "string", "minLength": 1 },
+    "geographyVersion": { "type": "string", "minLength": 1 },
+    "buildDate": { "type": "string", "format": "date-time" },
+    "syntheticFixturesEnabled": { "type": "boolean" },
+    "artifactDigests": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+    },
+    "modelInventory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "namedVariables",
+        "executableFormulas",
+        "datedParameterValues",
+        "publishedBaselines",
+        "publishedScenarios",
+        "publishedSyntheticScenarios",
+        "sourceRecords",
+        "goldenCases",
+        "aggregateBenchmarks",
+        "addressableValidationStates"
+      ],
+      "properties": {
+        "namedVariables": { "type": "integer", "minimum": 0 },
+        "executableFormulas": { "type": "integer", "minimum": 0 },
+        "datedParameterValues": { "type": "integer", "minimum": 0 },
+        "publishedBaselines": { "type": "integer", "minimum": 0 },
+        "publishedScenarios": { "type": "integer", "minimum": 0 },
+        "publishedSyntheticScenarios": { "type": "integer", "minimum": 0 },
+        "sourceRecords": { "type": "integer", "minimum": 0 },
+        "goldenCases": { "type": "integer", "minimum": 0 },
+        "aggregateBenchmarks": { "type": "integer", "minimum": 0 },
+        "addressableValidationStates": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "validationSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "passed", "failed", "notAssessed"],
+      "properties": {
+        "status": {
+          "enum": ["not_assessed", "failed", "household_tested", "aggregate_tested", "production_validated"]
+        },
+        "passed": { "type": "integer", "minimum": 0 },
+        "failed": { "type": "integer", "minimum": 0 },
+        "notAssessed": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "knownLimitations": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "calculationBackend": { "const": "edge_api" } },
+        "required": ["calculationBackend"]
+      },
+      "then": {
+        "properties": {
+          "modelInventory": {
+            "properties": { "addressableValidationStates": { "const": 0 } }
+          },
+          "validationSummary": {
+            "properties": { "status": { "const": "not_assessed" } }
+          },
+          "knownLimitations": { "minItems": 1 }
+        }
+      }
+    }
+  ]
+}

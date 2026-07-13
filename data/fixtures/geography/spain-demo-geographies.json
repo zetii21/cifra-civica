@@ -1,0 +1,3806 @@
+{
+  "schemaVersion": "1.0",
+  "datasetId": "cifra-civica-demo-geography-2027-v1",
+  "generatedAt": "2026-07-13T00:00:00.000Z",
+  "geographyVersion": "demo-es-2027.1",
+  "dataMode": "demo_synthetic",
+  "watermark": "DEMO",
+  "records": [
+    {
+      "code": "ES",
+      "officialCode": "ES",
+      "codeScheme": "ISO_3166_1_ALPHA2",
+      "name": "España",
+      "nameVariants": [
+        "Spain"
+      ],
+      "level": "country",
+      "parentCode": null,
+      "autonomousCommunityCode": null,
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -3.7,
+        40.2
+      ],
+      "bbox": [
+        -18.2,
+        27.6,
+        4.4,
+        43.8
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -9.35,
+              35.87
+            ],
+            [
+              4.4,
+              35.87
+            ],
+            [
+              4.4,
+              43.8
+            ],
+            [
+              -9.35,
+              43.8
+            ],
+            [
+              -9.35,
+              35.87
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "partial",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 110,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-01",
+      "officialCode": "01",
+      "codeScheme": "INE_CCAA_2",
+      "name": "Andalucía",
+      "nameVariants": [],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "01",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -4.575,
+        37.375
+      ],
+      "bbox": [
+        -7.55,
+        36,
+        -1.6,
+        38.75
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.55,
+              36
+            ],
+            [
+              -1.6,
+              36
+            ],
+            [
+              -1.6,
+              38.75
+            ],
+            [
+              -7.55,
+              38.75
+            ],
+            [
+              -7.55,
+              36
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-02",
+      "officialCode": "02",
+      "codeScheme": "INE_CCAA_2",
+      "name": "Aragón",
+      "nameVariants": [],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "02",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -0.45,
+        41.400000000000006
+      ],
+      "bbox": [
+        -1.75,
+        39.85,
+        0.85,
+        42.95
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -1.75,
+              39.85
+            ],
+            [
+              0.85,
+              39.85
+            ],
+            [
+              0.85,
+              42.95
+            ],
+            [
+              -1.75,
+              42.95
+            ],
+            [
+              -1.75,
+              39.85
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-03",
+      "officialCode": "03",
+      "codeScheme": "INE_CCAA_2",
+      "name": "Principado de Asturias",
+      "nameVariants": [
+        "Asturias"
+      ],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "03",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -5.85,
+        43.275000000000006
+      ],
+      "bbox": [
+        -7.2,
+        42.85,
+        -4.5,
+        43.7
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.2,
+              42.85
+            ],
+            [
+              -4.5,
+              42.85
+            ],
+            [
+              -4.5,
+              43.7
+            ],
+            [
+              -7.2,
+              43.7
+            ],
+            [
+              -7.2,
+              42.85
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-04",
+      "officialCode": "04",
+      "codeScheme": "INE_CCAA_2",
+      "name": "Illes Balears",
+      "nameVariants": [
+        "Islas Baleares",
+        "Baleares"
+      ],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "04",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        2.75,
+        39.35
+      ],
+      "bbox": [
+        1.1,
+        38.6,
+        4.4,
+        40.1
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              1.1,
+              38.6
+            ],
+            [
+              4.4,
+              38.6
+            ],
+            [
+              4.4,
+              40.1
+            ],
+            [
+              1.1,
+              40.1
+            ],
+            [
+              1.1,
+              38.6
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-05",
+      "officialCode": "05",
+      "codeScheme": "INE_CCAA_2",
+      "name": "Canarias",
+      "nameVariants": [],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "05",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -15.75,
+        28.55
+      ],
+      "bbox": [
+        -18.2,
+        27.6,
+        -13.3,
+        29.5
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -18.2,
+              27.6
+            ],
+            [
+              -13.3,
+              27.6
+            ],
+            [
+              -13.3,
+              29.5
+            ],
+            [
+              -18.2,
+              29.5
+            ],
+            [
+              -18.2,
+              27.6
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "partial",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-06",
+      "officialCode": "06",
+      "codeScheme": "INE_CCAA_2",
+      "name": "Cantabria",
+      "nameVariants": [],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "06",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -4.025,
+        43.15
+      ],
+      "bbox": [
+        -4.9,
+        42.75,
+        -3.15,
+        43.55
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.9,
+              42.75
+            ],
+            [
+              -3.15,
+              42.75
+            ],
+            [
+              -3.15,
+              43.55
+            ],
+            [
+              -4.9,
+              43.55
+            ],
+            [
+              -4.9,
+              42.75
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-07",
+      "officialCode": "07",
+      "codeScheme": "INE_CCAA_2",
+      "name": "Castilla y León",
+      "nameVariants": [],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "07",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -4.425,
+        41.525
+      ],
+      "bbox": [
+        -7.1,
+        39.8,
+        -1.75,
+        43.25
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.1,
+              39.8
+            ],
+            [
+              -1.75,
+              39.8
+            ],
+            [
+              -1.75,
+              43.25
+            ],
+            [
+              -7.1,
+              43.25
+            ],
+            [
+              -7.1,
+              39.8
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-08",
+      "officialCode": "08",
+      "codeScheme": "INE_CCAA_2",
+      "name": "Castilla-La Mancha",
+      "nameVariants": [],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "08",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -3.2,
+        39.675
+      ],
+      "bbox": [
+        -5.5,
+        38,
+        -0.9,
+        41.35
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -5.5,
+              38
+            ],
+            [
+              -0.9,
+              38
+            ],
+            [
+              -0.9,
+              41.35
+            ],
+            [
+              -5.5,
+              41.35
+            ],
+            [
+              -5.5,
+              38
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-09",
+      "officialCode": "09",
+      "codeScheme": "INE_CCAA_2",
+      "name": "Cataluña",
+      "nameVariants": [
+        "Catalunya"
+      ],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "09",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        1.75,
+        41.7
+      ],
+      "bbox": [
+        0.15,
+        40.5,
+        3.35,
+        42.9
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              0.15,
+              40.5
+            ],
+            [
+              3.35,
+              40.5
+            ],
+            [
+              3.35,
+              42.9
+            ],
+            [
+              0.15,
+              42.9
+            ],
+            [
+              0.15,
+              40.5
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-10",
+      "officialCode": "10",
+      "codeScheme": "INE_CCAA_2",
+      "name": "Comunitat Valenciana",
+      "nameVariants": [
+        "Comunidad Valenciana"
+      ],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "10",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -0.525,
+        39.3
+      ],
+      "bbox": [
+        -1.6,
+        37.8,
+        0.55,
+        40.8
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -1.6,
+              37.8
+            ],
+            [
+              0.55,
+              37.8
+            ],
+            [
+              0.55,
+              40.8
+            ],
+            [
+              -1.6,
+              40.8
+            ],
+            [
+              -1.6,
+              37.8
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-11",
+      "officialCode": "11",
+      "codeScheme": "INE_CCAA_2",
+      "name": "Extremadura",
+      "nameVariants": [],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "11",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -6.1,
+        39.2
+      ],
+      "bbox": [
+        -7.55,
+        37.9,
+        -4.65,
+        40.5
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.55,
+              37.9
+            ],
+            [
+              -4.65,
+              37.9
+            ],
+            [
+              -4.65,
+              40.5
+            ],
+            [
+              -7.55,
+              40.5
+            ],
+            [
+              -7.55,
+              37.9
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-12",
+      "officialCode": "12",
+      "codeScheme": "INE_CCAA_2",
+      "name": "Galicia",
+      "nameVariants": [],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "12",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -8.05,
+        42.8
+      ],
+      "bbox": [
+        -9.35,
+        41.8,
+        -6.75,
+        43.8
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -9.35,
+              41.8
+            ],
+            [
+              -6.75,
+              41.8
+            ],
+            [
+              -6.75,
+              43.8
+            ],
+            [
+              -9.35,
+              43.8
+            ],
+            [
+              -9.35,
+              41.8
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-13",
+      "officialCode": "13",
+      "codeScheme": "INE_CCAA_2",
+      "name": "Comunidad de Madrid",
+      "nameVariants": [
+        "Madrid"
+      ],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "13",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -3.8249999999999997,
+        40.525000000000006
+      ],
+      "bbox": [
+        -4.6,
+        39.85,
+        -3.05,
+        41.2
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.6,
+              39.85
+            ],
+            [
+              -3.05,
+              39.85
+            ],
+            [
+              -3.05,
+              41.2
+            ],
+            [
+              -4.6,
+              41.2
+            ],
+            [
+              -4.6,
+              39.85
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-14",
+      "officialCode": "14",
+      "codeScheme": "INE_CCAA_2",
+      "name": "Región de Murcia",
+      "nameVariants": [
+        "Murcia"
+      ],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "14",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -1.5,
+        38.075
+      ],
+      "bbox": [
+        -2.35,
+        37.35,
+        -0.65,
+        38.8
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.35,
+              37.35
+            ],
+            [
+              -0.65,
+              37.35
+            ],
+            [
+              -0.65,
+              38.8
+            ],
+            [
+              -2.35,
+              38.8
+            ],
+            [
+              -2.35,
+              37.35
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-15",
+      "officialCode": "15",
+      "codeScheme": "INE_CCAA_2",
+      "name": "Comunidad Foral de Navarra",
+      "nameVariants": [
+        "Navarra",
+        "Nafarroa"
+      ],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "15",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -1.6,
+        42.6
+      ],
+      "bbox": [
+        -2.5,
+        41.85,
+        -0.7,
+        43.35
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.5,
+              41.85
+            ],
+            [
+              -0.7,
+              41.85
+            ],
+            [
+              -0.7,
+              43.35
+            ],
+            [
+              -2.5,
+              43.35
+            ],
+            [
+              -2.5,
+              41.85
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "unsupported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-16",
+      "officialCode": "16",
+      "codeScheme": "INE_CCAA_2",
+      "name": "País Vasco",
+      "nameVariants": [
+        "Euskadi"
+      ],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "16",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -2.6,
+        43
+      ],
+      "bbox": [
+        -3.5,
+        42.45,
+        -1.7,
+        43.55
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.5,
+              42.45
+            ],
+            [
+              -1.7,
+              42.45
+            ],
+            [
+              -1.7,
+              43.55
+            ],
+            [
+              -3.5,
+              43.55
+            ],
+            [
+              -3.5,
+              42.45
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "unsupported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-17",
+      "officialCode": "17",
+      "codeScheme": "INE_CCAA_2",
+      "name": "La Rioja",
+      "nameVariants": [],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "17",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -2.4,
+        42.3
+      ],
+      "bbox": [
+        -3.15,
+        41.9,
+        -1.65,
+        42.7
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.15,
+              41.9
+            ],
+            [
+              -1.65,
+              41.9
+            ],
+            [
+              -1.65,
+              42.7
+            ],
+            [
+              -3.15,
+              42.7
+            ],
+            [
+              -3.15,
+              41.9
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-18",
+      "officialCode": "18",
+      "codeScheme": "INE_CCAA_2",
+      "name": "Ceuta",
+      "nameVariants": [],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "18",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -5.32,
+        35.9
+      ],
+      "bbox": [
+        -5.37,
+        35.87,
+        -5.27,
+        35.93
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -5.37,
+              35.87
+            ],
+            [
+              -5.27,
+              35.87
+            ],
+            [
+              -5.27,
+              35.93
+            ],
+            [
+              -5.37,
+              35.93
+            ],
+            [
+              -5.37,
+              35.87
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "partial",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-CCAA-19",
+      "officialCode": "19",
+      "codeScheme": "INE_CCAA_2",
+      "name": "Melilla",
+      "nameVariants": [],
+      "level": "autonomous_community",
+      "parentCode": "ES",
+      "autonomousCommunityCode": "19",
+      "provinceCode": null,
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -2.955,
+        35.295
+      ],
+      "bbox": [
+        -3,
+        35.26,
+        -2.91,
+        35.33
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3,
+              35.26
+            ],
+            [
+              -2.91,
+              35.26
+            ],
+            [
+              -2.91,
+              35.33
+            ],
+            [
+              -3,
+              35.33
+            ],
+            [
+              -3,
+              35.26
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "partial",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-41",
+      "officialCode": "41",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Sevilla",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-01",
+      "autonomousCommunityCode": "01",
+      "provinceCode": "41",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -5.9845,
+        37.3891
+      ],
+      "bbox": [
+        -6.5344999999999995,
+        36.9691,
+        -5.4345,
+        37.8091
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6.5344999999999995,
+              36.9691
+            ],
+            [
+              -5.4345,
+              36.9691
+            ],
+            [
+              -5.4345,
+              37.8091
+            ],
+            [
+              -6.5344999999999995,
+              37.8091
+            ],
+            [
+              -6.5344999999999995,
+              36.9691
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-50",
+      "officialCode": "50",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Zaragoza",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-02",
+      "autonomousCommunityCode": "02",
+      "provinceCode": "50",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -0.8891,
+        41.6488
+      ],
+      "bbox": [
+        -1.4391,
+        41.2288,
+        -0.33909999999999996,
+        42.0688
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -1.4391,
+              41.2288
+            ],
+            [
+              -0.33909999999999996,
+              41.2288
+            ],
+            [
+              -0.33909999999999996,
+              42.0688
+            ],
+            [
+              -1.4391,
+              42.0688
+            ],
+            [
+              -1.4391,
+              41.2288
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-33",
+      "officialCode": "33",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Asturias",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-03",
+      "autonomousCommunityCode": "03",
+      "provinceCode": "33",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -5.6611,
+        43.5322
+      ],
+      "bbox": [
+        -6.2111,
+        43.1122,
+        -5.1111,
+        43.952200000000005
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6.2111,
+              43.1122
+            ],
+            [
+              -5.1111,
+              43.1122
+            ],
+            [
+              -5.1111,
+              43.952200000000005
+            ],
+            [
+              -6.2111,
+              43.952200000000005
+            ],
+            [
+              -6.2111,
+              43.1122
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-07",
+      "officialCode": "07",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Balears, Illes",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-04",
+      "autonomousCommunityCode": "04",
+      "provinceCode": "07",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        2.6502,
+        39.5696
+      ],
+      "bbox": [
+        2.1002,
+        39.1496,
+        3.2001999999999997,
+        39.9896
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.1002,
+              39.1496
+            ],
+            [
+              3.2001999999999997,
+              39.1496
+            ],
+            [
+              3.2001999999999997,
+              39.9896
+            ],
+            [
+              2.1002,
+              39.9896
+            ],
+            [
+              2.1002,
+              39.1496
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-35",
+      "officialCode": "35",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Palmas, Las",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-05",
+      "autonomousCommunityCode": "05",
+      "provinceCode": "35",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -15.4314,
+        28.1248
+      ],
+      "bbox": [
+        -15.9814,
+        27.7048,
+        -14.8814,
+        28.544800000000002
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -15.9814,
+              27.7048
+            ],
+            [
+              -14.8814,
+              27.7048
+            ],
+            [
+              -14.8814,
+              28.544800000000002
+            ],
+            [
+              -15.9814,
+              28.544800000000002
+            ],
+            [
+              -15.9814,
+              27.7048
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "partial",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-39",
+      "officialCode": "39",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Cantabria",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-06",
+      "autonomousCommunityCode": "06",
+      "provinceCode": "39",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -3.8099,
+        43.4623
+      ],
+      "bbox": [
+        -4.3599,
+        43.0423,
+        -3.2599,
+        43.8823
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.3599,
+              43.0423
+            ],
+            [
+              -3.2599,
+              43.0423
+            ],
+            [
+              -3.2599,
+              43.8823
+            ],
+            [
+              -4.3599,
+              43.8823
+            ],
+            [
+              -4.3599,
+              43.0423
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-47",
+      "officialCode": "47",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Valladolid",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-07",
+      "autonomousCommunityCode": "07",
+      "provinceCode": "47",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -4.7245,
+        41.6523
+      ],
+      "bbox": [
+        -5.2745,
+        41.232299999999995,
+        -4.1745,
+        42.0723
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -5.2745,
+              41.232299999999995
+            ],
+            [
+              -4.1745,
+              41.232299999999995
+            ],
+            [
+              -4.1745,
+              42.0723
+            ],
+            [
+              -5.2745,
+              42.0723
+            ],
+            [
+              -5.2745,
+              41.232299999999995
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-45",
+      "officialCode": "45",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Toledo",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-08",
+      "autonomousCommunityCode": "08",
+      "provinceCode": "45",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -4.0273,
+        39.8628
+      ],
+      "bbox": [
+        -4.5773,
+        39.4428,
+        -3.4773000000000005,
+        40.2828
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.5773,
+              39.4428
+            ],
+            [
+              -3.4773000000000005,
+              39.4428
+            ],
+            [
+              -3.4773000000000005,
+              40.2828
+            ],
+            [
+              -4.5773,
+              40.2828
+            ],
+            [
+              -4.5773,
+              39.4428
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-08",
+      "officialCode": "08",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Barcelona",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-09",
+      "autonomousCommunityCode": "09",
+      "provinceCode": "08",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        2.1734,
+        41.3851
+      ],
+      "bbox": [
+        1.6234,
+        40.9651,
+        2.7234,
+        41.8051
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              1.6234,
+              40.9651
+            ],
+            [
+              2.7234,
+              40.9651
+            ],
+            [
+              2.7234,
+              41.8051
+            ],
+            [
+              1.6234,
+              41.8051
+            ],
+            [
+              1.6234,
+              40.9651
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-46",
+      "officialCode": "46",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Valencia/València",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-10",
+      "autonomousCommunityCode": "10",
+      "provinceCode": "46",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -0.3763,
+        39.4699
+      ],
+      "bbox": [
+        -0.9263000000000001,
+        39.0499,
+        0.17370000000000002,
+        39.889900000000004
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.9263000000000001,
+              39.0499
+            ],
+            [
+              0.17370000000000002,
+              39.0499
+            ],
+            [
+              0.17370000000000002,
+              39.889900000000004
+            ],
+            [
+              -0.9263000000000001,
+              39.889900000000004
+            ],
+            [
+              -0.9263000000000001,
+              39.0499
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-06",
+      "officialCode": "06",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Badajoz",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-11",
+      "autonomousCommunityCode": "11",
+      "provinceCode": "06",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -6.9707,
+        38.8794
+      ],
+      "bbox": [
+        -7.5207,
+        38.459399999999995,
+        -6.4207,
+        39.2994
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.5207,
+              38.459399999999995
+            ],
+            [
+              -6.4207,
+              38.459399999999995
+            ],
+            [
+              -6.4207,
+              39.2994
+            ],
+            [
+              -7.5207,
+              39.2994
+            ],
+            [
+              -7.5207,
+              38.459399999999995
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-15",
+      "officialCode": "15",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Coruña, A",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-12",
+      "autonomousCommunityCode": "12",
+      "provinceCode": "15",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -8.4115,
+        43.3623
+      ],
+      "bbox": [
+        -8.961500000000001,
+        42.942299999999996,
+        -7.8615,
+        43.7823
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -8.961500000000001,
+              42.942299999999996
+            ],
+            [
+              -7.8615,
+              42.942299999999996
+            ],
+            [
+              -7.8615,
+              43.7823
+            ],
+            [
+              -8.961500000000001,
+              43.7823
+            ],
+            [
+              -8.961500000000001,
+              42.942299999999996
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-28",
+      "officialCode": "28",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Madrid",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-13",
+      "autonomousCommunityCode": "13",
+      "provinceCode": "28",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -3.7038,
+        40.4168
+      ],
+      "bbox": [
+        -4.2538,
+        39.9968,
+        -3.1538000000000004,
+        40.836800000000004
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.2538,
+              39.9968
+            ],
+            [
+              -3.1538000000000004,
+              39.9968
+            ],
+            [
+              -3.1538000000000004,
+              40.836800000000004
+            ],
+            [
+              -4.2538,
+              40.836800000000004
+            ],
+            [
+              -4.2538,
+              39.9968
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-30",
+      "officialCode": "30",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Murcia",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-14",
+      "autonomousCommunityCode": "14",
+      "provinceCode": "30",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -1.1307,
+        37.9922
+      ],
+      "bbox": [
+        -1.6807,
+        37.572199999999995,
+        -0.5807,
+        38.4122
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -1.6807,
+              37.572199999999995
+            ],
+            [
+              -0.5807,
+              37.572199999999995
+            ],
+            [
+              -0.5807,
+              38.4122
+            ],
+            [
+              -1.6807,
+              38.4122
+            ],
+            [
+              -1.6807,
+              37.572199999999995
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-31",
+      "officialCode": "31",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Navarra",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-15",
+      "autonomousCommunityCode": "15",
+      "provinceCode": "31",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -1.644,
+        42.8125
+      ],
+      "bbox": [
+        -2.194,
+        42.3925,
+        -1.0939999999999999,
+        43.2325
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.194,
+              42.3925
+            ],
+            [
+              -1.0939999999999999,
+              42.3925
+            ],
+            [
+              -1.0939999999999999,
+              43.2325
+            ],
+            [
+              -2.194,
+              43.2325
+            ],
+            [
+              -2.194,
+              42.3925
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "unsupported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-48",
+      "officialCode": "48",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Bizkaia",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-16",
+      "autonomousCommunityCode": "16",
+      "provinceCode": "48",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -2.935,
+        43.263
+      ],
+      "bbox": [
+        -3.4850000000000003,
+        42.842999999999996,
+        -2.385,
+        43.683
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.4850000000000003,
+              42.842999999999996
+            ],
+            [
+              -2.385,
+              42.842999999999996
+            ],
+            [
+              -2.385,
+              43.683
+            ],
+            [
+              -3.4850000000000003,
+              43.683
+            ],
+            [
+              -3.4850000000000003,
+              42.842999999999996
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "unsupported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-26",
+      "officialCode": "26",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Rioja, La",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-17",
+      "autonomousCommunityCode": "17",
+      "provinceCode": "26",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -2.4449,
+        42.4627
+      ],
+      "bbox": [
+        -2.9949000000000003,
+        42.042699999999996,
+        -1.8949,
+        42.8827
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.9949000000000003,
+              42.042699999999996
+            ],
+            [
+              -1.8949,
+              42.042699999999996
+            ],
+            [
+              -1.8949,
+              42.8827
+            ],
+            [
+              -2.9949000000000003,
+              42.8827
+            ],
+            [
+              -2.9949000000000003,
+              42.042699999999996
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-51",
+      "officialCode": "51",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Ceuta",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-18",
+      "autonomousCommunityCode": "18",
+      "provinceCode": "51",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -5.3213,
+        35.8894
+      ],
+      "bbox": [
+        -5.8713,
+        35.4694,
+        -4.7713,
+        36.309400000000004
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -5.8713,
+              35.4694
+            ],
+            [
+              -4.7713,
+              35.4694
+            ],
+            [
+              -4.7713,
+              36.309400000000004
+            ],
+            [
+              -5.8713,
+              36.309400000000004
+            ],
+            [
+              -5.8713,
+              35.4694
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "partial",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-52",
+      "officialCode": "52",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Melilla",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-19",
+      "autonomousCommunityCode": "19",
+      "provinceCode": "52",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -2.9381,
+        35.2923
+      ],
+      "bbox": [
+        -3.4881,
+        34.872299999999996,
+        -2.3880999999999997,
+        35.7123
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.4881,
+              34.872299999999996
+            ],
+            [
+              -2.3880999999999997,
+              34.872299999999996
+            ],
+            [
+              -2.3880999999999997,
+              35.7123
+            ],
+            [
+              -3.4881,
+              35.7123
+            ],
+            [
+              -3.4881,
+              34.872299999999996
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "partial",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-PROV-29",
+      "officialCode": "29",
+      "codeScheme": "INE_PROVINCE_2",
+      "name": "Málaga",
+      "nameVariants": [],
+      "level": "province",
+      "parentCode": "ES-CCAA-01",
+      "autonomousCommunityCode": "01",
+      "provinceCode": "29",
+      "municipalityCode": null,
+      "postalCodes": [],
+      "centroid": [
+        -4.4214,
+        36.7213
+      ],
+      "bbox": [
+        -4.9714,
+        36.3013,
+        -3.8714000000000004,
+        37.1413
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.9714,
+              36.3013
+            ],
+            [
+              -3.8714000000000004,
+              36.3013
+            ],
+            [
+              -3.8714000000000004,
+              37.1413
+            ],
+            [
+              -4.9714,
+              37.1413
+            ],
+            [
+              -4.9714,
+              36.3013
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 75,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-41091",
+      "officialCode": "41091",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Sevilla",
+      "nameVariants": [],
+      "level": "municipality",
+      "parentCode": "ES-PROV-41",
+      "autonomousCommunityCode": "01",
+      "provinceCode": "41",
+      "municipalityCode": "41091",
+      "postalCodes": [
+        "41001"
+      ],
+      "centroid": [
+        -5.9845,
+        37.3891
+      ],
+      "bbox": [
+        -6.0945,
+        37.3041,
+        -5.874499999999999,
+        37.4741
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6.0945,
+              37.3041
+            ],
+            [
+              -5.874499999999999,
+              37.3041
+            ],
+            [
+              -5.874499999999999,
+              37.4741
+            ],
+            [
+              -6.0945,
+              37.4741
+            ],
+            [
+              -6.0945,
+              37.3041
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 95,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-50297",
+      "officialCode": "50297",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Zaragoza",
+      "nameVariants": [],
+      "level": "municipality",
+      "parentCode": "ES-PROV-50",
+      "autonomousCommunityCode": "02",
+      "provinceCode": "50",
+      "municipalityCode": "50297",
+      "postalCodes": [
+        "50001"
+      ],
+      "centroid": [
+        -0.8891,
+        41.6488
+      ],
+      "bbox": [
+        -0.9991,
+        41.5638,
+        -0.7791,
+        41.7338
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.9991,
+              41.5638
+            ],
+            [
+              -0.7791,
+              41.5638
+            ],
+            [
+              -0.7791,
+              41.7338
+            ],
+            [
+              -0.9991,
+              41.7338
+            ],
+            [
+              -0.9991,
+              41.5638
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 94,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-33024",
+      "officialCode": "33024",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Gijón",
+      "nameVariants": [
+        "Xixón"
+      ],
+      "level": "municipality",
+      "parentCode": "ES-PROV-33",
+      "autonomousCommunityCode": "03",
+      "provinceCode": "33",
+      "municipalityCode": "33024",
+      "postalCodes": [
+        "33201"
+      ],
+      "centroid": [
+        -5.6611,
+        43.5322
+      ],
+      "bbox": [
+        -5.771100000000001,
+        43.4472,
+        -5.5511,
+        43.617200000000004
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -5.771100000000001,
+              43.4472
+            ],
+            [
+              -5.5511,
+              43.4472
+            ],
+            [
+              -5.5511,
+              43.617200000000004
+            ],
+            [
+              -5.771100000000001,
+              43.617200000000004
+            ],
+            [
+              -5.771100000000001,
+              43.4472
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 88,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-07040",
+      "officialCode": "07040",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Palma",
+      "nameVariants": [
+        "Palma de Mallorca"
+      ],
+      "level": "municipality",
+      "parentCode": "ES-PROV-07",
+      "autonomousCommunityCode": "04",
+      "provinceCode": "07",
+      "municipalityCode": "07040",
+      "postalCodes": [
+        "07001"
+      ],
+      "centroid": [
+        2.6502,
+        39.5696
+      ],
+      "bbox": [
+        2.5402,
+        39.4846,
+        2.7601999999999998,
+        39.6546
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.5402,
+              39.4846
+            ],
+            [
+              2.7601999999999998,
+              39.4846
+            ],
+            [
+              2.7601999999999998,
+              39.6546
+            ],
+            [
+              2.5402,
+              39.6546
+            ],
+            [
+              2.5402,
+              39.4846
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 91,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-35016",
+      "officialCode": "35016",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Las Palmas de Gran Canaria",
+      "nameVariants": [
+        "Las Palmas"
+      ],
+      "level": "municipality",
+      "parentCode": "ES-PROV-35",
+      "autonomousCommunityCode": "05",
+      "provinceCode": "35",
+      "municipalityCode": "35016",
+      "postalCodes": [
+        "35001"
+      ],
+      "centroid": [
+        -15.4314,
+        28.1248
+      ],
+      "bbox": [
+        -15.5414,
+        28.0398,
+        -15.3214,
+        28.2098
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -15.5414,
+              28.0398
+            ],
+            [
+              -15.3214,
+              28.0398
+            ],
+            [
+              -15.3214,
+              28.2098
+            ],
+            [
+              -15.5414,
+              28.2098
+            ],
+            [
+              -15.5414,
+              28.0398
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "partial",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 92,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-39075",
+      "officialCode": "39075",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Santander",
+      "nameVariants": [],
+      "level": "municipality",
+      "parentCode": "ES-PROV-39",
+      "autonomousCommunityCode": "06",
+      "provinceCode": "39",
+      "municipalityCode": "39075",
+      "postalCodes": [
+        "39001"
+      ],
+      "centroid": [
+        -3.8099,
+        43.4623
+      ],
+      "bbox": [
+        -3.9198999999999997,
+        43.3773,
+        -3.6999,
+        43.5473
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.9198999999999997,
+              43.3773
+            ],
+            [
+              -3.6999,
+              43.3773
+            ],
+            [
+              -3.6999,
+              43.5473
+            ],
+            [
+              -3.9198999999999997,
+              43.5473
+            ],
+            [
+              -3.9198999999999997,
+              43.3773
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 86,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-47186",
+      "officialCode": "47186",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Valladolid",
+      "nameVariants": [],
+      "level": "municipality",
+      "parentCode": "ES-PROV-47",
+      "autonomousCommunityCode": "07",
+      "provinceCode": "47",
+      "municipalityCode": "47186",
+      "postalCodes": [
+        "47001"
+      ],
+      "centroid": [
+        -4.7245,
+        41.6523
+      ],
+      "bbox": [
+        -4.8345,
+        41.567299999999996,
+        -4.6145,
+        41.7373
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.8345,
+              41.567299999999996
+            ],
+            [
+              -4.6145,
+              41.567299999999996
+            ],
+            [
+              -4.6145,
+              41.7373
+            ],
+            [
+              -4.8345,
+              41.7373
+            ],
+            [
+              -4.8345,
+              41.567299999999996
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 89,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-45168",
+      "officialCode": "45168",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Toledo",
+      "nameVariants": [],
+      "level": "municipality",
+      "parentCode": "ES-PROV-45",
+      "autonomousCommunityCode": "08",
+      "provinceCode": "45",
+      "municipalityCode": "45168",
+      "postalCodes": [
+        "45001"
+      ],
+      "centroid": [
+        -4.0273,
+        39.8628
+      ],
+      "bbox": [
+        -4.137300000000001,
+        39.7778,
+        -3.9173000000000004,
+        39.9478
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.137300000000001,
+              39.7778
+            ],
+            [
+              -3.9173000000000004,
+              39.7778
+            ],
+            [
+              -3.9173000000000004,
+              39.9478
+            ],
+            [
+              -4.137300000000001,
+              39.9478
+            ],
+            [
+              -4.137300000000001,
+              39.7778
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 84,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-08019",
+      "officialCode": "08019",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Barcelona",
+      "nameVariants": [],
+      "level": "municipality",
+      "parentCode": "ES-PROV-08",
+      "autonomousCommunityCode": "09",
+      "provinceCode": "08",
+      "municipalityCode": "08019",
+      "postalCodes": [
+        "08001"
+      ],
+      "centroid": [
+        2.1734,
+        41.3851
+      ],
+      "bbox": [
+        2.0634,
+        41.3001,
+        2.2834,
+        41.4701
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.0634,
+              41.3001
+            ],
+            [
+              2.2834,
+              41.3001
+            ],
+            [
+              2.2834,
+              41.4701
+            ],
+            [
+              2.0634,
+              41.4701
+            ],
+            [
+              2.0634,
+              41.3001
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 100,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-46250",
+      "officialCode": "46250",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "València",
+      "nameVariants": [
+        "Valencia"
+      ],
+      "level": "municipality",
+      "parentCode": "ES-PROV-46",
+      "autonomousCommunityCode": "10",
+      "provinceCode": "46",
+      "municipalityCode": "46250",
+      "postalCodes": [
+        "46001"
+      ],
+      "centroid": [
+        -0.3763,
+        39.4699
+      ],
+      "bbox": [
+        -0.4863,
+        39.3849,
+        -0.26630000000000004,
+        39.5549
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.4863,
+              39.3849
+            ],
+            [
+              -0.26630000000000004,
+              39.3849
+            ],
+            [
+              -0.26630000000000004,
+              39.5549
+            ],
+            [
+              -0.4863,
+              39.5549
+            ],
+            [
+              -0.4863,
+              39.3849
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 97,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-06015",
+      "officialCode": "06015",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Badajoz",
+      "nameVariants": [],
+      "level": "municipality",
+      "parentCode": "ES-PROV-06",
+      "autonomousCommunityCode": "11",
+      "provinceCode": "06",
+      "municipalityCode": "06015",
+      "postalCodes": [
+        "06001"
+      ],
+      "centroid": [
+        -6.9707,
+        38.8794
+      ],
+      "bbox": [
+        -7.0807,
+        38.794399999999996,
+        -6.8607,
+        38.9644
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.0807,
+              38.794399999999996
+            ],
+            [
+              -6.8607,
+              38.794399999999996
+            ],
+            [
+              -6.8607,
+              38.9644
+            ],
+            [
+              -7.0807,
+              38.9644
+            ],
+            [
+              -7.0807,
+              38.794399999999996
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 82,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-15030",
+      "officialCode": "15030",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "A Coruña",
+      "nameVariants": [
+        "La Coruña",
+        "Coruña"
+      ],
+      "level": "municipality",
+      "parentCode": "ES-PROV-15",
+      "autonomousCommunityCode": "12",
+      "provinceCode": "15",
+      "municipalityCode": "15030",
+      "postalCodes": [
+        "15001"
+      ],
+      "centroid": [
+        -8.4115,
+        43.3623
+      ],
+      "bbox": [
+        -8.5215,
+        43.2773,
+        -8.3015,
+        43.4473
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -8.5215,
+              43.2773
+            ],
+            [
+              -8.3015,
+              43.2773
+            ],
+            [
+              -8.3015,
+              43.4473
+            ],
+            [
+              -8.5215,
+              43.4473
+            ],
+            [
+              -8.5215,
+              43.2773
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 87,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-28079",
+      "officialCode": "28079",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Madrid",
+      "nameVariants": [],
+      "level": "municipality",
+      "parentCode": "ES-PROV-28",
+      "autonomousCommunityCode": "13",
+      "provinceCode": "28",
+      "municipalityCode": "28079",
+      "postalCodes": [
+        "28001"
+      ],
+      "centroid": [
+        -3.7038,
+        40.4168
+      ],
+      "bbox": [
+        -3.8138,
+        40.3318,
+        -3.5938000000000003,
+        40.5018
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.8138,
+              40.3318
+            ],
+            [
+              -3.5938000000000003,
+              40.3318
+            ],
+            [
+              -3.5938000000000003,
+              40.5018
+            ],
+            [
+              -3.8138,
+              40.5018
+            ],
+            [
+              -3.8138,
+              40.3318
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 101,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-30030",
+      "officialCode": "30030",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Murcia",
+      "nameVariants": [],
+      "level": "municipality",
+      "parentCode": "ES-PROV-30",
+      "autonomousCommunityCode": "14",
+      "provinceCode": "30",
+      "municipalityCode": "30030",
+      "postalCodes": [
+        "30001"
+      ],
+      "centroid": [
+        -1.1307,
+        37.9922
+      ],
+      "bbox": [
+        -1.2407000000000001,
+        37.907199999999996,
+        -1.0207,
+        38.0772
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -1.2407000000000001,
+              37.907199999999996
+            ],
+            [
+              -1.0207,
+              37.907199999999996
+            ],
+            [
+              -1.0207,
+              38.0772
+            ],
+            [
+              -1.2407000000000001,
+              38.0772
+            ],
+            [
+              -1.2407000000000001,
+              37.907199999999996
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 93,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-31201",
+      "officialCode": "31201",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Pamplona/Iruña",
+      "nameVariants": [
+        "Pamplona",
+        "Iruña"
+      ],
+      "level": "municipality",
+      "parentCode": "ES-PROV-31",
+      "autonomousCommunityCode": "15",
+      "provinceCode": "31",
+      "municipalityCode": "31201",
+      "postalCodes": [
+        "31001"
+      ],
+      "centroid": [
+        -1.644,
+        42.8125
+      ],
+      "bbox": [
+        -1.754,
+        42.7275,
+        -1.5339999999999998,
+        42.8975
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -1.754,
+              42.7275
+            ],
+            [
+              -1.5339999999999998,
+              42.7275
+            ],
+            [
+              -1.5339999999999998,
+              42.8975
+            ],
+            [
+              -1.754,
+              42.8975
+            ],
+            [
+              -1.754,
+              42.7275
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "unsupported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 88,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-48020",
+      "officialCode": "48020",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Bilbao",
+      "nameVariants": [
+        "Bilbo"
+      ],
+      "level": "municipality",
+      "parentCode": "ES-PROV-48",
+      "autonomousCommunityCode": "16",
+      "provinceCode": "48",
+      "municipalityCode": "48020",
+      "postalCodes": [
+        "48001"
+      ],
+      "centroid": [
+        -2.935,
+        43.263
+      ],
+      "bbox": [
+        -3.045,
+        43.178,
+        -2.825,
+        43.348
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.045,
+              43.178
+            ],
+            [
+              -2.825,
+              43.178
+            ],
+            [
+              -2.825,
+              43.348
+            ],
+            [
+              -3.045,
+              43.348
+            ],
+            [
+              -3.045,
+              43.178
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "unsupported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 90,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-26089",
+      "officialCode": "26089",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Logroño",
+      "nameVariants": [],
+      "level": "municipality",
+      "parentCode": "ES-PROV-26",
+      "autonomousCommunityCode": "17",
+      "provinceCode": "26",
+      "municipalityCode": "26089",
+      "postalCodes": [
+        "26001"
+      ],
+      "centroid": [
+        -2.4449,
+        42.4627
+      ],
+      "bbox": [
+        -2.5549,
+        42.3777,
+        -2.3349,
+        42.5477
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.5549,
+              42.3777
+            ],
+            [
+              -2.3349,
+              42.3777
+            ],
+            [
+              -2.3349,
+              42.5477
+            ],
+            [
+              -2.5549,
+              42.5477
+            ],
+            [
+              -2.5549,
+              42.3777
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 85,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-51001",
+      "officialCode": "51001",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Ceuta",
+      "nameVariants": [],
+      "level": "municipality",
+      "parentCode": "ES-PROV-51",
+      "autonomousCommunityCode": "18",
+      "provinceCode": "51",
+      "municipalityCode": "51001",
+      "postalCodes": [
+        "51001"
+      ],
+      "centroid": [
+        -5.3213,
+        35.8894
+      ],
+      "bbox": [
+        -5.4313,
+        35.8044,
+        -5.2113,
+        35.9744
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -5.4313,
+              35.8044
+            ],
+            [
+              -5.2113,
+              35.8044
+            ],
+            [
+              -5.2113,
+              35.9744
+            ],
+            [
+              -5.4313,
+              35.9744
+            ],
+            [
+              -5.4313,
+              35.8044
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "partial",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 81,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-52001",
+      "officialCode": "52001",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Melilla",
+      "nameVariants": [],
+      "level": "municipality",
+      "parentCode": "ES-PROV-52",
+      "autonomousCommunityCode": "19",
+      "provinceCode": "52",
+      "municipalityCode": "52001",
+      "postalCodes": [
+        "52001"
+      ],
+      "centroid": [
+        -2.9381,
+        35.2923
+      ],
+      "bbox": [
+        -3.0481,
+        35.2073,
+        -2.8281,
+        35.3773
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.0481,
+              35.2073
+            ],
+            [
+              -2.8281,
+              35.2073
+            ],
+            [
+              -2.8281,
+              35.3773
+            ],
+            [
+              -3.0481,
+              35.3773
+            ],
+            [
+              -3.0481,
+              35.2073
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "partial",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 81,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-MUN-29067",
+      "officialCode": "29067",
+      "codeScheme": "INE_MUNICIPALITY_5",
+      "name": "Málaga",
+      "nameVariants": [],
+      "level": "municipality",
+      "parentCode": "ES-PROV-29",
+      "autonomousCommunityCode": "01",
+      "provinceCode": "29",
+      "municipalityCode": "29067",
+      "postalCodes": [
+        "29001"
+      ],
+      "centroid": [
+        -4.4214,
+        36.7213
+      ],
+      "bbox": [
+        -4.5314000000000005,
+        36.6363,
+        -4.3114,
+        36.8063
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.5314000000000005,
+              36.6363
+            ],
+            [
+              -4.3114,
+              36.6363
+            ],
+            [
+              -4.3114,
+              36.8063
+            ],
+            [
+              -4.5314000000000005,
+              36.8063
+            ],
+            [
+              -4.5314000000000005,
+              36.6363
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 96,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-DIS-2807901",
+      "officialCode": "2807901",
+      "codeScheme": "INE_CUDIS_7",
+      "name": "Distrito 01 — muestra DEMO de Madrid",
+      "nameVariants": [],
+      "level": "district",
+      "parentCode": "ES-MUN-28079",
+      "autonomousCommunityCode": "13",
+      "provinceCode": "28",
+      "municipalityCode": "28079",
+      "postalCodes": [
+        "28001"
+      ],
+      "centroid": [
+        -3.7038,
+        40.4168
+      ],
+      "bbox": [
+        -3.7588000000000004,
+        40.3718,
+        -3.6488,
+        40.461800000000004
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7588000000000004,
+              40.3718
+            ],
+            [
+              -3.6488,
+              40.3718
+            ],
+            [
+              -3.6488,
+              40.461800000000004
+            ],
+            [
+              -3.7588000000000004,
+              40.461800000000004
+            ],
+            [
+              -3.7588000000000004,
+              40.3718
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 55,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-SEC-2807901001",
+      "officialCode": "2807901001",
+      "codeScheme": "INE_CUSEC_10",
+      "name": "Sección 001 — muestra DEMO de Madrid",
+      "nameVariants": [],
+      "level": "census_section",
+      "parentCode": "ES-DIS-2807901",
+      "autonomousCommunityCode": "13",
+      "provinceCode": "28",
+      "municipalityCode": "28079",
+      "postalCodes": [
+        "28001"
+      ],
+      "centroid": [
+        -3.7038,
+        40.4168
+      ],
+      "bbox": [
+        -3.7238,
+        40.3988,
+        -3.6838,
+        40.4348
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3.7238,
+              40.3988
+            ],
+            [
+              -3.6838,
+              40.3988
+            ],
+            [
+              -3.6838,
+              40.4348
+            ],
+            [
+              -3.7238,
+              40.4348
+            ],
+            [
+              -3.7238,
+              40.3988
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 45,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-DIS-0801901",
+      "officialCode": "0801901",
+      "codeScheme": "INE_CUDIS_7",
+      "name": "Distrito 01 — muestra DEMO de Barcelona",
+      "nameVariants": [],
+      "level": "district",
+      "parentCode": "ES-MUN-08019",
+      "autonomousCommunityCode": "09",
+      "provinceCode": "08",
+      "municipalityCode": "08019",
+      "postalCodes": [
+        "08001"
+      ],
+      "centroid": [
+        2.1734,
+        41.3851
+      ],
+      "bbox": [
+        2.1184,
+        41.3401,
+        2.2284,
+        41.4301
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.1184,
+              41.3401
+            ],
+            [
+              2.2284,
+              41.3401
+            ],
+            [
+              2.2284,
+              41.4301
+            ],
+            [
+              2.1184,
+              41.4301
+            ],
+            [
+              2.1184,
+              41.3401
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 55,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    },
+    {
+      "code": "ES-SEC-0801901001",
+      "officialCode": "0801901001",
+      "codeScheme": "INE_CUSEC_10",
+      "name": "Sección 001 — muestra DEMO de Barcelona",
+      "nameVariants": [],
+      "level": "census_section",
+      "parentCode": "ES-DIS-0801901",
+      "autonomousCommunityCode": "09",
+      "provinceCode": "08",
+      "municipalityCode": "08019",
+      "postalCodes": [
+        "08001"
+      ],
+      "centroid": [
+        2.1734,
+        41.3851
+      ],
+      "bbox": [
+        2.1534,
+        41.3671,
+        2.1934,
+        41.4031
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.1534,
+              41.3671
+            ],
+            [
+              2.1934,
+              41.3671
+            ],
+            [
+              2.1934,
+              41.4031
+            ],
+            [
+              2.1534,
+              41.4031
+            ],
+            [
+              2.1534,
+              41.3671
+            ]
+          ]
+        ]
+      },
+      "geometryStatus": "synthetic_simplified_demo",
+      "territorialSupport": "supported",
+      "validFrom": "2026-01-01",
+      "validTo": null,
+      "geographyVersion": "demo-es-2027.1",
+      "importance": 45,
+      "dataMode": "demo_synthetic",
+      "demoNotice": "DEMO — geometría simplificada y métricas sintéticas; no representa límites ni estadísticas oficiales."
+    }
+  ]
+}

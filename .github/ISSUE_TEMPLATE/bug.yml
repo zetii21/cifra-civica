@@ -1,0 +1,57 @@
+name: Defecto
+description: Notificar un problema reproducible sin incluir datos fiscales personales
+title: "[Bug] "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        No incluya salario, NIF, domicilio, discapacidad, prestaciones, capturas o un resultado real.
+        Para una vulnerabilidad use el canal privado de SECURITY.md.
+  - type: input
+    id: route
+    attributes:
+      label: Ruta o componente
+      placeholder: /calculator, /explorer, API, policy registry…
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versiones visibles
+      description: Application/model/policy/geography version, sin request personal.
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Comportamiento observado
+      description: Use un ejemplo completamente sintético si hace falta.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamiento esperado
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área
+      options:
+        - Cálculo o política
+        - Interfaz
+        - Accesibilidad
+        - Mapa o datos
+        - Documentación
+        - Operaciones
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Confirmación
+      options:
+        - label: He eliminado datos personales, fiscales reales, secretos y material restringido.
+          required: true

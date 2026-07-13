@@ -1,0 +1,83 @@
+name: cifra-civica
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: infra/docker/web.Dockerfile
+    environment:
+      APP_ENV: ${APP_ENV:-development}
+      SIMULATION_API_BASE_URL: http://simulation-api:8000
+      NEXT_TELEMETRY_DISABLED: "1"
+    ports:
+      - "3000:3000"
+    depends_on:
+      simulation-api:
+        condition: service_healthy
+      tile-service:
+        condition: service_healthy
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /app/.wrangler
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+
+  simulation-api:
+    build:
+      context: .
+      dockerfile: infra/docker/api.Dockerfile
+    environment:
+      APP_ENV: ${APP_ENV:-development}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
+      MAX_REQUEST_BYTES: ${MAX_REQUEST_BYTES:-65536}
+      CALCULATION_TIMEOUT_SECONDS: ${CALCULATION_TIMEOUT_SECONDS:-10}
+      ENABLE_CALCULATION_TRACE: ${ENABLE_CALCULATION_TRACE:-false}
+      ENABLE_SYNTHETIC_SCENARIOS: ${ENABLE_SYNTHETIC_SCENARIOS:-true}
+      ALLOW_SYNTHETIC_SCENARIOS_IN_PRODUCTION: ${ALLOW_SYNTHETIC_SCENARIOS_IN_PRODUCTION:-false}
+      APP_VERSION: ${APP_VERSION:-0.1.0-dev}
+      MODEL_VERSION: ${MODEL_VERSION:-unreleased}
+      POLICY_REGISTRY_COMMIT: ${POLICY_REGISTRY_COMMIT:-working-tree}
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/ready', timeout=2)"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+      start_period: 10s
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+
+  tile-service:
+    build:
+      context: .
+      dockerfile: infra/docker/tile.Dockerfile
+    environment:
+      NODE_ENV: ${APP_ENV:-development}
+      TILE_PORT: 3102
+      TILE_ARTIFACT_DIR: /app/data/generated/tiles
+      ALLOW_SYNTHETIC_DATA_IN_PRODUCTION: ${ALLOW_SYNTHETIC_DATA_IN_PRODUCTION:-false}
+    ports:
+      - "3102:3102"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3102/healthz').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+      start_period: 5s
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped

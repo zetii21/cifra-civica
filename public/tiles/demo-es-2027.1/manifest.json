@@ -1,0 +1,813 @@
+{
+  "schemaVersion": "1.0",
+  "geographyVersion": "demo-es-2027.1",
+  "format": "MVT",
+  "scheme": "XYZ",
+  "extent": 4096,
+  "dataMode": "demo_synthetic",
+  "watermark": "DEMO",
+  "immutable": true,
+  "containsMetricValues": false,
+  "containsHouseholdRecords": false,
+  "source": "data/fixtures/geography/spain-demo-geographies.json",
+  "pmtilesArchitecture": {
+    "supported": true,
+    "developmentArtifact": "XYZ MVT directory",
+    "productionArtifact": "demo-es-2027.1.pmtiles",
+    "note": "Use the same vector layer/property contract when packaging reviewed official boundaries as PMTiles."
+  },
+  "files": [
+    {
+      "path": "0/0/0.mvt",
+      "bytes": 1838,
+      "sha256": "296c16e0bbbf2cdc26d631e8359a831b11f90c1d56fc83961ce3c73fb03af27b",
+      "layers": [
+        "autonomous_communities"
+      ],
+      "features": 19
+    },
+    {
+      "path": "1/0/0.mvt",
+      "bytes": 1692,
+      "sha256": "5e6bd78a3331276a7851239e1d7516684748036ad8934bf2246a546de5daa250",
+      "layers": [
+        "autonomous_communities"
+      ],
+      "features": 17
+    },
+    {
+      "path": "1/1/0.mvt",
+      "bytes": 584,
+      "sha256": "e7b58ad7c2787a6e6f6f5aaee688b75b7af58fe78c166cec7b674ccda4c366b6",
+      "layers": [
+        "autonomous_communities"
+      ],
+      "features": 4
+    },
+    {
+      "path": "10/501/385.mvt",
+      "bytes": 350,
+      "sha256": "a06867ecec7284c38abed241119ccbedda45fa0daab8b358ff08b6c4d15e8cb3",
+      "layers": [
+        "districts"
+      ],
+      "features": 1
+    },
+    {
+      "path": "10/501/386.mvt",
+      "bytes": 350,
+      "sha256": "a9b3039eaa2a22d65cf038ad54b60ddcc07507498e28e44059eff43af7e2408a",
+      "layers": [
+        "districts"
+      ],
+      "features": 1
+    },
+    {
+      "path": "10/518/382.mvt",
+      "bytes": 353,
+      "sha256": "a19d155a337ad875b4ab1c241a0a76594009377be9ac72466a7d8037f7517bfe",
+      "layers": [
+        "districts"
+      ],
+      "features": 1
+    },
+    {
+      "path": "11/1002/771.mvt",
+      "bytes": 350,
+      "sha256": "243518a4463c33cd50a323a60825f0f6de16f9190a53b66dc2d26e9262130f55",
+      "layers": [
+        "districts"
+      ],
+      "features": 1
+    },
+    {
+      "path": "11/1002/772.mvt",
+      "bytes": 350,
+      "sha256": "fedc8579145232488998cbce8b87f2b9a4d981f269e437daf2e54554f15a4f87",
+      "layers": [
+        "districts"
+      ],
+      "features": 1
+    },
+    {
+      "path": "11/1003/771.mvt",
+      "bytes": 350,
+      "sha256": "db56057ac50d02dcf522957cc846a478d440160da96cc880e143b901db69d0a3",
+      "layers": [
+        "districts"
+      ],
+      "features": 1
+    },
+    {
+      "path": "11/1003/772.mvt",
+      "bytes": 350,
+      "sha256": "a4216fedd9762e751862c8e5b5678fa852d3e51e34f1f84c5997ed2a0952aa45",
+      "layers": [
+        "districts"
+      ],
+      "features": 1
+    },
+    {
+      "path": "11/1036/764.mvt",
+      "bytes": 353,
+      "sha256": "5f1099e870218bf2149f57e384e74dfdb1df90bdb0c6be3188e69ff1336e9bab",
+      "layers": [
+        "districts"
+      ],
+      "features": 1
+    },
+    {
+      "path": "11/1036/765.mvt",
+      "bytes": 353,
+      "sha256": "6f8b3f9a469b4743210b0e8e527e4d19810bde897c4c5f7e8017a650cf9514a3",
+      "layers": [
+        "districts"
+      ],
+      "features": 1
+    },
+    {
+      "path": "12/2005/1544.mvt",
+      "bytes": 369,
+      "sha256": "bf9689486d6de57d7a730eed85c37f4b019ec7716aa76c2ba232868e41f0c100",
+      "layers": [
+        "census_sections"
+      ],
+      "features": 1
+    },
+    {
+      "path": "12/2006/1544.mvt",
+      "bytes": 369,
+      "sha256": "72da9c5281242278f917c37b51ba93fa9be61d1252257dffbe7be64ce023affa",
+      "layers": [
+        "census_sections"
+      ],
+      "features": 1
+    },
+    {
+      "path": "12/2072/1529.mvt",
+      "bytes": 371,
+      "sha256": "880c887913a9200321665fe2a0f2019491b7095170bf19a0e09a2403d282ca27",
+      "layers": [
+        "census_sections"
+      ],
+      "features": 1
+    },
+    {
+      "path": "12/2072/1530.mvt",
+      "bytes": 371,
+      "sha256": "cc7b88d407f4d73c0b17fe3f6b538898c68f3af234fef7ae2a81ab70c59de2d7",
+      "layers": [
+        "census_sections"
+      ],
+      "features": 1
+    },
+    {
+      "path": "13/4011/3088.mvt",
+      "bytes": 369,
+      "sha256": "657ad4fdf77557a080a808666686de29872231cdfdfef9a386054a7f4d8e645b",
+      "layers": [
+        "census_sections"
+      ],
+      "features": 1
+    },
+    {
+      "path": "13/4011/3089.mvt",
+      "bytes": 369,
+      "sha256": "54ae92edf5aa613c3572e4c22ef2772bf0806af005be4cc5097d05ab522bd4bc",
+      "layers": [
+        "census_sections"
+      ],
+      "features": 1
+    },
+    {
+      "path": "13/4012/3088.mvt",
+      "bytes": 369,
+      "sha256": "0cfe419d2ff58f1740341c7582065797c5df18f59cca6585e8842c1de627109a",
+      "layers": [
+        "census_sections"
+      ],
+      "features": 1
+    },
+    {
+      "path": "13/4012/3089.mvt",
+      "bytes": 369,
+      "sha256": "a0f33ddfb13614453cc37ab4bd14ab0cd13dbe8656e16fda5fb74a0682dfcfa5",
+      "layers": [
+        "census_sections"
+      ],
+      "features": 1
+    },
+    {
+      "path": "13/4145/3059.mvt",
+      "bytes": 370,
+      "sha256": "002d93fd71336e7e6258010561fd7281161c4053939cc084946e74c6e09dac50",
+      "layers": [
+        "census_sections"
+      ],
+      "features": 1
+    },
+    {
+      "path": "13/4145/3060.mvt",
+      "bytes": 370,
+      "sha256": "9f2a24f348dee489961f7ff267630d0c6eb3c02ca79820f54c8b1eece42d131f",
+      "layers": [
+        "census_sections"
+      ],
+      "features": 1
+    },
+    {
+      "path": "2/1/1.mvt",
+      "bytes": 1718,
+      "sha256": "3fea8ce1140a0cd570e55ed18b867237210e5252ff0e437dd504e3d673b245a2",
+      "layers": [
+        "autonomous_communities"
+      ],
+      "features": 17
+    },
+    {
+      "path": "2/2/1.mvt",
+      "bytes": 591,
+      "sha256": "daedf98e2fad5d683760ea9764a08071cefba5d2775fbab2a1d2b5081c148803",
+      "layers": [
+        "autonomous_communities"
+      ],
+      "features": 4
+    },
+    {
+      "path": "3/3/2.mvt",
+      "bytes": 1134,
+      "sha256": "a3d7e270d581077794aa8367d08773fff0fc3509f8b970bea84c747eae9118da",
+      "layers": [
+        "autonomous_communities"
+      ],
+      "features": 10
+    },
+    {
+      "path": "3/3/3.mvt",
+      "bytes": 1187,
+      "sha256": "b05afeab40e1ec9b8c8ed1c100a8e7603e78fb1d83b8499c076b060a3696bc03",
+      "layers": [
+        "autonomous_communities"
+      ],
+      "features": 11
+    },
+    {
+      "path": "3/4/2.mvt",
+      "bytes": 415,
+      "sha256": "e633c9afa7f6c20a6a2f07feb4226bf42f39f048a7e825fcc4cf9d43fb970159",
+      "layers": [
+        "autonomous_communities"
+      ],
+      "features": 2
+    },
+    {
+      "path": "3/4/3.mvt",
+      "bytes": 591,
+      "sha256": "84e15e901823973d0e55e59393cedc1e807143eb8eb37bdea20a91593a0ff2e8",
+      "layers": [
+        "autonomous_communities"
+      ],
+      "features": 4
+    },
+    {
+      "path": "4/7/5.mvt",
+      "bytes": 2052,
+      "sha256": "46c058430f92035b61ae48d965cafc2cb0364e171b6b78629d79868e44acef0e",
+      "layers": [
+        "autonomous_communities",
+        "municipalities"
+      ],
+      "features": 18
+    },
+    {
+      "path": "4/7/6.mvt",
+      "bytes": 2266,
+      "sha256": "3a234ab0e474ccc6c3e1ad17da2f7afbefb615705831d37b8f753ee8839471b4",
+      "layers": [
+        "autonomous_communities",
+        "municipalities"
+      ],
+      "features": 21
+    },
+    {
+      "path": "4/8/5.mvt",
+      "bytes": 738,
+      "sha256": "730feec2db53cef837b37b9b8f226b4758c275a5cc8f579e4978772c0e9686da",
+      "layers": [
+        "autonomous_communities",
+        "municipalities"
+      ],
+      "features": 3
+    },
+    {
+      "path": "4/8/6.mvt",
+      "bytes": 910,
+      "sha256": "67c63e61ae2cb4bf426205b418a70dfc967bc24e064c9916dbe8a83c6d4bfbab",
+      "layers": [
+        "autonomous_communities",
+        "municipalities"
+      ],
+      "features": 5
+    },
+    {
+      "path": "5/14/13.mvt",
+      "bytes": 675,
+      "sha256": "2c938706d1e7687661f408399af81d67c9b8358ea407f7a5a26f21dde16ca747",
+      "layers": [
+        "autonomous_communities",
+        "municipalities"
+      ],
+      "features": 2
+    },
+    {
+      "path": "5/15/11.mvt",
+      "bytes": 2076,
+      "sha256": "b4432e3051e8942314d2af8a1a3f280d851b0ba003d331d2e022f49f660375ba",
+      "layers": [
+        "autonomous_communities",
+        "municipalities"
+      ],
+      "features": 18
+    },
+    {
+      "path": "5/15/12.mvt",
+      "bytes": 2115,
+      "sha256": "22dd20870d4156fc516dee034df4833a21e58c309c0694f06207e7bdda0c1eca",
+      "layers": [
+        "autonomous_communities",
+        "municipalities"
+      ],
+      "features": 19
+    },
+    {
+      "path": "5/16/11.mvt",
+      "bytes": 741,
+      "sha256": "bce0681c6b6f8d5206dd7f60041eef7e3838f3dd930c91e3e5b8c72424dd680d",
+      "layers": [
+        "autonomous_communities",
+        "municipalities"
+      ],
+      "features": 3
+    },
+    {
+      "path": "5/16/12.mvt",
+      "bytes": 914,
+      "sha256": "4cc52200e02aa6ed1d27afb922433d7c0dde17b4eefb4fc91b9ebe5c5ac584d7",
+      "layers": [
+        "autonomous_communities",
+        "municipalities"
+      ],
+      "features": 5
+    },
+    {
+      "path": "6/29/26.mvt",
+      "bytes": 341,
+      "sha256": "6b07521fc5e6b8aca937f4447e26f7953497c5ae878cd681e2673889e34fc74c",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "6/30/23.mvt",
+      "bytes": 409,
+      "sha256": "caf97688567cbbbaf74d5682ab0f8ce059c46486716731c9441bc56eae34dbac",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 2
+    },
+    {
+      "path": "6/30/24.mvt",
+      "bytes": 408,
+      "sha256": "1abcc121303dc408e2c805e3cbb3404f189d4d257326b41abe184677b83eb24e",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 2
+    },
+    {
+      "path": "6/31/23.mvt",
+      "bytes": 856,
+      "sha256": "8eeb5d26ae1f261b2a23290f6ad7126c5ce1e8003742185986bf7884ab5e3521",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 7
+    },
+    {
+      "path": "6/31/24.mvt",
+      "bytes": 659,
+      "sha256": "1eae0b62f403ef9b2ee9cc9ba1a03bb5f9d0473f0ade8659f51c920c0c0d66f3",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 5
+    },
+    {
+      "path": "6/31/25.mvt",
+      "bytes": 404,
+      "sha256": "32866c680ac833ac5e67900da46d0cf186403641741ddf657d3dfa101f0d472c",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 2
+    },
+    {
+      "path": "6/32/23.mvt",
+      "bytes": 326,
+      "sha256": "5f342cf38ce833e7f2a4508cc4a71a4259f9fb20c8961a249753710b8e306bfe",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "6/32/24.mvt",
+      "bytes": 322,
+      "sha256": "42ea78364af58a55a907fa0ba85fead26c20ff157ed0975f01223c7f92f3ba48",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "7/58/53.mvt",
+      "bytes": 341,
+      "sha256": "fd32bdb6ce7efc52c7d78d6a338878960f05459713e69fde666bcab3adf39b6d",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "7/60/46.mvt",
+      "bytes": 326,
+      "sha256": "73032f6cb4de6e0cf7e9da8b2c11d3716d5182bfb44eb55d22e146b64a0ecdc7",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "7/61/46.mvt",
+      "bytes": 409,
+      "sha256": "89be883ee83ba9221b41f7d935980c5491e28e3ce589ab8b1b456b5cdbd223ea",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 2
+    },
+    {
+      "path": "7/61/48.mvt",
+      "bytes": 324,
+      "sha256": "204f2e291febf630a15b36c971be6785274aac8ab82f743b70a1a6aa1b4fbcaa",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "7/61/49.mvt",
+      "bytes": 408,
+      "sha256": "6dfcb4f6f834ae591bd5d40774e0e4fa7a93703a44f9be8298c1e1cfd574e175",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 2
+    },
+    {
+      "path": "7/62/46.mvt",
+      "bytes": 507,
+      "sha256": "5b135272303bae467c57ec40c4e2be2f1c3bda184fd528abcfa537f4cd3f58a7",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 3
+    },
+    {
+      "path": "7/62/47.mvt",
+      "bytes": 327,
+      "sha256": "9163e5bcd03234bc3c9fe0b8465489e27522082e1d2d03576f6df97607bb9b47",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "7/62/48.mvt",
+      "bytes": 406,
+      "sha256": "96684be8dfb868b7af5697b4c2a27385c63570273801802df04c703869682c13",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 2
+    },
+    {
+      "path": "7/62/49.mvt",
+      "bytes": 324,
+      "sha256": "c07b8c844a1e48018ce85f1f46ec6e45618547fc0a57534c7786994d31b01b36",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "7/62/50.mvt",
+      "bytes": 404,
+      "sha256": "431343dd2406ff176783b37d1edb0d916ab2cb31dd56ddc4da0597427a649d1f",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 2
+    },
+    {
+      "path": "7/63/47.mvt",
+      "bytes": 517,
+      "sha256": "2ac8af6f3dacefae8cd99f3748f13855e69f5795c5930ee284cb92735eae643d",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 3
+    },
+    {
+      "path": "7/63/48.mvt",
+      "bytes": 326,
+      "sha256": "9c9092f196e0e9acb280b5a4fd01887485949939ac73b092549368a8f19f569f",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "7/63/49.mvt",
+      "bytes": 323,
+      "sha256": "c01d66e444416c8fe53c4f5c7fd39619e25df23db0b36ac21d3533a27678d496",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "7/64/47.mvt",
+      "bytes": 326,
+      "sha256": "af91e6f69eca3fea6bedb99cf601235e2e5eb30d5c4a72f561c563fadb133d5d",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "7/64/48.mvt",
+      "bytes": 322,
+      "sha256": "d0f5f151280360811eca19748dedf5b996c45d146c50b7827576944356ffb6d7",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/116/107.mvt",
+      "bytes": 341,
+      "sha256": "09ebc09aa882031d3a806a85edacd0cdff5d1427228b82ff8f43549b0603842d",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/117/107.mvt",
+      "bytes": 341,
+      "sha256": "aae8a2f699f322b70141ff349c27ec2060511348c2445fede117d150b02218a1",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/121/93.mvt",
+      "bytes": 326,
+      "sha256": "2da657d218bd64b79fd096a9e7413172e5bd6a751a7230d1fc7bdcd0d702719b",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/122/93.mvt",
+      "bytes": 326,
+      "sha256": "c2f01de19ab6e564b2237725609c5bf1218a7963676d5fc9fb60b341dd015670",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/122/97.mvt",
+      "bytes": 324,
+      "sha256": "cec51b59c626ed6016e8b405cd1e8edac3fb482ccef688e656dadf4939d090a6",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/122/98.mvt",
+      "bytes": 324,
+      "sha256": "706a6f0e74972b21ba5c708b00f10b8b32fd751af795a0d855ec8bbc101f84d9",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/123/93.mvt",
+      "bytes": 323,
+      "sha256": "1a4a71e64f1e59cfd4a7c111071260c3109eca9f9084d084568ea05259df30ad",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/123/97.mvt",
+      "bytes": 324,
+      "sha256": "7e42970d7305daf467ee97eb972ee86f780d59146d44a5df70e3e6b7a897cc12",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/123/98.mvt",
+      "bytes": 324,
+      "sha256": "8c4b6ba1219b8058195e60b4273f9ad670d96a81433dc0dfba57f611de9e5963",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/123/99.mvt",
+      "bytes": 324,
+      "sha256": "a5e0d0feceb5266593043a96e36b240691ab3ca83b2043f0b09ca43b0722c9a4",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/124/100.mvt",
+      "bytes": 320,
+      "sha256": "5db5d464996b07704d2a060d71c7aded0a6c8c23051aa763a5c6e5fdc65145c6",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/124/93.mvt",
+      "bytes": 323,
+      "sha256": "726d3f297f985c0400cf51433e387325cc2770d183da208d08ab8b3547ff3ae7",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/124/95.mvt",
+      "bytes": 327,
+      "sha256": "89696e214dcca51c27996647b11cb5089735bc5a805e5b189d8cd0a3114a715c",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/124/99.mvt",
+      "bytes": 324,
+      "sha256": "6d6cd665e93d076da4fe08c188433a0dec23e72c555e99d2ffc06573a3f2ff6f",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/125/101.mvt",
+      "bytes": 322,
+      "sha256": "f719356d368d3f3b15422e12647bac2bcdcaefa67a34bd7888fdadd15b6357e1",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/125/93.mvt",
+      "bytes": 424,
+      "sha256": "417588b8c51961999e4d6990930db9dd3e84ff90decac15949668c54923f20a6",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 2
+    },
+    {
+      "path": "8/125/96.mvt",
+      "bytes": 406,
+      "sha256": "f73ec92ade169d2e1d864a4fa40215591d46db791b3cfd9e5ab73b3f5e3d8c4e",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 2
+    },
+    {
+      "path": "8/125/97.mvt",
+      "bytes": 323,
+      "sha256": "51b77bceaa96e6e5503981bd74faf17b250986ce1823d5fded35ce86dfba9acb",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/126/94.mvt",
+      "bytes": 432,
+      "sha256": "58e01ca03191167a56d9df506dbb3dc4763c1a02f0f0c46c508a221ff8a64a57",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 2
+    },
+    {
+      "path": "8/127/95.mvt",
+      "bytes": 325,
+      "sha256": "c69302d647b93162041240c092ee3320c758c50268b43e57a71c729d16f35608",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/127/97.mvt",
+      "bytes": 326,
+      "sha256": "acceeb3144ee734110b041a14a8d63549bf8b4f10b3f9f5cc9716fae462ee803",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/127/98.mvt",
+      "bytes": 323,
+      "sha256": "856d35ded45558a94bce8e87b05f2d8829cc8a14a1163da0cd662ecdb6604df9",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/129/95.mvt",
+      "bytes": 326,
+      "sha256": "ab58dd37493ced1f98600c77f21dee97b8decf2878c0792a18bf7eadea55fa1e",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "8/129/97.mvt",
+      "bytes": 322,
+      "sha256": "4ca5605738a983ad7c11a261dd2c88d5bddab6b6a30a6934de8c04d5af9040a9",
+      "layers": [
+        "municipalities"
+      ],
+      "features": 1
+    },
+    {
+      "path": "9/250/192.mvt",
+      "bytes": 350,
+      "sha256": "97974cc5a05be19d7f3a81abf426b3d5d6ba73aaba5e0dc0dd576d0cc4ae12c7",
+      "layers": [
+        "districts"
+      ],
+      "features": 1
+    },
+    {
+      "path": "9/250/193.mvt",
+      "bytes": 350,
+      "sha256": "f9a46980ca19cab4bcc0ad4b27ed7360904b1de7d2e9c1cd62642d997c82ff5d",
+      "layers": [
+        "districts"
+      ],
+      "features": 1
+    },
+    {
+      "path": "9/259/191.mvt",
+      "bytes": 352,
+      "sha256": "1c3d47a48d5a142259e4e2612eaef9dabe847b3de43a06a2009d102589595986",
+      "layers": [
+        "districts"
+      ],
+      "features": 1
+    }
+  ]
+}

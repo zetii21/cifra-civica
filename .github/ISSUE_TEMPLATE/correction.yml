@@ -1,0 +1,47 @@
+name: Corrección de fuente o política
+description: Proponer una corrección trazable y neutral
+title: "[Corrección] "
+labels: ["policy-correction", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        No adjunte una declaración o resultado personal. Indique la regla y una fuente primaria.
+  - type: input
+    id: scenario
+    attributes:
+      label: Escenario y policy version
+    validations:
+      required: true
+  - type: input
+    id: scope
+    attributes:
+      label: Ejercicio, territorio y componente
+    validations:
+      required: true
+  - type: textarea
+    id: claim
+    attributes:
+      label: Regla o texto cuestionado
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Fuente primaria
+      placeholder: URL oficial
+    validations:
+      required: true
+  - type: textarea
+    id: locator
+    attributes:
+      label: Artículo, sección, fecha y explicación
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Confirmación
+      options:
+        - label: La notificación no contiene datos de un hogar real.
+          required: true

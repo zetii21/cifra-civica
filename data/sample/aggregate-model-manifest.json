@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.0",
+  "modelId": "aggregate-core",
+  "modelVersion": "aggregate-core/1.0.0",
+  "description": "Weighted aggregation contract for public fiscal-impact estimates. This manifest contains parameters and outputs only; household rows are never published.",
+  "weighting": {
+    "requirePositiveFiniteWeights": true,
+    "effectiveSampleSizeFormula": "(sum(w)^2) / sum(w^2)",
+    "quantileMethod": "first ordered value whose cumulative weight reaches q * sum(w)"
+  },
+  "metrics": [
+    "mean_change_eur",
+    "median_change_eur",
+    "quantiles_eur",
+    "share_gaining",
+    "share_losing",
+    "share_gain_above_threshold",
+    "share_loss_below_threshold",
+    "baseline_poverty_rate",
+    "scenario_poverty_rate",
+    "poverty_rate_change",
+    "baseline_gini",
+    "scenario_gini"
+  ],
+  "parameters": {
+    "quantiles": [0.1, 0.25, 0.5, 0.75, 0.9],
+    "gainThresholdEur": 500,
+    "lossThresholdEur": 500,
+    "povertyThresholdEur": null,
+    "includeInequalityIndicators": false,
+    "modelStandardErrorEur": 0,
+    "smallAreaModelValidated": false
+  },
+  "uncertainty": {
+    "sampling": "weighted variance divided by effective sample size",
+    "combined": "sqrt(sampling_standard_error^2 + model_standard_error^2)",
+    "confidenceIntervalDefault": 0.95
+  },
+  "disclosure": {
+    "minUnweightedHouseholds": 30,
+    "minWeightedHouseholds": 100,
+    "minEffectiveSampleSize": 25,
+    "qualifyRelativeStandardError": 0.2,
+    "suppressRelativeStandardError": 0.35,
+    "validatedModelRequiredForDistrictAndCensusSection": true,
+    "complementarySuppression": true
+  },
+  "publication": {
+    "containsHouseholdRecords": false,
+    "rawSurveyRowsSentToBrowser": false,
+    "smallAreaMunicipalAverageDownscalingPermitted": false
+  }
+}

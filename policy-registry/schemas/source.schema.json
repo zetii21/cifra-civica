@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cifracivica.example/schemas/source.schema.json",
+  "title": "Cifra Civica source record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "publisher", "url", "publishedOrUpdatedAt", "lastReviewedAt", "sourceType", "notes"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^source-[a-z0-9-]+$"},
+    "title": {"type": "string", "minLength": 5},
+    "publisher": {"type": "string", "minLength": 2},
+    "url": {"type": "string", "format": "uri", "pattern": "^https://"},
+    "publishedOrUpdatedAt": {"type": "string", "format": "date"},
+    "lastReviewedAt": {"type": "string", "format": "date"},
+    "sourceType": {"enum": ["statute", "official_compendium", "official_guidance", "synthetic_methodology"]},
+    "notes": {"type": "string", "minLength": 10}
+  }
+}
+

@@ -1,0 +1,362 @@
+{
+  "id": "es-common-reference-2026-v1",
+  "version": "2026.1",
+  "currency": "EUR",
+  "moneyUnit": "cent",
+  "reviewedAt": "2026-07-13",
+  "referenceTaxYears": {
+    "stateIrpf": 2026,
+    "autonomousIrpf": 2025,
+    "socialSecurity": 2026
+  },
+  "sources": [
+    "source-boe-lirpf-consolidated-2026",
+    "source-hacienda-autonomic-2025",
+    "source-boe-social-security-2026",
+    "source-seg-social-rates-2026"
+  ],
+  "irpf": {
+    "stateGeneralRateDeltaBasisPoints": 0,
+    "stateGeneralScale": [
+      {"thresholdCents": 0, "rateBasisPoints": 950},
+      {"thresholdCents": 1245000, "rateBasisPoints": 1200},
+      {"thresholdCents": 2020000, "rateBasisPoints": 1500},
+      {"thresholdCents": 3520000, "rateBasisPoints": 1850},
+      {"thresholdCents": 6000000, "rateBasisPoints": 2250},
+      {"thresholdCents": 30000000, "rateBasisPoints": 2450}
+    ],
+    "stateSavingsScale": [
+      {"thresholdCents": 0, "rateBasisPoints": 950},
+      {"thresholdCents": 600000, "rateBasisPoints": 1050},
+      {"thresholdCents": 5000000, "rateBasisPoints": 1150},
+      {"thresholdCents": 20000000, "rateBasisPoints": 1350},
+      {"thresholdCents": 30000000, "rateBasisPoints": 1500}
+    ],
+    "autonomousSavingsScale": [
+      {"thresholdCents": 0, "rateBasisPoints": 950},
+      {"thresholdCents": 600000, "rateBasisPoints": 1050},
+      {"thresholdCents": 5000000, "rateBasisPoints": 1150},
+      {"thresholdCents": 20000000, "rateBasisPoints": 1350},
+      {"thresholdCents": 30000000, "rateBasisPoints": 1500}
+    ],
+    "autonomousGeneralScales": {
+      "01": [
+        {"thresholdCents": 0, "rateBasisPoints": 950},
+        {"thresholdCents": 1300000, "rateBasisPoints": 1200},
+        {"thresholdCents": 2110000, "rateBasisPoints": 1500},
+        {"thresholdCents": 3520000, "rateBasisPoints": 1850},
+        {"thresholdCents": 6000000, "rateBasisPoints": 2250}
+      ],
+      "02": [
+        {"thresholdCents": 0, "rateBasisPoints": 950},
+        {"thresholdCents": 1307250, "rateBasisPoints": 1200},
+        {"thresholdCents": 2121000, "rateBasisPoints": 1500},
+        {"thresholdCents": 3696000, "rateBasisPoints": 1850},
+        {"thresholdCents": 5250000, "rateBasisPoints": 2050},
+        {"thresholdCents": 6000000, "rateBasisPoints": 2300},
+        {"thresholdCents": 8000000, "rateBasisPoints": 2400},
+        {"thresholdCents": 9000000, "rateBasisPoints": 2500},
+        {"thresholdCents": 13000000, "rateBasisPoints": 2550}
+      ],
+      "03": [
+        {"thresholdCents": 0, "rateBasisPoints": 900},
+        {"thresholdCents": 1245000, "rateBasisPoints": 1200},
+        {"thresholdCents": 1770720, "rateBasisPoints": 1400},
+        {"thresholdCents": 3300720, "rateBasisPoints": 1920},
+        {"thresholdCents": 5340720, "rateBasisPoints": 2150},
+        {"thresholdCents": 7000000, "rateBasisPoints": 2250},
+        {"thresholdCents": 9000000, "rateBasisPoints": 2500},
+        {"thresholdCents": 17500000, "rateBasisPoints": 2600}
+      ],
+      "04": [
+        {"thresholdCents": 0, "rateBasisPoints": 900},
+        {"thresholdCents": 1000000, "rateBasisPoints": 1125},
+        {"thresholdCents": 1800000, "rateBasisPoints": 1425},
+        {"thresholdCents": 3000000, "rateBasisPoints": 1750},
+        {"thresholdCents": 4800000, "rateBasisPoints": 1900},
+        {"thresholdCents": 7000000, "rateBasisPoints": 2175},
+        {"thresholdCents": 9000000, "rateBasisPoints": 2275},
+        {"thresholdCents": 12000000, "rateBasisPoints": 2375},
+        {"thresholdCents": 17500000, "rateBasisPoints": 2475}
+      ],
+      "05": [
+        {"thresholdCents": 0, "rateBasisPoints": 900},
+        {"thresholdCents": 1374800, "rateBasisPoints": 1150},
+        {"thresholdCents": 1942200, "rateBasisPoints": 1400},
+        {"thresholdCents": 3592400, "rateBasisPoints": 1850},
+        {"thresholdCents": 5756600, "rateBasisPoints": 2350},
+        {"thresholdCents": 9326800, "rateBasisPoints": 2500},
+        {"thresholdCents": 12374500, "rateBasisPoints": 2600}
+      ],
+      "06": [
+        {"thresholdCents": 0, "rateBasisPoints": 850},
+        {"thresholdCents": 1300000, "rateBasisPoints": 1100},
+        {"thresholdCents": 2100000, "rateBasisPoints": 1450},
+        {"thresholdCents": 3520000, "rateBasisPoints": 1800},
+        {"thresholdCents": 6000000, "rateBasisPoints": 2250},
+        {"thresholdCents": 9000000, "rateBasisPoints": 2450}
+      ],
+      "07": [
+        {"thresholdCents": 0, "rateBasisPoints": 900},
+        {"thresholdCents": 1245000, "rateBasisPoints": 1200},
+        {"thresholdCents": 2020000, "rateBasisPoints": 1400},
+        {"thresholdCents": 3520000, "rateBasisPoints": 1850},
+        {"thresholdCents": 5340720, "rateBasisPoints": 2150}
+      ],
+      "08": [
+        {"thresholdCents": 0, "rateBasisPoints": 950},
+        {"thresholdCents": 1245000, "rateBasisPoints": 1200},
+        {"thresholdCents": 2020000, "rateBasisPoints": 1500},
+        {"thresholdCents": 3520000, "rateBasisPoints": 1850},
+        {"thresholdCents": 6000000, "rateBasisPoints": 2250}
+      ],
+      "09": [
+        {"thresholdCents": 0, "rateBasisPoints": 950},
+        {"thresholdCents": 1250000, "rateBasisPoints": 1250},
+        {"thresholdCents": 2200000, "rateBasisPoints": 1600},
+        {"thresholdCents": 3300000, "rateBasisPoints": 1900},
+        {"thresholdCents": 5300000, "rateBasisPoints": 2150},
+        {"thresholdCents": 9000000, "rateBasisPoints": 2350},
+        {"thresholdCents": 12000000, "rateBasisPoints": 2450},
+        {"thresholdCents": 17500000, "rateBasisPoints": 2550}
+      ],
+      "10": [
+        {"thresholdCents": 0, "rateBasisPoints": 900},
+        {"thresholdCents": 1200000, "rateBasisPoints": 1200},
+        {"thresholdCents": 2200000, "rateBasisPoints": 1500},
+        {"thresholdCents": 3200000, "rateBasisPoints": 1750},
+        {"thresholdCents": 4200000, "rateBasisPoints": 2000},
+        {"thresholdCents": 5200000, "rateBasisPoints": 2250},
+        {"thresholdCents": 6200000, "rateBasisPoints": 2500},
+        {"thresholdCents": 7200000, "rateBasisPoints": 2650},
+        {"thresholdCents": 10000000, "rateBasisPoints": 2750},
+        {"thresholdCents": 15000000, "rateBasisPoints": 2850},
+        {"thresholdCents": 20000000, "rateBasisPoints": 2950}
+      ],
+      "11": [
+        {"thresholdCents": 0, "rateBasisPoints": 800},
+        {"thresholdCents": 1245000, "rateBasisPoints": 1000},
+        {"thresholdCents": 2020000, "rateBasisPoints": 1600},
+        {"thresholdCents": 2420000, "rateBasisPoints": 1750},
+        {"thresholdCents": 3520000, "rateBasisPoints": 2100},
+        {"thresholdCents": 6000000, "rateBasisPoints": 2350},
+        {"thresholdCents": 8020000, "rateBasisPoints": 2400},
+        {"thresholdCents": 9920000, "rateBasisPoints": 2450},
+        {"thresholdCents": 12020000, "rateBasisPoints": 2500}
+      ],
+      "12": [
+        {"thresholdCents": 0, "rateBasisPoints": 900},
+        {"thresholdCents": 1298535, "rateBasisPoints": 1165},
+        {"thresholdCents": 2106860, "rateBasisPoints": 1490},
+        {"thresholdCents": 3520000, "rateBasisPoints": 1840},
+        {"thresholdCents": 6000000, "rateBasisPoints": 2250}
+      ],
+      "13": [
+        {"thresholdCents": 0, "rateBasisPoints": 850},
+        {"thresholdCents": 1336222, "rateBasisPoints": 1070},
+        {"thresholdCents": 1900463, "rateBasisPoints": 1280},
+        {"thresholdCents": 3542568, "rateBasisPoints": 1740},
+        {"thresholdCents": 5732040, "rateBasisPoints": 2050}
+      ],
+      "14": [
+        {"thresholdCents": 0, "rateBasisPoints": 950},
+        {"thresholdCents": 1245000, "rateBasisPoints": 1120},
+        {"thresholdCents": 2020000, "rateBasisPoints": 1330},
+        {"thresholdCents": 3400000, "rateBasisPoints": 1790},
+        {"thresholdCents": 6000000, "rateBasisPoints": 2250}
+      ],
+      "17": [
+        {"thresholdCents": 0, "rateBasisPoints": 800},
+        {"thresholdCents": 1245000, "rateBasisPoints": 1060},
+        {"thresholdCents": 2020000, "rateBasisPoints": 1360},
+        {"thresholdCents": 3520000, "rateBasisPoints": 1780},
+        {"thresholdCents": 4000000, "rateBasisPoints": 1830},
+        {"thresholdCents": 5000000, "rateBasisPoints": 1900},
+        {"thresholdCents": 6000000, "rateBasisPoints": 2450},
+        {"thresholdCents": 12000000, "rateBasisPoints": 2700}
+      ]
+    },
+    "minimums": {
+      "default": {
+        "taxpayerCents": 555000,
+        "ageOver65IncrementCents": 115000,
+        "ageOver75AdditionalIncrementCents": 140000,
+        "descendantByOrderCents": [240000, 270000, 400000, 450000],
+        "descendantUnder3IncrementCents": 280000,
+        "ascendantCents": 115000,
+        "ascendantOver75IncrementCents": 140000,
+        "taxpayerDisabilityLowerCents": 300000,
+        "taxpayerDisabilityHigherCents": 900000,
+        "taxpayerDisabilityAssistanceCents": 300000,
+        "dependantDisabilityLowerCents": 300000,
+        "dependantDisabilityHigherCents": 900000,
+        "dependantDisabilityAssistanceCents": 300000
+      },
+      "autonomousOverrides": {
+        "03": {
+          "taxpayerCents": 610500,
+          "ageOver65IncrementCents": 126500,
+          "ageOver75AdditionalIncrementCents": 154000,
+          "descendantByOrderCents": [264000, 297000, 440000, 495000],
+          "descendantUnder3IncrementCents": 308000,
+          "ascendantCents": 126500,
+          "ascendantOver75IncrementCents": 154000,
+          "taxpayerDisabilityLowerCents": 330000,
+          "taxpayerDisabilityHigherCents": 990000,
+          "taxpayerDisabilityAssistanceCents": 330000,
+          "dependantDisabilityLowerCents": 330000,
+          "dependantDisabilityHigherCents": 990000,
+          "dependantDisabilityAssistanceCents": 330000
+        },
+        "04": {
+          "ageOver65IncrementCents": 126500,
+          "ageOver75AdditionalIncrementCents": 154000,
+          "descendantByOrderCents": [240000, 297000, 440000, 495000],
+          "ascendantCents": 126500,
+          "ascendantOver75IncrementCents": 154000,
+          "taxpayerDisabilityLowerCents": 330000,
+          "taxpayerDisabilityHigherCents": 990000,
+          "taxpayerDisabilityAssistanceCents": 330000,
+          "dependantDisabilityLowerCents": 330000,
+          "dependantDisabilityHigherCents": 990000,
+          "dependantDisabilityAssistanceCents": 330000
+        },
+        "05": {
+          "taxpayerCents": 560600,
+          "ageOver65IncrementCents": 116200,
+          "ageOver75AdditionalIncrementCents": 141400,
+          "descendantByOrderCents": [242400, 272700, 404000, 454500],
+          "descendantUnder3IncrementCents": 282800,
+          "ascendantCents": 116200,
+          "ascendantOver75IncrementCents": 141400,
+          "taxpayerDisabilityLowerCents": 303000,
+          "taxpayerDisabilityHigherCents": 909000,
+          "taxpayerDisabilityAssistanceCents": 303000,
+          "dependantDisabilityLowerCents": 303000,
+          "dependantDisabilityHigherCents": 909000,
+          "dependantDisabilityAssistanceCents": 303000
+        },
+        "06": {
+          "dependantDisabilityLowerCents": 330000,
+          "dependantDisabilityHigherCents": 990000
+        },
+        "10": {
+          "taxpayerCents": 610500,
+          "ageOver65IncrementCents": 126500,
+          "ageOver75AdditionalIncrementCents": 154000,
+          "descendantByOrderCents": [264000, 297000, 440000, 495000],
+          "descendantUnder3IncrementCents": 308000,
+          "ascendantCents": 126500,
+          "ascendantOver75IncrementCents": 154000,
+          "taxpayerDisabilityLowerCents": 330000,
+          "taxpayerDisabilityHigherCents": 990000,
+          "taxpayerDisabilityAssistanceCents": 330000,
+          "dependantDisabilityLowerCents": 330000,
+          "dependantDisabilityHigherCents": 990000,
+          "dependantDisabilityAssistanceCents": 330000
+        },
+        "12": {
+          "taxpayerCents": 578900,
+          "ageOver65IncrementCents": 119900,
+          "ageOver75AdditionalIncrementCents": 146000,
+          "descendantByOrderCents": [250300, 281600, 417200, 469400],
+          "descendantUnder3IncrementCents": 292000,
+          "ascendantCents": 119900,
+          "ascendantOver75IncrementCents": 146000,
+          "taxpayerDisabilityLowerCents": 312900,
+          "taxpayerDisabilityHigherCents": 938700,
+          "taxpayerDisabilityAssistanceCents": 312900,
+          "dependantDisabilityLowerCents": 312900,
+          "dependantDisabilityHigherCents": 938700,
+          "dependantDisabilityAssistanceCents": 312900
+        },
+        "13": {
+          "taxpayerCents": 595665,
+          "ageOver65IncrementCents": 123426,
+          "ageOver75AdditionalIncrementCents": 150258,
+          "descendantByOrderCents": [257585, 289783, 440000, 495000],
+          "descendantUnder3IncrementCents": 300516,
+          "ascendantCents": 123426,
+          "ascendantOver75IncrementCents": 150258,
+          "taxpayerDisabilityLowerCents": 321981,
+          "taxpayerDisabilityHigherCents": 965944,
+          "taxpayerDisabilityAssistanceCents": 321981,
+          "dependantDisabilityLowerCents": 321981,
+          "dependantDisabilityHigherCents": 965944,
+          "dependantDisabilityAssistanceCents": 321981
+        },
+        "17": {
+          "dependantDisabilityLowerCents": 330000,
+          "dependantDisabilityHigherCents": 990000
+        },
+        "01": {
+          "taxpayerCents": 579000,
+          "ageOver65IncrementCents": 120000,
+          "ageOver75AdditionalIncrementCents": 146000,
+          "descendantByOrderCents": [251000, 282000, 417000, 470000],
+          "descendantUnder3IncrementCents": 292000,
+          "ascendantCents": 120000,
+          "ascendantOver75IncrementCents": 146000,
+          "taxpayerDisabilityLowerCents": 313000,
+          "taxpayerDisabilityHigherCents": 939000,
+          "taxpayerDisabilityAssistanceCents": 313000,
+          "dependantDisabilityLowerCents": 313000,
+          "dependantDisabilityHigherCents": 939000,
+          "dependantDisabilityAssistanceCents": 313000
+        }
+      }
+    },
+    "workIncome": {
+      "standardExpenseCents": 200000,
+      "otherIncomeEligibilityLimitCents": 650000,
+      "reductionBands": [
+        {"upToNetWorkIncomeCents": 1485200, "baseReductionCents": 730200, "excessOverCents": 0, "slopeBasisPoints": 0},
+        {"upToNetWorkIncomeCents": 1767352, "baseReductionCents": 730200, "excessOverCents": 1485200, "slopeBasisPoints": 17500},
+        {"upToNetWorkIncomeCents": 1974750, "baseReductionCents": 236434, "excessOverCents": 1767352, "slopeBasisPoints": 11400}
+      ]
+    },
+    "jointFiling": {
+      "marriedReductionCents": 340000,
+      "singleParentReductionCents": 215000
+    }
+  },
+  "socialSecurity": {
+    "employee": {
+      "monthlyMaximumBaseCents": 510120,
+      "commonContingenciesEmployeeRateBasisPoints": 470,
+      "unemploymentIndefiniteEmployeeRateBasisPoints": 155,
+      "trainingEmployeeRateBasisPoints": 10,
+      "meiEmployeeRateBasisPoints": 15,
+      "solidarityBands": [
+        {"thresholdMonthlyCents": 510120, "rateBasisPoints": 19},
+        {"thresholdMonthlyCents": 561132, "rateBasisPoints": 21},
+        {"thresholdMonthlyCents": 765180, "rateBasisPoints": 24}
+      ]
+    },
+    "selfEmployed": {
+      "totalRateBasisPoints": 3150,
+      "monthlyAbsoluteMaximumBaseCents": 510120,
+      "incomeBands": [
+        {"upToMonthlyNetIncomeCents": 67000, "minimumBaseCents": 65359, "maximumBaseCents": 71894},
+        {"upToMonthlyNetIncomeCents": 90000, "minimumBaseCents": 71895, "maximumBaseCents": 90000},
+        {"upToMonthlyNetIncomeCents": 116669, "minimumBaseCents": 84967, "maximumBaseCents": 116670},
+        {"upToMonthlyNetIncomeCents": 130000, "minimumBaseCents": 95098, "maximumBaseCents": 130000},
+        {"upToMonthlyNetIncomeCents": 150000, "minimumBaseCents": 96078, "maximumBaseCents": 150000},
+        {"upToMonthlyNetIncomeCents": 170000, "minimumBaseCents": 96078, "maximumBaseCents": 170000},
+        {"upToMonthlyNetIncomeCents": 185000, "minimumBaseCents": 114379, "maximumBaseCents": 185000},
+        {"upToMonthlyNetIncomeCents": 203000, "minimumBaseCents": 120915, "maximumBaseCents": 203000},
+        {"upToMonthlyNetIncomeCents": 233000, "minimumBaseCents": 127451, "maximumBaseCents": 233000},
+        {"upToMonthlyNetIncomeCents": 276000, "minimumBaseCents": 135621, "maximumBaseCents": 276000},
+        {"upToMonthlyNetIncomeCents": 319000, "minimumBaseCents": 143791, "maximumBaseCents": 319000},
+        {"upToMonthlyNetIncomeCents": 362000, "minimumBaseCents": 151961, "maximumBaseCents": 362000},
+        {"upToMonthlyNetIncomeCents": 405000, "minimumBaseCents": 160131, "maximumBaseCents": 405000},
+        {"upToMonthlyNetIncomeCents": 600000, "minimumBaseCents": 173203, "maximumBaseCents": 510120},
+        {"upToMonthlyNetIncomeCents": null, "minimumBaseCents": 192810, "maximumBaseCents": 510120}
+      ]
+    }
+  },
+  "benefits": {
+    "annualPerEligibleDescendantCents": 0
+  }
+}
+

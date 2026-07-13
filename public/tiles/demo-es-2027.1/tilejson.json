@@ -1,0 +1,105 @@
+{
+  "tilejson": "3.0.0",
+  "name": "Cifra Cívica — geografía DEMO",
+  "description": "DEMO: geometrías rectangulares simplificadas para desarrollo. No usar como cartografía oficial.",
+  "version": "demo-es-2027.1",
+  "scheme": "xyz",
+  "tiles": [
+    "http://localhost:3102/tiles/demo-es-2027.1/{z}/{x}/{y}.mvt"
+  ],
+  "minzoom": 0,
+  "maxzoom": 13,
+  "bounds": [
+    -18.2,
+    27.6,
+    4.4,
+    43.8
+  ],
+  "center": [
+    -3.7,
+    40.2,
+    5
+  ],
+  "vector_layers": [
+    {
+      "id": "autonomous_communities",
+      "geographyLevel": "autonomous_community",
+      "minzoom": 0,
+      "maxzoom": 7,
+      "developmentMaxzoom": 5,
+      "properties": {
+        "geography_code": "String",
+        "official_code": "String",
+        "name": "String",
+        "level": "String",
+        "data_mode": "String",
+        "geometry_status": "String",
+        "geography_version": "String",
+        "territorial_support": "String",
+        "demo": "Boolean"
+      }
+    },
+    {
+      "id": "municipalities",
+      "geographyLevel": "municipality",
+      "minzoom": 4,
+      "maxzoom": 11,
+      "developmentMaxzoom": 8,
+      "properties": {
+        "geography_code": "String",
+        "official_code": "String",
+        "name": "String",
+        "level": "String",
+        "data_mode": "String",
+        "geometry_status": "String",
+        "geography_version": "String",
+        "territorial_support": "String",
+        "demo": "Boolean"
+      }
+    },
+    {
+      "id": "districts",
+      "geographyLevel": "district",
+      "minzoom": 9,
+      "maxzoom": 14,
+      "developmentMaxzoom": 11,
+      "properties": {
+        "geography_code": "String",
+        "official_code": "String",
+        "name": "String",
+        "level": "String",
+        "data_mode": "String",
+        "geometry_status": "String",
+        "geography_version": "String",
+        "territorial_support": "String",
+        "demo": "Boolean"
+      }
+    },
+    {
+      "id": "census_sections",
+      "geographyLevel": "census_section",
+      "minzoom": 12,
+      "maxzoom": 16,
+      "developmentMaxzoom": 13,
+      "properties": {
+        "geography_code": "String",
+        "official_code": "String",
+        "name": "String",
+        "level": "String",
+        "data_mode": "String",
+        "geometry_status": "String",
+        "geography_version": "String",
+        "territorial_support": "String",
+        "demo": "Boolean"
+      }
+    }
+  ],
+  "attribution": "Códigos y nombres: INE. Geometría y métricas: DEMO sintética de Cifra Cívica.",
+  "data_mode": "demo_synthetic",
+  "watermark": "DEMO",
+  "pmtiles": {
+    "supported": true,
+    "deploymentArtifactPattern": "/tiles/demo-es-2027.1.pmtiles",
+    "developmentArtifact": "xyz_mvt"
+  }
+}

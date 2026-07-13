@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0",
+  "datasetId": "cifra-civica-demo-geography-2027-v1",
+  "dataMode": "demo_synthetic",
+  "sourceName": "INE nomenclature reference + Cifra Cívica synthetic boundary fixture",
+  "publisher": "Instituto Nacional de Estadística / Cifra Cívica",
+  "sourceReference": "https://www.ine.es/daco/daco42/codmun/codmunmapa.htm",
+  "accessDate": "2026-07-13",
+  "publicationDate": null,
+  "dataPeriod": "Official codes consulted for development; synthetic geometry version 2027.1",
+  "geographicCoverage": "Spain; 19 autonomous communities/cities and a non-exhaustive municipality sample",
+  "licenceOrReuseConditions": "INE source reuse conditions apply to names/codes. Synthetic rectangles are CC0 project fixtures.",
+  "checksum": "ec9a992dd1863581577b1202f4cf11ad32c5c265e9e4d698fe28e6a0c4ef9041",
+  "checksumAlgorithm": "sha256",
+  "originalFilename": "packages/geography/demo-source.ts",
+  "transformVersion": "geography-demo-generator/1.0.0",
+  "transformationSteps": [
+    "Curate official INE codes and place names into a reviewed development seed.",
+    "Generate deliberately simplified rectangular DEMO geometries around coarse extents.",
+    "Validate code formats, hierarchy, bboxes, closed rings, labels and synthetic-data guards.",
+    "Publish JSON catalog and vector-tile-source GeoJSON with immutable geography version."
+  ],
+  "qualityWarnings": [
+    "DEMO — boundaries are synthetic rectangles and must never be described as official cartography.",
+    "Municipality coverage is a small development sample, not all Spanish municipalities.",
+    "District and census-section identifiers/geometries are development examples and not official boundary extracts."
+  ],
+  "outputTables": [
+    "demo_geographies",
+    "demo_geography_features"
+  ],
+  "responsibleMaintainer": "data-governance@cifra-civica.invalid",
+  "pipelineStage": "published",
+  "containsRestrictedMicrodata": false,
+  "containsAdministrativeTaxpayerMicrodata": false,
+  "outputChecksums": {
+    "data/fixtures/geography/spain-demo-geographies.json": "5b2c2da5049cea9725d427e7c449763a6d9b5e3226be7c1d86e8d3777248743b",
+    "data/fixtures/geography/spain-demo-geometries.geojson": "afdea48dd02e6259424e3f60bbb34054116dd55e71998b092f73e52ce62c4844"
+  }
+}

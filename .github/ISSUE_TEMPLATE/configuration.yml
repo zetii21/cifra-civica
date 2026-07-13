@@ -1,0 +1,47 @@
+name: Error de configuración normativa
+description: Señale una regla, parámetro, vigencia o fuente que pueda estar mal configurada.
+title: "[Configuración]: "
+labels:
+  - correction
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por ayudar a mejorar la trazabilidad del modelo. No incluya datos fiscales, familiares ni identificadores personales. Use importes ficticios si necesita describir un ejemplo.
+  - type: input
+    id: policy
+    attributes:
+      label: Política o escenario
+      description: Identificador visible o ruta del escenario afectado.
+      placeholder: baseline-2027-common-reference
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Regla o parámetro afectado
+      description: Indique el valor actual, el valor esperado y la fecha de vigencia correspondiente.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Fuente primaria
+      description: Enlace a BOE, AEAT, Seguridad Social u otra fuente oficial que sustente la corrección.
+      placeholder: https://www.boe.es/...
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproducción mínima
+      description: Describa un caso sintético y la salida esperada, sin datos de una persona real.
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacidad y alcance
+      options:
+        - label: He eliminado datos personales y el ejemplo, si existe, es completamente sintético.
+          required: true
+        - label: Entiendo que el cambio requiere revisión de fuente, prueba y registro de versión antes de publicarse.
+          required: true

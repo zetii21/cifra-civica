@@ -1,0 +1,17 @@
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests", "../../policy-registry/tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 120
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
+plugins = ["pydantic.mypy"]
+exclude = ["tests/"]

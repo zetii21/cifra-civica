@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0",
+  "datasetId": "cifra-civica-demo-vector-tiles-2027-v1",
+  "dataMode": "demo_synthetic",
+  "sourceName": "Cifra Cívica synthetic geography fixture",
+  "publisher": "Cifra Cívica",
+  "sourceReference": "data/fixtures/geography/spain-demo-geographies.json",
+  "accessDate": "2026-07-13",
+  "publicationDate": "2026-07-13",
+  "dataPeriod": "DEMO 2027",
+  "geographicCoverage": "Spain development sample",
+  "licenceOrReuseConditions": "CC0 synthetic development artifact; not official cartography.",
+  "checksum": "5b2c2da5049cea9725d427e7c449763a6d9b5e3226be7c1d86e8d3777248743b",
+  "checksumAlgorithm": "sha256",
+  "originalFilename": "spain-demo-geographies.json",
+  "transformVersion": "mvt-development-builder/1.0.0",
+  "transformationSteps": [
+    "Select features by immutable vector-layer contract and development zoom range.",
+    "Project WGS84 coordinates to Web Mercator tile coordinates.",
+    "Encode polygon commands and public metadata properties as Mapbox Vector Tiles.",
+    "Write content checksums, TileJSON and PMTiles-compatible deployment contract."
+  ],
+  "qualityWarnings": [
+    "DEMO — generated tiles contain synthetic simplified rectangles, not official boundaries.",
+    "Development MVT polygons are not clipped or topology-optimised; production official tiles require reviewed GDAL/tippecanoe processing."
+  ],
+  "outputTables": [
+    "vector_tile_manifest",
+    "vector_tile_xyz_files"
+  ],
+  "responsibleMaintainer": "geospatial@cifra-civica.invalid",
+  "pipelineStage": "published",
+  "containsRestrictedMicrodata": false,
+  "containsAdministrativeTaxpayerMicrodata": false,
+  "outputChecksums": {
+    "data/generated/tiles/demo-es-2027.1/manifest.json": "0160d89f0932a4b664e2125375770ce01f442bae9105f64929d80b04effa69a8",
+    "data/generated/tiles/demo-es-2027.1/tilejson.json": "f7339bb4be1363193dd37b1a03d8d4cea022b188a190b68e4020ed057e856d3d"
+  }
+}

@@ -1,0 +1,117 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Quality, model and privacy gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Set up Node
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: "22.14.0"
+          cache: npm
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            services/simulation-api/requirements.txt
+            services/simulation-api/requirements-dev.txt
+            services/simulation-api/constraints.txt
+            model-lab/requirements.txt
+
+      - name: Install
+        run: make setup
+
+      - name: Lint, types, tests, policies and production build
+        run: make ci
+
+      - name: Install browser for end-to-end and accessibility gates
+        run: npx playwright install --with-deps chromium
+
+      - name: Optional accessibility suite
+        run: npm run --if-present test:a11y
+
+      - name: Optional browser journey suite
+        run: npm run --if-present test:e2e
+
+      - name: Rebuild deterministic geography
+        run: |
+          make seed
+          make tiles
+          git diff --exit-code -- data/fixtures data/provenance data/sample
+
+      - name: Aggregate benchmarks when installed
+        run: make benchmark
+
+      - name: Production safety defaults
+        env:
+          APP_ENV: production
+          ENABLE_SYNTHETIC_SCENARIOS: "false"
+          ALLOW_SYNTHETIC_SCENARIOS_IN_PRODUCTION: "false"
+          ENABLE_CALCULATION_TRACE: "false"
+        run: make release-check
+
+      - name: Dependency audit
+        run: |
+          .venv/bin/pip install pip-audit
+          make audit
+
+  containers:
+    name: Container build and smoke
+    needs: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Build images
+        run: docker compose build
+
+      - name: Verify non-root images
+        run: |
+          test "$(docker compose run --rm --no-deps simulation-api id -u)" != "0"
+          test "$(docker compose run --rm --no-deps tile-service id -u)" != "0"
+          test "$(docker compose run --rm --no-deps web id -u)" != "0"
+
+      - name: Start and smoke test
+        run: |
+          docker compose up --detach
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://localhost:3000/ >/dev/null \
+              && curl --fail --silent http://localhost:8000/api/v1/health >/dev/null \
+              && curl --fail --silent http://localhost:8000/api/v1/ready >/dev/null \
+              && curl --fail --silent http://localhost:3102/healthz >/dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          docker compose ps
+          docker compose logs --tail=100
+          exit 1
+
+      - name: Stop services
+        if: always()
+        run: docker compose down --volumes --remove-orphans

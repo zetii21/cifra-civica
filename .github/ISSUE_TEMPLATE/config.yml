@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Vulnerabilidad
+    url: https://github.com/zetii21/cifra-civica/security/advisories/new
+    about: Use este canal privado para informar de una vulnerabilidad de seguridad.

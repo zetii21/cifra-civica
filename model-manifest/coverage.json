@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "modelId": "cifra-civica-2027",
+  "metric": "auditable_calculation_and_validation_state_space",
+  "metricVersion": "1.0.0",
+  "asOf": "2026-07-13",
+  "declaredStateCount": 61980085440,
+  "targetRange": {
+    "minimum": 50000000000,
+    "maximum": 100000000000
+  },
+  "dimensions": {
+    "territorialOutcomes": {
+      "count": 19,
+      "description": "15 common-regime or partial calculation paths plus four explicit unsupported-territory outcomes"
+    },
+    "validatedHouseholdProfiles": {
+      "count": 461,
+      "description": "Valid combinations of 1–3 adults, six marital states, three filing preferences, 0–6 dependants and single-parent status after eligibility gates"
+    },
+    "incomeProfiles": {
+      "count": 360,
+      "factors": [6, 10, 3, 2],
+      "description": "Employment profile, gross-income band, self-employment band and pension/benefit profile"
+    },
+    "fiscalModifierProfiles": {
+      "count": 504,
+      "factors": [6, 7, 4, 3],
+      "description": "Housing tenure, capital-income band, disability band and input-quality state"
+    },
+    "scenarioBundles": {
+      "count": 3,
+      "description": "Reference only, reference plus one comparison, or reference plus two comparisons"
+    },
+    "monthsWorkedValues": {
+      "count": 13,
+      "description": "Every integer value from 0 to 12"
+    }
+  },
+  "formula": "19 × 461 × 360 × 504 × 3 × 13",
+  "interpretation": "This is the number of addressable deterministic calculation or structured-validation states under the published discretisation. It is not a count of stored people, database rows, legal constants, AI weights or precomputed results.",
+  "privacy": "No state is precomputed from or linked to a real person. Household requests are calculated ephemerally."
+}

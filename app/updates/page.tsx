@@ -1,0 +1,9 @@
+import type { Metadata } from "next";
+import { GovernancePage } from "@/components/GovernancePage";
+import { StatusBadge } from "@/components/Ui";
+
+export const metadata: Metadata = { title: "Actualizaciones" };
+
+export default function UpdatesPage() {
+  return <GovernancePage eyebrow="Historial público" title="Cambios que dejan rastro." intro="Cada versión coordina aplicación, modelo, registro de políticas, datos y geografía."><div className="update-entry"><div><time dateTime="2026-07-13">13 julio 2026</time><StatusBadge tone="demo">0.1.0 PRE-LANZAMIENTO</StatusBadge></div><h2>Primera versión vertical</h2><ul><li>Calculadora multi-persona y comparación de tres escenarios.</li><li>API fiscal Python detrás de un Worker del mismo origen y contingencia edge identificada.</li><li>Registro de políticas y fuentes fechado.</li><li>Explorador territorial con datos sintéticos y controles de divulgación.</li><li>Manifiesto combinatorio del motor Python de 61.980.085.440 estados.</li><li>Estudio reproducible del motor Python: 2.000.000 hogares y 6.000.000 evaluaciones exactas.</li><li>Documentación de privacidad, seguridad, validación y operaciones.</li></ul></div><h2>Próximo hito</h2><p>Validación fiscal de cada comunidad, hogares dorados contra Renta Web Open, calibración agregada alineada y sustitución de los datos DEMO por fuentes oficiales licenciadas.</p></GovernancePage>;
+}

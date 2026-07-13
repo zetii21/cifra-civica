@@ -1,0 +1,8 @@
+import type { Metadata } from "next";
+import { GovernancePage } from "@/components/GovernancePage";
+
+export const metadata: Metadata = { title: "Privacidad" };
+
+export default function PrivacyPage() {
+  return <GovernancePage eyebrow="Privacidad por diseño" title="Tus circunstancias no son un perfil político." intro="La calculadora funciona sin cuenta, no usa píxeles publicitarios y no conserva las solicitudes personales."><h2>Flujo predeterminado</h2><ol><li>Introduces datos en el navegador.</li><li>El navegador valida y envía una solicitud efímera al mismo origen.</li><li>El motor configurado calcula en memoria y devuelve un resultado identificado.</li><li>El cuerpo se descarta y no se registra.</li></ol><h2>Qué puede aparecer en logs</h2><p>Marca temporal, ID aleatorio, endpoint, estado, duración y versiones del modelo o escenarios. Nunca salario, alquiler, pensión, discapacidad, beneficios, composición del hogar, municipio combinado con cifras ni cuerpo completo.</p><h2>Guardado local</h2><p>Está desactivado por defecto. El botón “Guardar en este dispositivo” usa IndexedDB y no sincroniza. Puedes borrar la copia desde la misma pantalla. No afirmamos que el almacenamiento del navegador esté cifrado.</p><h2>Política electoral</h2><p>No inferimos opinión política, no recomendamos partidos, no creamos audiencias, no exportamos a campañas y no conectamos inputs con publicidad.</p><h2>Conservación</h2><p>Solicitud personal: cero días. Resultado personal: cero días. Copia local opcional: hasta que la persona la borre. Datos agregados públicos: según su manifiesto de procedencia.</p></GovernancePage>;
+}

@@ -1,0 +1,517 @@
+{
+  "schemaVersion": "1.0",
+  "studyId": "cifra-civica-statistical-study-20270713",
+  "generatedAt": "2026-07-13T22:12:35.654108+00:00",
+  "status": "reference",
+  "purpose": "Validación, sensibilidad y aceleración experimental; el motor fiscal exacto sigue siendo la fuente de verdad.",
+  "seed": 20270713,
+  "inputFiles": [
+    "model-lab/requirements.txt",
+    "model-lab/run_study.py",
+    "policy-registry/baseline/baseline-2027-common-reference.json",
+    "policy-registry/methodology/demo-rebaja-estatal-familiar-2027.md",
+    "policy-registry/methodology/demo-transferencia-infancia-2027.md",
+    "policy-registry/methodology/referencia-comun-2027.md",
+    "policy-registry/parameters/es-common-reference-2026-v1.json",
+    "policy-registry/scenarios/demo-child-transfer-2027.json",
+    "policy-registry/scenarios/demo-family-tax-relief-2027.json",
+    "policy-registry/schemas/parameters.schema.json",
+    "policy-registry/schemas/policy.schema.json",
+    "policy-registry/schemas/source.schema.json",
+    "policy-registry/sources/source-boe-lirpf-consolidated-2026.json",
+    "policy-registry/sources/source-boe-social-security-2026.json",
+    "policy-registry/sources/source-hacienda-autonomic-2025.json",
+    "policy-registry/sources/source-seg-social-rates-2026.json",
+    "policy-registry/sources/source-synthetic-demo-methodology.json",
+    "services/simulation-api/app/__init__.py",
+    "services/simulation-api/app/adapters.py",
+    "services/simulation-api/app/batch.py",
+    "services/simulation-api/app/config.py",
+    "services/simulation-api/app/engine.py",
+    "services/simulation-api/app/main.py",
+    "services/simulation-api/app/manifest.py",
+    "services/simulation-api/app/middleware.py",
+    "services/simulation-api/app/models.py",
+    "services/simulation-api/app/registry.py",
+    "services/simulation-api/app/validate_registry.py",
+    "services/simulation-api/constraints.txt",
+    "services/simulation-api/requirements.txt"
+  ],
+  "inputDigestSha256": "54d490e0a17b08009f64e7cc664ef774abdf5b0745f9d191ec446be54a447c7e",
+  "coverage": {
+    "syntheticHouseholdsEvaluated": 2000000,
+    "exactScenarioEvaluations": 6000000,
+    "policyIds": [
+      "baseline-2027-common-reference",
+      "demo-family-tax-relief-2027",
+      "demo-child-transfer-2027"
+    ],
+    "featureCount": 30,
+    "features": [
+      "community_index",
+      "adult_count",
+      "marital_code",
+      "filing_code",
+      "single_parent",
+      "primary_age",
+      "secondary_age",
+      "employment_income_primary_eur",
+      "employment_income_secondary_eur",
+      "self_employment_income_eur",
+      "unemployment_benefits_eur",
+      "pension_income_eur",
+      "other_taxable_income_eur",
+      "exempt_income_eur",
+      "months_worked_primary",
+      "months_worked_secondary",
+      "multiple_jobs_count",
+      "adult_disability_score",
+      "eligible_descendants",
+      "dependants_under_3",
+      "dependants_disabled",
+      "shared_custody_count",
+      "interest_dividends_eur",
+      "property_income_eur",
+      "capital_gains_net_eur",
+      "taxable_household_benefits_eur",
+      "exempt_household_benefits_eur",
+      "annual_rent_eur",
+      "mortgage_exists",
+      "contribution_base_override_eur"
+    ],
+    "targetCount": 5,
+    "targets": [
+      "baseline_disposable_income_eur",
+      "baseline_final_irpf_eur",
+      "baseline_social_security_eur",
+      "family_relief_change_eur",
+      "child_transfer_change_eur"
+    ],
+    "trainHouseholds": 400000,
+    "holdoutHouseholds": 500000
+  },
+  "exactSweep": {
+    "wallSeconds": 87.338072708,
+    "workerCpuSeconds": 664.7933582459999,
+    "scenarioEvaluations": 6000000,
+    "familyReliefNonnegativeViolations": 0,
+    "childTransferExactViolations": 0,
+    "householdsPerWallSecond": 22899.52,
+    "meanExactScenarioMicroseconds": 116.4508,
+    "invariantsPassed": true
+  },
+  "modelComparison": {
+    "ridge_linear": {
+      "fitSeconds": 0.0761,
+      "batchPredictionSeconds": 0.0397,
+      "meanBatchMicrosecondsPerHousehold": 0.0794,
+      "targets": {
+        "baseline_disposable_income_eur": {
+          "maeEur": 2036.1145,
+          "rmseEur": 2865.5067,
+          "p95AbsoluteErrorEur": 5630.3325,
+          "p99AbsoluteErrorEur": 9419.8314,
+          "maxAbsoluteErrorEur": 38650.0982,
+          "r2": 0.98983428
+        },
+        "baseline_final_irpf_eur": {
+          "maeEur": 2019.966,
+          "rmseEur": 2702.0042,
+          "p95AbsoluteErrorEur": 5084.4619,
+          "p99AbsoluteErrorEur": 8196.4243,
+          "maxAbsoluteErrorEur": 47729.3352,
+          "r2": 0.97260385
+        },
+        "baseline_social_security_eur": {
+          "maeEur": 654.9726,
+          "rmseEur": 1068.0298,
+          "p95AbsoluteErrorEur": 2213.4475,
+          "p99AbsoluteErrorEur": 3914.5304,
+          "maxAbsoluteErrorEur": 13405.7412,
+          "r2": 0.74173034
+        },
+        "family_relief_change_eur": {
+          "maeEur": 28.9406,
+          "rmseEur": 39.8488,
+          "p95AbsoluteErrorEur": 83.6248,
+          "p99AbsoluteErrorEur": 123.7368,
+          "maxAbsoluteErrorEur": 293.8661,
+          "r2": 0.99083772
+        },
+        "child_transfer_change_eur": {
+          "maeEur": 0.0028,
+          "rmseEur": 0.0034,
+          "p95AbsoluteErrorEur": 0.0061,
+          "p99AbsoluteErrorEur": 0.0103,
+          "maxAbsoluteErrorEur": 0.0228,
+          "r2": 1.0
+        }
+      }
+    },
+    "extra_trees": {
+      "fitSeconds": 16.1569,
+      "batchPredictionSeconds": 0.7844,
+      "meanBatchMicrosecondsPerHousehold": 1.5688,
+      "targets": {
+        "baseline_disposable_income_eur": {
+          "maeEur": 2143.5729,
+          "rmseEur": 3189.7211,
+          "p95AbsoluteErrorEur": 6353.2391,
+          "p99AbsoluteErrorEur": 11434.6002,
+          "maxAbsoluteErrorEur": 73490.2736,
+          "r2": 0.98740376
+        },
+        "baseline_final_irpf_eur": {
+          "maeEur": 985.9639,
+          "rmseEur": 1643.0087,
+          "p95AbsoluteErrorEur": 3289.3984,
+          "p99AbsoluteErrorEur": 6056.2162,
+          "maxAbsoluteErrorEur": 76144.0152,
+          "r2": 0.98987028
+        },
+        "baseline_social_security_eur": {
+          "maeEur": 601.5154,
+          "rmseEur": 958.8747,
+          "p95AbsoluteErrorEur": 1964.1149,
+          "p99AbsoluteErrorEur": 3412.4643,
+          "maxAbsoluteErrorEur": 14608.3017,
+          "r2": 0.79182415
+        },
+        "family_relief_change_eur": {
+          "maeEur": 30.1319,
+          "rmseEur": 44.8804,
+          "p95AbsoluteErrorEur": 95.3073,
+          "p99AbsoluteErrorEur": 152.3996,
+          "maxAbsoluteErrorEur": 1360.0354,
+          "r2": 0.98837784
+        },
+        "child_transfer_change_eur": {
+          "maeEur": 707.0506,
+          "rmseEur": 940.8012,
+          "p95AbsoluteErrorEur": 1757.009,
+          "p99AbsoluteErrorEur": 3060.8306,
+          "maxAbsoluteErrorEur": 6225.1227,
+          "r2": 0.31812098
+        }
+      }
+    },
+    "hist_gradient_boosting": {
+      "fitSeconds": 19.3065,
+      "batchPredictionSeconds": 4.294,
+      "meanBatchMicrosecondsPerHousehold": 8.5879,
+      "targets": {
+        "baseline_disposable_income_eur": {
+          "maeEur": 1244.8269,
+          "rmseEur": 2381.7495,
+          "p95AbsoluteErrorEur": 3832.3379,
+          "p99AbsoluteErrorEur": 9692.6484,
+          "maxAbsoluteErrorEur": 74176.0,
+          "r2": 0.9929769
+        },
+        "baseline_final_irpf_eur": {
+          "maeEur": 767.3316,
+          "rmseEur": 1791.7637,
+          "p95AbsoluteErrorEur": 2492.8518,
+          "p99AbsoluteErrorEur": 7662.457,
+          "maxAbsoluteErrorEur": 63303.9141,
+          "r2": 0.98795301
+        },
+        "baseline_social_security_eur": {
+          "maeEur": 124.6533,
+          "rmseEur": 365.1308,
+          "p95AbsoluteErrorEur": 549.0311,
+          "p99AbsoluteErrorEur": 1799.3416,
+          "maxAbsoluteErrorEur": 12121.5371,
+          "r2": 0.96981412
+        },
+        "family_relief_change_eur": {
+          "maeEur": 20.2817,
+          "rmseEur": 40.6888,
+          "p95AbsoluteErrorEur": 64.2033,
+          "p99AbsoluteErrorEur": 163.005,
+          "maxAbsoluteErrorEur": 1235.647,
+          "r2": 0.99044734
+        },
+        "child_transfer_change_eur": {
+          "maeEur": 0.0002,
+          "rmseEur": 0.0002,
+          "p95AbsoluteErrorEur": 0.0005,
+          "p99AbsoluteErrorEur": 0.0005,
+          "maxAbsoluteErrorEur": 0.0015,
+          "r2": 1.0
+        }
+      }
+    }
+  },
+  "selectedDiagnosticModel": {
+    "name": "hist_gradient_boosting",
+    "artifact": "diagnostic-surrogate.joblib",
+    "artifactSha256": "84ab38000e3715479f11f26156ddec392743bbc6bfc04a5713dfd22aa7a67620",
+    "artifactBytes": 3012446,
+    "authoritativeForPublicResults": false,
+    "singlePredictionLatency": {
+      "medianMilliseconds": 14.8936,
+      "p95Milliseconds": 20.9607,
+      "p99Milliseconds": 48.6824,
+      "maximumMilliseconds": 76.9705
+    },
+    "interactiveRecommendation": "Usar el motor fiscal exacto; es más rápido y no introduce error de aproximación."
+  },
+  "baselineDisposableIncomeSensitivity": [
+    {
+      "feature": "employment_income_primary_eur",
+      "permutationMaeIncreaseEur": 17889.5271,
+      "permutationStdEur": 74.6628,
+      "pearsonDirection": 0.577205,
+      "observedMin": 0.0,
+      "observedMax": 240000.0
+    },
+    {
+      "feature": "employment_income_secondary_eur",
+      "permutationMaeIncreaseEur": 9059.1339,
+      "permutationStdEur": 12.317,
+      "pearsonDirection": 0.563321,
+      "observedMin": 0.0,
+      "observedMax": 240000.0
+    },
+    {
+      "feature": "self_employment_income_eur",
+      "permutationMaeIncreaseEur": 8443.2626,
+      "permutationStdEur": 21.6604,
+      "pearsonDirection": 0.402417,
+      "observedMin": 0.0,
+      "observedMax": 296936.1562
+    },
+    {
+      "feature": "pension_income_eur",
+      "permutationMaeIncreaseEur": 3689.5208,
+      "permutationStdEur": 27.0131,
+      "pearsonDirection": 0.047172,
+      "observedMin": 0.0,
+      "observedMax": 102967.9062
+    },
+    {
+      "feature": "property_income_eur",
+      "permutationMaeIncreaseEur": 2830.893,
+      "permutationStdEur": 20.5577,
+      "pearsonDirection": 0.164132,
+      "observedMin": 0.0,
+      "observedMax": 31998.5098
+    },
+    {
+      "feature": "months_worked_secondary",
+      "permutationMaeIncreaseEur": 1656.3626,
+      "permutationStdEur": 1.2774,
+      "pearsonDirection": 0.394604,
+      "observedMin": 0.0,
+      "observedMax": 12.0
+    },
+    {
+      "feature": "capital_gains_net_eur",
+      "permutationMaeIncreaseEur": 1410.3395,
+      "permutationStdEur": 3.4569,
+      "pearsonDirection": 0.096565,
+      "observedMin": -30033.2305,
+      "observedMax": 61238.5781
+    },
+    {
+      "feature": "exempt_household_benefits_eur",
+      "permutationMaeIncreaseEur": 1213.2694,
+      "permutationStdEur": 1.3914,
+      "pearsonDirection": 0.077049,
+      "observedMin": 0.0,
+      "observedMax": 9994.96
+    },
+    {
+      "feature": "other_taxable_income_eur",
+      "permutationMaeIncreaseEur": 1130.1676,
+      "permutationStdEur": 2.9245,
+      "pearsonDirection": 0.130226,
+      "observedMin": 0.0,
+      "observedMax": 27010.0996
+    },
+    {
+      "feature": "unemployment_benefits_eur",
+      "permutationMaeIncreaseEur": 1114.9603,
+      "permutationStdEur": 15.392,
+      "pearsonDirection": -0.06785,
+      "observedMin": 0.0,
+      "observedMax": 36201.0586
+    },
+    {
+      "feature": "exempt_income_eur",
+      "permutationMaeIncreaseEur": 905.8056,
+      "permutationStdEur": 2.3969,
+      "pearsonDirection": 0.119273,
+      "observedMin": 0.0,
+      "observedMax": 16665.2207
+    },
+    {
+      "feature": "interest_dividends_eur",
+      "permutationMaeIncreaseEur": 887.4221,
+      "permutationStdEur": 4.2645,
+      "pearsonDirection": 0.059805,
+      "observedMin": 0.0,
+      "observedMax": 21485.7402
+    },
+    {
+      "feature": "taxable_household_benefits_eur",
+      "permutationMaeIncreaseEur": 867.5926,
+      "permutationStdEur": 1.6017,
+      "pearsonDirection": 0.053173,
+      "observedMin": 0.0,
+      "observedMax": 9998.2402
+    },
+    {
+      "feature": "adult_count",
+      "permutationMaeIncreaseEur": 663.2033,
+      "permutationStdEur": 1.1207,
+      "pearsonDirection": 0.461012,
+      "observedMin": 1.0,
+      "observedMax": 2.0
+    },
+    {
+      "feature": "months_worked_primary",
+      "permutationMaeIncreaseEur": 478.0161,
+      "permutationStdEur": 2.7184,
+      "pearsonDirection": 0.171943,
+      "observedMin": 0.0,
+      "observedMax": 12.0
+    },
+    {
+      "feature": "filing_code",
+      "permutationMaeIncreaseEur": 101.329,
+      "permutationStdEur": 2.0081,
+      "pearsonDirection": -0.01419,
+      "observedMin": 0.0,
+      "observedMax": 2.0
+    },
+    {
+      "feature": "eligible_descendants",
+      "permutationMaeIncreaseEur": 85.0966,
+      "permutationStdEur": 0.8749,
+      "pearsonDirection": 0.016622,
+      "observedMin": 0.0,
+      "observedMax": 6.0
+    },
+    {
+      "feature": "adult_disability_score",
+      "permutationMaeIncreaseEur": 60.8292,
+      "permutationStdEur": 1.7851,
+      "pearsonDirection": 0.062677,
+      "observedMin": 0.0,
+      "observedMax": 4.0
+    },
+    {
+      "feature": "dependants_disabled",
+      "permutationMaeIncreaseEur": 34.0054,
+      "permutationStdEur": 0.2257,
+      "pearsonDirection": 0.006106,
+      "observedMin": 0.0,
+      "observedMax": 2.0
+    },
+    {
+      "feature": "community_index",
+      "permutationMaeIncreaseEur": 33.6152,
+      "permutationStdEur": 0.0924,
+      "pearsonDirection": -0.002307,
+      "observedMin": 0.0,
+      "observedMax": 14.0
+    },
+    {
+      "feature": "single_parent",
+      "permutationMaeIncreaseEur": 28.0268,
+      "permutationStdEur": 0.746,
+      "pearsonDirection": -0.126849,
+      "observedMin": 0.0,
+      "observedMax": 1.0
+    },
+    {
+      "feature": "primary_age",
+      "permutationMaeIncreaseEur": 20.9626,
+      "permutationStdEur": 0.7585,
+      "pearsonDirection": 0.00021,
+      "observedMin": 18.0,
+      "observedMax": 90.0
+    },
+    {
+      "feature": "contribution_base_override_eur",
+      "permutationMaeIncreaseEur": 20.1245,
+      "permutationStdEur": 0.3355,
+      "pearsonDirection": 0.075141,
+      "observedMin": 0.0,
+      "observedMax": 86702.6406
+    },
+    {
+      "feature": "dependants_under_3",
+      "permutationMaeIncreaseEur": 14.8719,
+      "permutationStdEur": 0.9174,
+      "pearsonDirection": 0.013046,
+      "observedMin": 0.0,
+      "observedMax": 3.0
+    },
+    {
+      "feature": "secondary_age",
+      "permutationMaeIncreaseEur": 14.7839,
+      "permutationStdEur": 0.6034,
+      "pearsonDirection": 0.408143,
+      "observedMin": 0.0,
+      "observedMax": 90.0
+    },
+    {
+      "feature": "shared_custody_count",
+      "permutationMaeIncreaseEur": 1.9975,
+      "permutationStdEur": 0.3105,
+      "pearsonDirection": 0.00053,
+      "observedMin": 0.0,
+      "observedMax": 3.0
+    },
+    {
+      "feature": "multiple_jobs_count",
+      "permutationMaeIncreaseEur": 0.0581,
+      "permutationStdEur": 0.0152,
+      "pearsonDirection": 0.111011,
+      "observedMin": 0.0,
+      "observedMax": 2.0
+    },
+    {
+      "feature": "mortgage_exists",
+      "permutationMaeIncreaseEur": 0.025,
+      "permutationStdEur": 0.0216,
+      "pearsonDirection": 0.00454,
+      "observedMin": 0.0,
+      "observedMax": 1.0
+    },
+    {
+      "feature": "marital_code",
+      "permutationMaeIncreaseEur": 0.0,
+      "permutationStdEur": 0.0368,
+      "pearsonDirection": 0.022719,
+      "observedMin": 0.0,
+      "observedMax": 5.0
+    },
+    {
+      "feature": "annual_rent_eur",
+      "permutationMaeIncreaseEur": 0.0,
+      "permutationStdEur": 0.1006,
+      "pearsonDirection": -0.000906,
+      "observedMin": 0.0,
+      "observedMax": 23999.1309
+    }
+  ],
+  "environment": {
+    "python": "3.9.6",
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "numpy": "2.0.2",
+    "scipy": "1.13.1",
+    "scikitLearn": "1.6.1",
+    "joblib": "1.4.2",
+    "workers": 8
+  },
+  "limitations": [
+    "Los hogares son sintéticos y no representan microdatos del INE ni de la AEAT.",
+    "La importancia por permutación describe este diseño de muestreo, no causalidad política.",
+    "Los modelos estadísticos aproximan salidas del motor y nunca sustituyen sus reglas fechadas.",
+    "La referencia 2027 arrastra parámetros oficiales revisados de 2025 y 2026 y debe actualizarse antes de uso electoral."
+  ]
+}
