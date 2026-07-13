@@ -1,4 +1,4 @@
-FROM node:22.14-alpine AS dependencies
+FROM node:22.23.1-alpine AS dependencies
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
@@ -13,7 +13,7 @@ COPY data/sample ./data/sample
 RUN node --import tsx pipelines/geography/generate-demo.ts \
   && node --import tsx pipelines/publishing/build-vector-tiles.ts
 
-FROM node:22.14-alpine AS runtime
+FROM node:22.23.1-alpine AS runtime
 WORKDIR /app
 ENV NODE_ENV=production \
     TILE_PORT=3102 \
