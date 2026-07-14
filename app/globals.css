@@ -1041,3 +1041,38 @@ a {
 
 .map-shell-svg { min-height: 0; padding: 3rem 1.2rem 1rem; }
 .map-shell-svg .demo-watermark { position: absolute; right: 1rem; bottom: .8rem; }
+
+/* Government packages */
+.preset-panel { padding: 1.1rem; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--paper-bright); }
+.preset-heading { display: flex; align-items: start; justify-content: space-between; gap: .7rem; }
+.preset-heading span { color: var(--ink-soft); font-family: var(--font-geist-mono), monospace; font-size: .64rem; letter-spacing: .06em; text-transform: uppercase; }
+.preset-heading h2 { margin: .15rem 0 0; font-family: Georgia, serif; font-size: 1.35rem; font-weight: 500; letter-spacing: -.02em; }
+.preset-group-title { display: flex; align-items: center; gap: .4rem; margin: 1rem 0 .5rem; color: var(--ink-soft); font-size: .7rem; letter-spacing: .07em; text-transform: uppercase; }
+.preset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+.preset-tile { display: flex; align-items: center; gap: .6rem; min-height: 58px; padding: .55rem .65rem; border: 1px solid var(--line); border-radius: 10px; background: var(--white); text-align: left; cursor: pointer; transition: border 120ms ease, transform 120ms ease; }
+.preset-tile:hover { border-color: var(--green); transform: translateY(-1px); }
+.preset-tile.active { border: 2px solid var(--green); padding: calc(.55rem - 1px) calc(.65rem - 1px); background: var(--green-pale); }
+.preset-mark { flex: 0 0 auto; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 9px; color: var(--white); font-size: .62rem; font-weight: 760; letter-spacing: .02em; }
+.preset-name { font-size: .72rem; font-weight: 660; line-height: 1.25; }
+.preset-detail { margin-top: .9rem; display: grid; gap: .5rem; }
+.preset-detail p { margin: 0; color: var(--ink-soft); font-size: .8rem; }
+.preset-detail strong { font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-soft); }
+.preset-detail ul:not(.lab-warning-list) { margin: 0; padding-left: 1.1rem; display: grid; gap: .25rem; color: var(--ink-soft); font-size: .74rem; }
+.preset-footnote { margin: .9rem 0 0; color: var(--ink-soft); font-size: .7rem; }
+
+/* Deficit challenge */
+.lab-challenge-card { padding: 1rem 1.3rem 1.1rem; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--paper-bright); }
+.lab-challenge-heading { display: flex; align-items: center; gap: .7rem; }
+.lab-challenge-heading > svg { flex: 0 0 auto; color: var(--green); }
+.lab-challenge-heading h2 { margin: 0; font-family: Georgia, serif; font-size: 1.2rem; font-weight: 500; }
+.lab-challenge-heading p { margin: .1rem 0 0; color: var(--ink-soft); font-size: .74rem; }
+.lab-challenge-heading strong { margin-left: auto; font-size: .84rem; white-space: nowrap; }
+.lab-challenge-track { height: 12px; margin-top: .7rem; border-radius: 999px; background: #edf0e9; overflow: hidden; }
+.lab-challenge-track i { display: block; height: 100%; border-radius: 999px; background: var(--green); transition: width 200ms ease; }
+.lab-share-button { margin-left: auto; width: auto; min-height: 38px; padding: .4rem .7rem; font-size: .74rem; }
+
+@media (max-width: 640px) {
+  .preset-grid { grid-template-columns: 1fr; }
+  .lab-challenge-heading { flex-wrap: wrap; }
+  .lab-challenge-heading strong { margin-left: 0; }
+}

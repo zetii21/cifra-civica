@@ -99,3 +99,5 @@ Una corrida pequeña requiere `--allow-small-report` y no puede presentarse como
 - cuenta cada aplicación de parámetro-caso desde las formas exactas de los arrays y escribe `model-lab/artifacts/national-study-report.json`.
 
 El gate de CI (`scripts/validate-national-study.mjs`) rehash-ea las entradas declaradas: cualquier cambio en `lib/fiscal-lab/` o en el modelo exportado sin reejecutar el estudio bloquea la integración.
+
+Desde la ampliación del estudio, los barridos cubren nueve familias: tramos estatales individuales, tramos del ahorro, escalas autonómicas y forales, pares de tramos estatales, pares de tramos del ahorro, cruces tramo estatal × tramo del ahorro, cruces escala autonómica × tramo estatal, tríos (dos tramos estatales + un tramo del ahorro) y matrices de paquetes gasto × IRPF. Los barridos individuales registran, además de la curva de ingresos, la superficie por comunidad y el impacto por decil en cada punto de la malla.

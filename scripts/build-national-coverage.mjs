@@ -16,7 +16,7 @@ const manifest = {
   microUnits: report.coverage.microUnits,
   targetRange: {
     minimum: 200000000000,
-    maximum: 600000000000,
+    maximum: 2000000000000,
   },
   dimensions: {
     communities: {

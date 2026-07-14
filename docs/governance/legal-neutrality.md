@@ -59,3 +59,14 @@ Evitar:
 ## Revisión editorial
 
 Cada escenario con origen partidista se revisa por simetría: mismo orden de campos, espacio, tono, detalle de fuentes, incertidumbre y controles. Las correcciones se priorizan por materialidad/evidencia, no por sponsor.
+
+## Paquetes de gobierno del laboratorio
+
+El laboratorio nacional ofrece paquetes de palancas comparables ("¿y si gobierna…?"). Sus reglas de neutralidad son código, no solo estilo:
+
+- **Fichas idénticas para todos**: mismo tamaño, forma, tipografía y peso visual; el color y unas siglas son el único identificador. No se reproducen logotipos de partidos: una marca registrada exige revisión de derechos y su presencia rompería la homogeneidad.
+- **Orden alfabético dentro de cada grupo** y grupos definidos por naturaleza del paquete (trayectoria documentada / arquetipo sintético), nunca por preferencia editorial.
+- **Trayectorias históricas solo con registro de gobierno estatal** y mapeadas desde medidas realmente aprobadas y publicadas (BOE), con la lista de fuentes visible. Se etiquetan siempre como "aplicación ilustrativa sobre la referencia actual", nunca como programa 2027 ni predicción.
+- **Arquetipos sintéticos** para direcciones de política sin atribución partidista, marcados como demostración.
+- **Programas electorales 2027**: podrán añadirse cuando se publiquen, cada uno con fuentes, interpretación declarada y estado de validación propios. Hasta entonces ningún paquete se atribuye a un partido como propuesta futura.
+- **Sin recomendación**: la interfaz no ordena paquetes por resultado, no marca "mejor/peor" y recuerda que comparar no es recomendar. La tarjeta compartible reproduce estas advertencias.

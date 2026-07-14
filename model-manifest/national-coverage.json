@@ -3,13 +3,13 @@
   "modelId": "cifra-civica-national-lab-2027",
   "metric": "executed_parameter_case_applications",
   "metricVersion": "1.0.0",
-  "asOf": "2026-07-13",
-  "declaredEvaluatedCount": 407868426540,
-  "variantEvaluations": 14993,
+  "asOf": "2026-07-14",
+  "declaredEvaluatedCount": 1142095215544,
+  "variantEvaluations": 45449,
   "microUnits": 498940,
   "targetRange": {
     "minimum": 200000000000,
-    "maximum": 600000000000
+    "maximum": 2000000000000
   },
   "dimensions": {
     "communities": {

@@ -581,23 +581,43 @@ def _init_worker(quantiles: int) -> None:
     _WORKER_BASELINE = compute_irpf(model, zero_adjustment(model), counter)
 
 
+def _decile_impacts(
+    model: Model, unit_delta: np.ndarray, counter: Counter
+) -> list[float]:
+    """Average € change per household by reporting decile (negative = pays more)."""
+    decile_of_band = np.array(
+        [band["decile"] for band in model.raw["incomeBands"]], dtype=np.int32
+    )
+    unit_decile = decile_of_band[model.unit_band]
+    burden = np.bincount(
+        unit_decile, weights=unit_delta * model.unit_households, minlength=10
+    )
+    households = np.bincount(unit_decile, weights=model.unit_households, minlength=10)
+    counter.add(model.n_units * 4)
+    return [round(float(-value), 2) for value in burden / np.maximum(households, 1.0)]
+
+
 def _sweep_state_single(task: tuple[int, list[float]]) -> dict:
     bracket, grid = task
     model, baseline = _WORKER_MODEL, _WORKER_BASELINE
     assert model is not None and baseline is not None
     counter = Counter()
     deltas = []
+    community_curves = []
+    decile_curves = []
     for value in grid:
         adjustment = zero_adjustment(model)
         adjustment.state_deltas[bracket] = value
-        national, _comm, _units = irpf_revenue_delta(
-            model, baseline, adjustment, counter
-        )
+        national, comm, units = irpf_revenue_delta(model, baseline, adjustment, counter)
         deltas.append(round(national, 3))
+        community_curves.append([round(float(v), 2) for v in comm])
+        decile_curves.append(_decile_impacts(model, units, counter))
     return {
         "lever": f"irpf_state_bracket_{bracket + 1}",
         "grid": grid,
         "revenueDeltaMEur": deltas,
+        "communityDeltaMEur": community_curves,
+        "decileNetPerHouseholdEur": decile_curves,
         "cells": counter.value,
         "variants": len(grid),
     }
@@ -609,17 +629,21 @@ def _sweep_savings_single(task: tuple[int, list[float]]) -> dict:
     assert model is not None and baseline is not None
     counter = Counter()
     deltas = []
+    community_curves = []
+    decile_curves = []
     for value in grid:
         adjustment = zero_adjustment(model)
         adjustment.savings_deltas[bracket] = value
-        national, _comm, _units = irpf_revenue_delta(
-            model, baseline, adjustment, counter
-        )
+        national, comm, units = irpf_revenue_delta(model, baseline, adjustment, counter)
         deltas.append(round(national, 3))
+        community_curves.append([round(float(v), 2) for v in comm])
+        decile_curves.append(_decile_impacts(model, units, counter))
     return {
         "lever": f"irpf_savings_bracket_{bracket + 1}",
         "grid": grid,
         "revenueDeltaMEur": deltas,
+        "communityDeltaMEur": community_curves,
+        "decileNetPerHouseholdEur": decile_curves,
         "cells": counter.value,
         "variants": len(grid),
     }
@@ -632,17 +656,20 @@ def _sweep_autonomous(task: tuple[int, list[float]]) -> dict:
     counter = Counter()
     code = model.community_codes[comm_index]
     deltas = []
+    decile_curves = []
     for value in grid:
         adjustment = zero_adjustment(model)
         adjustment.autonomous_deltas[code] = value
-        national, _comm, _units = irpf_revenue_delta(
+        national, _comm, units = irpf_revenue_delta(
             model, baseline, adjustment, counter, community_filter={comm_index}
         )
         deltas.append(round(national, 3))
+        decile_curves.append(_decile_impacts(model, units, counter))
     return {
         "lever": f"irpf_autonomous_{code}",
         "grid": grid,
         "revenueDeltaMEur": deltas,
+        "decileNetPerHouseholdEur": decile_curves,
         "cells": counter.value,
         "variants": len(grid),
     }
@@ -704,6 +731,171 @@ def _sweep_cross_state_savings(task: tuple[int, int, list[float], list[float]]) 
         "cells": counter.value,
         "maxRevenueDeltaMEur": float(surface.max()),
         "minRevenueDeltaMEur": float(surface.min()),
+    }
+
+
+def _sweep_savings_pair(task: tuple[int, int, list[float]]) -> dict:
+    bracket_a, bracket_b, grid = task
+    model, baseline = _WORKER_MODEL, _WORKER_BASELINE
+    assert model is not None and baseline is not None
+    counter = Counter()
+    surface = np.zeros((len(grid), len(grid)))
+    singles_a = np.zeros(len(grid))
+    singles_b = np.zeros(len(grid))
+    for i, value_a in enumerate(grid):
+        adjustment = zero_adjustment(model)
+        adjustment.savings_deltas[bracket_a] = value_a
+        singles_a[i], _, _ = irpf_revenue_delta(model, baseline, adjustment, counter)
+    for j, value_b in enumerate(grid):
+        adjustment = zero_adjustment(model)
+        adjustment.savings_deltas[bracket_b] = value_b
+        singles_b[j], _, _ = irpf_revenue_delta(model, baseline, adjustment, counter)
+    for i, value_a in enumerate(grid):
+        for j, value_b in enumerate(grid):
+            adjustment = zero_adjustment(model)
+            adjustment.savings_deltas[bracket_a] = value_a
+            adjustment.savings_deltas[bracket_b] = value_b
+            surface[i, j], _, _ = irpf_revenue_delta(
+                model, baseline, adjustment, counter
+            )
+    additivity_gap = surface - (singles_a[:, None] + singles_b[None, :])
+    scale = np.maximum(50.0, np.abs(surface))
+    return {
+        "lever": f"irpf_savings_pair_{bracket_a + 1}_{bracket_b + 1}",
+        "variants": len(grid) * len(grid) + 2 * len(grid),
+        "cells": counter.value,
+        "maxAdditivityGapShare": float(np.max(np.abs(additivity_gap) / scale)),
+        "maxRevenueDeltaMEur": float(surface.max()),
+        "minRevenueDeltaMEur": float(surface.min()),
+    }
+
+
+def _sweep_auto_state_cross(task: tuple[int, int, list[float], list[float]]) -> dict:
+    comm_index, bracket, grid_auto, grid_state = task
+    model, baseline = _WORKER_MODEL, _WORKER_BASELINE
+    assert model is not None and baseline is not None
+    counter = Counter()
+    code = model.community_codes[comm_index]
+    singles_auto = np.zeros(len(grid_auto))
+    singles_state = np.zeros(len(grid_state))
+    for i, value in enumerate(grid_auto):
+        adjustment = zero_adjustment(model)
+        adjustment.autonomous_deltas[code] = value
+        singles_auto[i], _, _ = irpf_revenue_delta(model, baseline, adjustment, counter)
+    for j, value in enumerate(grid_state):
+        adjustment = zero_adjustment(model)
+        adjustment.state_deltas[bracket] = value
+        singles_state[j], _, _ = irpf_revenue_delta(
+            model, baseline, adjustment, counter
+        )
+    surface = np.zeros((len(grid_auto), len(grid_state)))
+    for i, value_auto in enumerate(grid_auto):
+        for j, value_state in enumerate(grid_state):
+            adjustment = zero_adjustment(model)
+            adjustment.autonomous_deltas[code] = value_auto
+            adjustment.state_deltas[bracket] = value_state
+            surface[i, j], _, _ = irpf_revenue_delta(
+                model, baseline, adjustment, counter
+            )
+    additivity_gap = surface - (singles_auto[:, None] + singles_state[None, :])
+    scale = np.maximum(50.0, np.abs(surface))
+    return {
+        "lever": f"irpf_cross_auto{code}_state{bracket + 1}",
+        "variants": len(grid_auto) * len(grid_state) + len(grid_auto) + len(grid_state),
+        "cells": counter.value,
+        "maxAdditivityGapShare": float(np.max(np.abs(additivity_gap) / scale)),
+        "maxRevenueDeltaMEur": float(surface.max()),
+        "minRevenueDeltaMEur": float(surface.min()),
+    }
+
+
+def _sweep_triple(task: tuple[int, int, list[float]]) -> dict:
+    bracket_a, bracket_b, deltas3 = task
+    model, baseline = _WORKER_MODEL, _WORKER_BASELINE
+    assert model is not None and baseline is not None
+    counter = Counter()
+    n_savings = len(model.schedules["savings"])
+    max_gap = 0.0
+    variants = 0
+    for savings_bracket in range(n_savings):
+        singles: dict[tuple[int, float], float] = {}
+        for dimension, target in ((0, bracket_a), (1, bracket_b), (2, savings_bracket)):
+            for value in deltas3:
+                adjustment = zero_adjustment(model)
+                if dimension < 2:
+                    adjustment.state_deltas[target] = value
+                else:
+                    adjustment.savings_deltas[target] = value
+                singles[(dimension, value)], _, _ = irpf_revenue_delta(
+                    model, baseline, adjustment, counter
+                )
+                variants += 1
+        for value_a in deltas3:
+            for value_b in deltas3:
+                for value_c in deltas3:
+                    adjustment = zero_adjustment(model)
+                    adjustment.state_deltas[bracket_a] = value_a
+                    adjustment.state_deltas[bracket_b] = value_b
+                    adjustment.savings_deltas[savings_bracket] = value_c
+                    combined, _, _ = irpf_revenue_delta(
+                        model, baseline, adjustment, counter
+                    )
+                    additive = (
+                        singles[(0, value_a)]
+                        + singles[(1, value_b)]
+                        + singles[(2, value_c)]
+                    )
+                    gap = abs(combined - additive) / max(50.0, abs(combined))
+                    max_gap = max(max_gap, gap)
+                    variants += 1
+    return {
+        "lever": f"irpf_triple_state{bracket_a + 1}_state{bracket_b + 1}_savings",
+        "variants": variants,
+        "cells": counter.value,
+        "maxAdditivityGapShare": float(max_gap),
+    }
+
+
+def _sweep_package_matrix(task: tuple[list[float]]) -> dict:
+    """Balance surfaces for spending programmes crossed with IRPF brackets."""
+    (grid,) = task
+    model, baseline = _WORKER_MODEL, _WORKER_BASELINE
+    assert model is not None and baseline is not None
+    counter = Counter()
+    n_state = len(model.schedules["stateGeneral"])
+    irpf_curves = np.zeros((n_state, len(grid)))
+    variants = 0
+    for bracket in range(n_state):
+        for j, value in enumerate(grid):
+            adjustment = zero_adjustment(model)
+            adjustment.state_deltas[bracket] = value
+            irpf_curves[bracket, j], _, _ = irpf_revenue_delta(
+                model, baseline, adjustment, counter
+            )
+            variants += 1
+    packages = []
+    for program in model.raw["spendingPrograms"]:
+        low, high = program["minMultiplier"], program["maxMultiplier"]
+        if high <= low:
+            continue
+        spend_grid = np.linspace(low, high, len(grid))
+        spend_delta = program["baselineMEur"] * (spend_grid - 1.0)
+        balance = irpf_curves[:, :, None] - spend_delta[None, None, :]
+        counter.add(balance.size * 2)
+        variants += int(balance.size)
+        packages.append(
+            {
+                "program": program["id"],
+                "bestBalanceDeltaMEur": round(float(balance.max()), 1),
+                "worstBalanceDeltaMEur": round(float(balance.min()), 1),
+                "balanceNeutralCombos": int((np.abs(balance) < 500.0).sum()),
+            }
+        )
+    return {
+        "lever": "paquetes_gasto_x_irpf",
+        "variants": variants,
+        "cells": counter.value,
+        "packages": packages,
     }
 
 
@@ -778,8 +970,10 @@ def main() -> None:
     # ------------------------------------------------------------------
     if arguments.smoke:
         fine, pair_grid, cross_grid, auto_grid = 5, 3, 3, 3
+        auto_cross_grid, triple_deltas, package_grid = 2, [-2.0, 3.0], 3
     else:
-        fine, pair_grid, cross_grid, auto_grid = 41, 21, 13, 33
+        fine, pair_grid, cross_grid, auto_grid = 41, 25, 17, 33
+        auto_cross_grid, triple_deltas, package_grid = 7, [-2.0, 1.0, 3.0], 9
 
     n_state = len(model.schedules["stateGeneral"])
     n_savings = len(model.schedules["savings"])
@@ -801,6 +995,25 @@ def main() -> None:
         for a in range(n_state)
         for b in range(n_savings)
     ]
+    savings_pair_tasks = [
+        (a, b, linspace_grid(-5, 5, pair_grid))
+        for a in range(n_savings)
+        for b in range(a + 1, n_savings)
+    ]
+    auto_cross_tasks = [
+        (
+            index,
+            bracket,
+            linspace_grid(-3, 3, auto_cross_grid),
+            linspace_grid(-3, 3, auto_cross_grid),
+        )
+        for index in range(len(model.community_codes))
+        for bracket in range(n_state)
+    ]
+    triple_tasks = [
+        (a, b, triple_deltas) for a in range(n_state) for b in range(a + 1, n_state)
+    ]
+    package_tasks = [(linspace_grid(-3, 3, package_grid),)]
 
     surfaces: list[dict] = []
     pair_summaries: list[dict] = []
@@ -821,6 +1034,20 @@ def main() -> None:
                 "state × savings",
                 _sweep_cross_state_savings,
                 cross_tasks,
+                pair_summaries,
+            ),
+            ("savings pairs", _sweep_savings_pair, savings_pair_tasks, pair_summaries),
+            (
+                "autonomous × state",
+                _sweep_auto_state_cross,
+                auto_cross_tasks,
+                pair_summaries,
+            ),
+            ("bracket triples", _sweep_triple, triple_tasks, pair_summaries),
+            (
+                "spending × IRPF packages",
+                _sweep_package_matrix,
+                package_tasks,
                 pair_summaries,
             ),
         ):

@@ -29,3 +29,10 @@ export {
   simulateIrpf,
 } from "./irpf";
 export { LAB_MODEL_VERSION, createDefaultSettings, simulateNation } from "./engine";
+export {
+  GOVERNMENT_PRESETS,
+  buildPresetSettings,
+  getPreset,
+  type GovernmentPreset,
+  type PresetKind,
+} from "./presets";

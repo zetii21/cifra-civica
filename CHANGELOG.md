@@ -17,6 +17,9 @@ Los cambios materiales indican versiones de aplicación, modelo, política, dato
 - Impacto distributivo instantáneo por decil de renta, tipo de familia, edad y comunidad, con grupos más y menos afectados.
 - Mapa SVG interactivo de España con las 17 comunidades y 2 ciudades autónomas (GISCO NUTS-2 2024, © EuroGeographics), accesible por teclado, usado por el laboratorio y el explorador; sustituye a las teselas DEMO rectangulares.
 - Estudio nacional de referencia con doble motor (TypeScript ↔ NumPy), barridos exhaustivos de palancas y recuento auditable de más de 200.000 millones de aplicaciones de parámetro-caso, validado en CI (`scripts/validate-national-study.mjs` y `model-manifest/national-coverage.json`).
+- Paquetes de gobierno comparables en el laboratorio: trayectorias documentadas (PSOE 2018–2024 y PP 2011–2016, mapeadas desde medidas del BOE y etiquetadas como aplicación ilustrativa) y arquetipos sintéticos, con fichas homogéneas sin logotipos y reglas de neutralidad codificadas.
+- Estudio nacional ampliado: nueve familias de barridos (pares de tramos, cruces autonómico × estatal, tríos de palancas, paquetes gasto × IRPF) con superficies por decil y por comunidad en cada punto de malla; 1.142.095.215.544 aplicaciones de parámetro-caso ejecutadas y contadas de forma auditable en 45.449 evaluaciones de variante.
+- Reto de equilibrio presupuestario y tarjeta-resumen PNG generada íntegramente en el navegador (sin datos personales ni URLs).
 
 ### Limitations
 

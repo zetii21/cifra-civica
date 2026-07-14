@@ -4,17 +4,23 @@ import { useMemo, useState } from "react";
 import {
   ArrowDownRight,
   ArrowUpRight,
+  Download,
   Landmark,
   MapPin,
   RotateCcw,
   Scale,
+  Target,
   Users,
 } from "lucide-react";
 import { Notice, StatusBadge } from "./Ui";
 import { SpainMap } from "./SpainMap";
+import { GovernmentPresets } from "./GovernmentPresets";
+import { downloadShareCard } from "./labShareCard";
 import {
+  buildPresetSettings,
   COMMUNITIES,
   COMMUNITY_BY_CODE,
+  getPreset,
   INSTRUMENT_GROUP_LABELS,
   INSTRUMENTS,
   SPENDING_PROGRAMS,
@@ -22,6 +28,7 @@ import {
   createDefaultSettings,
   simulateNation,
   type CommunityCode,
+  type GovernmentPreset,
   type GroupImpact,
   type NationalSimulation,
   type PolicySettings,
@@ -129,6 +136,7 @@ export function FiscalLabClient() {
   const [scope, setScope] = useState<Scope>("estado");
   const [mapMetric, setMapMetric] = useState<MapMetric>("hogar");
   const [panel, setPanel] = useState<"ingresos" | "gasto">("ingresos");
+  const [activePresetId, setActivePresetId] = useState<string | null>(null);
 
   const schedules = useMemo(() => baselineSchedules(), []);
   const result: NationalSimulation = useMemo(() => simulateNation(settings), [settings]);
@@ -141,7 +149,22 @@ export function FiscalLabClient() {
     });
   };
 
-  const resetAll = () => setSettings(createDefaultSettings());
+  const resetAll = () => {
+    setSettings(createDefaultSettings());
+    setActivePresetId(null);
+  };
+
+  const applyPreset = (preset: GovernmentPreset) => {
+    setSettings(buildPresetSettings(preset));
+    setActivePresetId(preset.id);
+  };
+
+  const presetModified = useMemo(() => {
+    if (!activePresetId) return false;
+    const preset = getPreset(activePresetId);
+    if (!preset) return false;
+    return JSON.stringify(settings) !== JSON.stringify(buildPresetSettings(preset));
+  }, [settings, activePresetId]);
 
   const scopeCommunity = scope === "estado" ? undefined : COMMUNITY_BY_CODE.get(scope);
   const activeChanges = countActiveChanges(settings);
@@ -207,6 +230,12 @@ export function FiscalLabClient() {
 
       <div className="lab-columns">
         <section className="lab-controls" aria-label="Palancas de política fiscal">
+          <GovernmentPresets
+            activePresetId={activePresetId}
+            modified={presetModified}
+            onApply={applyPreset}
+            onClear={resetAll}
+          />
           <div className="lab-scope">
             <label htmlFor="lab-scope-select">
               <MapPin size={15} aria-hidden="true" /> Ámbito de los cambios
@@ -663,10 +692,83 @@ export function FiscalLabClient() {
             </div>
           </div>
 
+          <div className="lab-challenge-card">
+            <div className="lab-challenge-heading">
+              <Target size={17} aria-hidden="true" />
+              <div>
+                <h2>Reto: cierra el déficit</h2>
+                <p>
+                  España parte de {formatMEur(result.totals.baselineDeficitMEur)} al año.
+                  Combina impuestos y gasto hasta dejar el saldo en positivo.
+                </p>
+              </div>
+              <strong className={result.totals.simulatedDeficitMEur >= 0 ? "lab-pos" : "lab-neg"}>
+                {result.totals.simulatedDeficitMEur >= 0
+                  ? "¡Déficit cerrado!"
+                  : `Faltan ${integerFormat.format(Math.round(-result.totals.simulatedDeficitMEur))} M€`}
+              </strong>
+            </div>
+            <div
+              className="lab-challenge-track"
+              role="progressbar"
+              aria-label="Progreso hacia el equilibrio presupuestario"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={Math.round(
+                Math.max(
+                  0,
+                  Math.min(
+                    1,
+                    result.totals.totalBalanceDeltaMEur / -result.totals.baselineDeficitMEur,
+                  ),
+                ) * 100,
+              )}
+            >
+              <i
+                style={{
+                  width: `${Math.max(
+                    0,
+                    Math.min(
+                      1,
+                      result.totals.totalBalanceDeltaMEur / -result.totals.baselineDeficitMEur,
+                    ),
+                  ) * 100}%`,
+                }}
+              />
+            </div>
+          </div>
+
           <div className="lab-impact-card">
             <div className="lab-impact-heading">
               <Users size={17} aria-hidden="true" />
               <h2>¿A quién afecta este escenario?</h2>
+              <button
+                type="button"
+                className="button button-quiet lab-share-button"
+                onClick={() =>
+                  downloadShareCard({
+                    presetName: activePresetId
+                      ? `${getPreset(activePresetId)?.name ?? ""}${presetModified ? " (modificado)" : ""}`
+                      : undefined,
+                    balanceDeltaMEur: result.totals.totalBalanceDeltaMEur,
+                    revenueDeltaMEur: result.totals.revenueDeltaMEur,
+                    spendingDeltaMEur: result.totals.spendingDeltaMEur,
+                    deficitBeforeShare: baselineDeficitShare,
+                    deficitAfterShare: deficitShare,
+                    mostAffected: result.distribution.mostAffected.map((group) => ({
+                      label: group.label,
+                      value: group.netPerHouseholdEur,
+                    })),
+                    leastAffected: result.distribution.leastAffected.map((group) => ({
+                      label: group.label,
+                      value: group.netPerHouseholdEur,
+                    })),
+                    activeChanges,
+                  })
+                }
+              >
+                <Download size={14} aria-hidden="true" /> Tarjeta PNG
+              </button>
             </div>
             {activeChanges === 0 ? (
               <p className="muted">
