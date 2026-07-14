@@ -17,6 +17,16 @@ const contentSecurityPolicy = [
   "media-src 'self'",
 ].join("; ");
 
+// The media widget is the only route that may be framed by third parties. It
+// serves exclusively public aggregate statistics, sets no cookies and takes
+// no input, so clickjacking has no target. Modern browsers ignore
+// X-Frame-Options when frame-ancestors is present (CSP2), which lets us keep
+// the global DENY as a conservative fallback for legacy agents.
+const widgetContentSecurityPolicy = contentSecurityPolicy.replace(
+  "frame-ancestors 'none'",
+  "frame-ancestors *",
+);
+
 const nextConfig: NextConfig = {
   async headers() {
     return [
@@ -33,6 +43,12 @@ const nextConfig: NextConfig = {
           },
           { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
           { key: "X-DNS-Prefetch-Control", value: "off" },
+        ],
+      },
+      {
+        source: "/widget/:path*",
+        headers: [
+          { key: "Content-Security-Policy", value: widgetContentSecurityPolicy },
         ],
       },
     ];

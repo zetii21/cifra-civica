@@ -51,9 +51,24 @@ const SECURITY_HEADERS: ReadonlyArray<readonly [string, string]> = [
   ["X-DNS-Prefetch-Control", "off"],
 ];
 
-function withSecurityHeaders(response: Response): Response {
+/**
+ * The media widget serves exclusively public aggregate statistics, sets no
+ * cookies and takes no input, so it is the single path allowed to be framed
+ * by third parties. Modern browsers ignore X-Frame-Options when the CSP
+ * frame-ancestors directive is present, so the global DENY stays as a
+ * conservative fallback for legacy agents.
+ */
+const WIDGET_PATH_PREFIX = "/widget/";
+
+function withSecurityHeaders(response: Response, pathname = ""): Response {
   const headers = new Headers(response.headers);
   for (const [name, value] of SECURITY_HEADERS) headers.set(name, value);
+  if (pathname.startsWith(WIDGET_PATH_PREFIX)) {
+    headers.set(
+      "Content-Security-Policy",
+      SECURITY_HEADERS[0][1].replace("frame-ancestors 'none'", "frame-ancestors *"),
+    );
+  }
   return new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
@@ -192,7 +207,7 @@ const worker = {
       return withSecurityHeaders(optimized);
     }
 
-    return withSecurityHeaders(await handler.fetch(request, env, ctx));
+    return withSecurityHeaders(await handler.fetch(request, env, ctx), url.pathname);
   },
 };
 

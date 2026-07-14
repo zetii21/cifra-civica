@@ -121,6 +121,9 @@ test("server-renders the public product routes with the Spanish civic shell", as
     ["/", "Cifra Cívica — simulador fiscal transparente", "Tu economía, explicada sin pedirte el voto."],
     ["/calculator", "Calculadora fiscal · Cifra Cívica", "Una estimación que enseña sus cuentas."],
     ["/laboratorio", "Laboratorio fiscal de España · Cifra Cívica", "El presupuesto de España, en tus manos."],
+    ["/laboratorio/comparador", "Comparador de paquetes de gobierno · Cifra Cívica", "Compara paquetes, no eslóganes."],
+    ["/laboratorio/directo", "Modo directo · Cifra Cívica", "El coste de una promesa, en 30 segundos."],
+    ["/laboratorio/andalucia", "Laboratorio fiscal de Andalucía · Cifra Cívica", "Andalucía, palanca a palanca."],
     ["/privacy", "Privacidad · Cifra Cívica", "Tus circunstancias no son un perfil político."],
     ["/scenarios", "Cifra Cívica — simulador fiscal transparente", "Políticas que se pueden inspeccionar."],
     [
@@ -150,6 +153,21 @@ test("server-renders the public product routes with the Spanish civic shell", as
     assert.match(html, /href="#contenido"[^>]*>\s*Saltar al contenido/i);
     assert.match(html, /aria-label="Navegación principal"/i);
   }
+});
+
+test("the media widget is the only route that may be framed", async () => {
+  const widget = await render("/widget/baseline");
+  assert.equal(widget.status, 200);
+  assert.match(
+    widget.headers.get("content-security-policy") ?? "",
+    /frame-ancestors \*/,
+    "widget must allow third-party framing via CSP",
+  );
+  assert.equal(widget.headers.get("set-cookie"), null);
+  const lab = await render("/laboratorio");
+  assert.match(lab.headers.get("content-security-policy") ?? "", /frame-ancestors 'none'/);
+  const unknown = await render("/widget/paquete-inexistente");
+  assert.equal(unknown.status, 404);
 });
 
 test("production build does not expose the internal diagnostics route", async () => {

@@ -20,6 +20,11 @@ Los cambios materiales indican versiones de aplicación, modelo, política, dato
 - Paquetes de gobierno comparables en el laboratorio: trayectorias documentadas (PSOE 2018–2024 y PP 2011–2016, mapeadas desde medidas del BOE y etiquetadas como aplicación ilustrativa) y arquetipos sintéticos, con fichas homogéneas sin logotipos y reglas de neutralidad codificadas.
 - Estudio nacional ampliado: nueve familias de barridos (pares de tramos, cruces autonómico × estatal, tríos de palancas, paquetes gasto × IRPF) con superficies por decil y por comunidad en cada punto de malla; 1.142.095.215.544 aplicaciones de parámetro-caso ejecutadas y contadas de forma auditable en 45.449 evaluaciones de variante.
 - Reto de equilibrio presupuestario y tarjeta-resumen PNG generada íntegramente en el navegador (sin datos personales ni URLs).
+- «¿Y un hogar como el tuyo?»: consulta por perfil aproximado (comunidad × banda de renta × tipo de familia × edad) con la media del segmento sintético, verificada contra la distribución del motor.
+- Comparador de paquetes (`/laboratorio/comparador`): hasta tres paquetes lado a lado con trato visual idéntico, orden de catálogo y hueco declarado para los programas electorales de 2027 con fuentes.
+- Modo directo (`/laboratorio/directo`): coste o recaudación de una promesa en segundos y fact-card PNG para debates.
+- Widget embebible para medios (`/widget/{paquete}`): solo agregados públicos, sin cookies, único origen autorizado a ser enmarcado (CSP `frame-ancestors *` solo en esa ruta) y fragmento de inserción copiable.
+- Páginas por comunidad (`/laboratorio/{comunidad}`): ficha fiscal con su escala de IRPF, gasto de referencia localizado y el laboratorio preseleccionado en su ámbito.
 
 ### Limitations
 

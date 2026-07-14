@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, GitCompareArrows, MapPin, Zap } from "lucide-react";
 import { Eyebrow, StatusBadge } from "@/components/Ui";
 import { FiscalLabClient } from "@/components/FiscalLabClient";
+import { COMMUNITIES } from "@/lib/fiscal-lab";
+import { slugOf } from "@/lib/fiscal-lab/community-pages";
 
 export const metadata: Metadata = {
   title: "Laboratorio fiscal de España",
@@ -33,6 +35,26 @@ export default function LaboratorioPage() {
             <StatusBadge tone="demo">Referencia aproximada 2024</StatusBadge>
           </div>
         </div>
+      </div>
+      <div className="shell lab-tools-strip" aria-label="Herramientas del laboratorio">
+        <Link href="/laboratorio/comparador">
+          <GitCompareArrows size={15} aria-hidden="true" /> Comparador de paquetes
+        </Link>
+        <Link href="/laboratorio/directo">
+          <Zap size={15} aria-hidden="true" /> Modo directo (debates)
+        </Link>
+        <details className="lab-tools-communities">
+          <summary>
+            <MapPin size={15} aria-hidden="true" /> Tu comunidad
+          </summary>
+          <nav aria-label="Laboratorios por comunidad">
+            {COMMUNITIES.map((community) => (
+              <Link key={community.code} href={`/laboratorio/${slugOf(community.code)}`}>
+                {community.name}
+              </Link>
+            ))}
+          </nav>
+        </details>
       </div>
       <div className="shell">
         <FiscalLabClient />

@@ -15,6 +15,8 @@ import {
 import { Notice, StatusBadge } from "./Ui";
 import { SpainMap } from "./SpainMap";
 import { GovernmentPresets } from "./GovernmentPresets";
+import { HouseholdProfileCard } from "./HouseholdProfileCard";
+import { EmbedSnippet } from "./EmbedSnippet";
 import { downloadShareCard } from "./labShareCard";
 import {
   buildPresetSettings,
@@ -131,9 +133,9 @@ function ImpactBars({
   );
 }
 
-export function FiscalLabClient() {
+export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode } = {}) {
   const [settings, setSettings] = useState<PolicySettings>(() => createDefaultSettings());
-  const [scope, setScope] = useState<Scope>("estado");
+  const [scope, setScope] = useState<Scope>(initialScope ?? "estado");
   const [mapMetric, setMapMetric] = useState<MapMetric>("hogar");
   const [panel, setPanel] = useState<"ingresos" | "gasto">("ingresos");
   const [activePresetId, setActivePresetId] = useState<string | null>(null);
@@ -738,6 +740,8 @@ export function FiscalLabClient() {
             </div>
           </div>
 
+          <HouseholdProfileCard settings={settings} activeChanges={activeChanges} />
+
           <div className="lab-impact-card">
             <div className="lab-impact-heading">
               <Users size={17} aria-hidden="true" />
@@ -853,6 +857,8 @@ export function FiscalLabClient() {
               ))}
             </ul>
           </Notice>
+
+          <EmbedSnippet />
         </section>
       </div>
     </div>
