@@ -1,17 +1,21 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowDown,
   ArrowDownRight,
   ArrowUp,
   ArrowUpDown,
   ArrowUpRight,
+  Check,
   Download,
+  History,
   Landmark,
   Landmark as LandmarkIcon,
+  Link2,
   MapPin,
   RotateCcw,
+  Save,
   Scale,
   SlidersHorizontal,
   Target,
@@ -26,6 +30,13 @@ import { EmbedSnippet } from "./EmbedSnippet";
 import { LabScoreboard } from "./LabScoreboard";
 import { listActiveChanges, type ActiveChange } from "./labChanges";
 import { downloadShareCard } from "./labShareCard";
+import {
+  decodeScenarioFragment,
+  encodeScenarioFragment,
+  packScenario,
+  unpackScenario,
+} from "@/lib/lab-scenario";
+import { deleteLabScenario, loadLabScenario, saveLabScenario } from "@/lib/local-store";
 import {
   buildPresetSettings,
   COMMUNITIES,
@@ -338,11 +349,20 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
   const [mapMetric, setMapMetric] = useState<MapMetric>("hogar");
   const [panel, setPanel] = useState<"ingresos" | "gasto">("ingresos");
   const [activePresetId, setActivePresetId] = useState<string | null>(null);
+  const [pendingRestore, setPendingRestore] = useState<{
+    settings: PolicySettings;
+    changes: number;
+  } | null>(null);
+  const [scenarioNotice, setScenarioNotice] = useState<string | null>(null);
+  const [linkCopied, setLinkCopied] = useState(false);
+  const [scenarioSaved, setScenarioSaved] = useState(false);
 
   const schedules = useMemo(() => baselineSchedules(), []);
   const result: NationalSimulation = useMemo(() => simulateNation(settings), [settings]);
 
   const update = (mutate: (draft: PolicySettings) => void) => {
+    // Any manual edit makes the resume offer stale; withdraw it.
+    setPendingRestore(null);
     setSettings((current) => {
       const draft = cloneSettings(current);
       mutate(draft);
@@ -353,11 +373,82 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
   const resetAll = () => {
     setSettings(createDefaultSettings());
     setActivePresetId(null);
+    setPendingRestore(null);
+    setScenarioNotice(null);
   };
 
   const applyPreset = (preset: GovernmentPreset) => {
     setSettings(buildPresetSettings(preset));
     setActivePresetId(preset.id);
+    setPendingRestore(null);
+  };
+
+  // A shared scenario travels in the URL *fragment*, which browsers never
+  // send to the server; without one, offer to resume the device-local save.
+  useEffect(() => {
+    const fragment = window.location.hash;
+    if (fragment.startsWith("#s=")) {
+      const shared = decodeScenarioFragment(fragment.slice(3));
+      window.requestAnimationFrame(() => {
+        if (shared) {
+          setSettings(shared);
+          setScenarioNotice(
+            "Escenario cargado desde un enlace compartido. Sigue ajustándolo o restablécelo cuando quieras.",
+          );
+        } else {
+          setScenarioNotice(
+            "El enlace de escenario no es válido para esta versión del modelo; estás viendo la referencia.",
+          );
+        }
+      });
+      return;
+    }
+    let cancelled = false;
+    loadLabScenario()
+      .then((stored) => {
+        if (cancelled) return;
+        const saved = unpackScenario(stored);
+        if (!saved) return;
+        const changes = countActiveChanges(saved);
+        if (changes === 0) return;
+        setPendingRestore({ settings: saved, changes });
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const restoreSaved = () => {
+    if (!pendingRestore) return;
+    setSettings(pendingRestore.settings);
+    setActivePresetId(null);
+    setPendingRestore(null);
+  };
+
+  const discardSaved = () => {
+    setPendingRestore(null);
+    deleteLabScenario().catch(() => {});
+  };
+
+  const saveScenario = () => {
+    saveLabScenario(packScenario(settings))
+      .then(() => {
+        setScenarioSaved(true);
+        window.setTimeout(() => setScenarioSaved(false), 2500);
+      })
+      .catch(() => {});
+  };
+
+  const copyScenarioLink = async () => {
+    const url = `${window.location.origin}${window.location.pathname}#s=${encodeScenarioFragment(settings)}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      setLinkCopied(true);
+      window.setTimeout(() => setLinkCopied(false), 2500);
+    } catch {
+      setLinkCopied(false);
+    }
   };
 
   const presetModified = useMemo(() => {
@@ -453,6 +544,32 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
           <Target size={14} aria-hidden="true" /> Reto: cierra el déficit
         </button>
       </nav>
+
+      {pendingRestore ? (
+        <div className="lab-restore-banner" role="status">
+          <History size={17} aria-hidden="true" />
+          <p>
+            Guardaste un escenario en este dispositivo con{" "}
+            <b>
+              {pendingRestore.changes} {pendingRestore.changes === 1 ? "cambio" : "cambios"}
+            </b>
+            . Solo existe en tu navegador.
+          </p>
+          <div className="lab-restore-actions">
+            <button type="button" className="button button-small" onClick={restoreSaved}>
+              Retomarlo
+            </button>
+            <button type="button" className="button button-quiet" onClick={discardSaved}>
+              Borrarlo
+            </button>
+          </div>
+        </div>
+      ) : null}
+      {scenarioNotice ? (
+        <p className="lab-scenario-notice" role="status">
+          {scenarioNotice}
+        </p>
+      ) : null}
 
       <LabScoreboard
         revenueDeltaMEur={result.totals.revenueDeltaMEur}
@@ -1095,6 +1212,34 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
                 }
               >
                 <Download size={14} aria-hidden="true" /> Tarjeta PNG
+              </button>
+              <button
+                type="button"
+                className="button button-quiet lab-share-button"
+                onClick={copyScenarioLink}
+                disabled={activeChanges === 0}
+                title="El escenario viaja en el fragmento del enlace y no se envía al servidor"
+              >
+                {linkCopied ? (
+                  <Check size={14} aria-hidden="true" />
+                ) : (
+                  <Link2 size={14} aria-hidden="true" />
+                )}
+                {linkCopied ? "Enlace copiado" : "Copiar enlace"}
+              </button>
+              <button
+                type="button"
+                className="button button-quiet lab-share-button"
+                onClick={saveScenario}
+                disabled={activeChanges === 0}
+                title="Guarda una copia solo en este navegador; nada se sincroniza"
+              >
+                {scenarioSaved ? (
+                  <Check size={14} aria-hidden="true" />
+                ) : (
+                  <Save size={14} aria-hidden="true" />
+                )}
+                {scenarioSaved ? "Guardado" : "Guardar en este dispositivo"}
               </button>
             </div>
             {activeChanges === 0 ? (

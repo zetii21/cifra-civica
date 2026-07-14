@@ -1678,3 +1678,21 @@ body:has(.widget-shell) .skip-link { display: none; }
 /* UX iteration 3 — skip offscreen rendering for heavy below-the-fold cards */
 .lab-impact-card, .lab-table-card { content-visibility: auto; contain-intrinsic-size: auto 460px; }
 .site-footer { content-visibility: auto; contain-intrinsic-size: auto 430px; }
+
+/* UX iteration 4 — resume banner for the explicitly saved scenario */
+.lab-restore-banner { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem .9rem; padding: .75rem 1rem; border: 1px solid var(--line-dark); border-left: 4px solid var(--green); border-radius: 12px; background: var(--paper-bright); }
+.lab-restore-banner > svg { flex-shrink: 0; color: var(--green); }
+.lab-restore-banner p { flex: 1 1 240px; margin: 0; font-size: .85rem; }
+.lab-restore-actions { display: flex; gap: .5rem; }
+.lab-restore-actions .button { width: auto; min-height: 38px; padding: .45rem .85rem; font-size: .76rem; }
+.lab-scenario-notice { margin: 0; padding: .55rem .85rem; border: 1px dashed var(--line-dark); border-radius: 10px; color: var(--ink-soft); font-size: .8rem; }
+
+/* UX iteration 4 — scenario action buttons share the heading row */
+.lab-impact-heading { flex-wrap: wrap; }
+.lab-impact-heading .lab-share-button + .lab-share-button { margin-left: 0; }
+.lab-share-button:disabled { opacity: .45; cursor: not-allowed; }
+
+/* UX iteration 4 — territory column stays put while the table scrolls */
+.map-data-table thead th:first-child, .map-data-table tbody th[scope="row"] { position: sticky; left: 0; z-index: 1; background: var(--paper-bright); }
+.map-data-table thead th:first-child::after, .map-data-table tbody th[scope="row"]::after { content: ""; position: absolute; top: 0; bottom: -1px; right: 0; width: 1px; background: var(--line); }
+.map-data-table tbody .lab-row-selected th[scope="row"] { background: var(--green-pale); }
