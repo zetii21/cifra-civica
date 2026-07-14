@@ -23,6 +23,15 @@ export const viewport: Viewport = {
   ],
 };
 
+/**
+ * Runs before the page paints so the chosen theme never flashes. It can only
+ * resolve the system preference synchronously (the stored override lives in
+ * IndexedDB, which is async); ThemeToggle reconciles any saved choice right
+ * after hydration. Without JavaScript the attribute is never set and the
+ * `prefers-color-scheme` fallback in globals.css takes over.
+ */
+const themeBootstrap = `try{document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}catch(e){}`;
+
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
   const host =
@@ -66,10 +75,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
         <a className="skip-link" href="#contenido">
           Saltar al contenido
         </a>

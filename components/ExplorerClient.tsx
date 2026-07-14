@@ -62,7 +62,7 @@ export function ExplorerClient() {
         </div>
         <div className="field search-field">
           <label htmlFor="place-search">Buscar comunidad</label>
-          <div><Search size={16} aria-hidden="true" /><input id="place-search" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Comunidad autónoma" /></div>
+          <div><Search size={17} aria-hidden="true" /><input id="place-search" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Comunidad autónoma" /></div>
         </div>
         {selectedRow ? (
           <div className="control-heading" aria-live="polite">
@@ -86,7 +86,7 @@ export function ExplorerClient() {
         <Notice tone="warning" title="Capa sintética">
           Los valores listados son fixtures reproducibles, no estadísticas oficiales ni
           estimaciones publicables. Para mover palancas reales de ingresos y gasto usa el{" "}
-          <Link href="/laboratorio">laboratorio fiscal <ArrowRight size={13} aria-hidden="true" /></Link>.
+          <Link href="/laboratorio">laboratorio fiscal <ArrowRight size={12} aria-hidden="true" /></Link>.
         </Notice>
       </aside>
 

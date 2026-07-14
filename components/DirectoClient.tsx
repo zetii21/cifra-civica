@@ -203,13 +203,13 @@ export function DirectoClient() {
             })
           }
         >
-          <Download size={15} aria-hidden="true" /> Descargar fact-card PNG
+          <Download size={14} aria-hidden="true" /> Descargar fact-card PNG
         </button>
       </section>
 
       <section className="directo-result" aria-live="polite">
         <div className="directo-headline">
-          <Zap size={18} aria-hidden="true" />
+          <Zap size={17} aria-hidden="true" />
           {changed ? (
             <strong
               className={result.totals.totalBalanceDeltaMEur < 0 ? "lab-neg" : "lab-pos"}

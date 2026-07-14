@@ -2,7 +2,10 @@
 
 import { useMemo, useRef, useState } from "react";
 import {
+  ArrowDown,
   ArrowDownRight,
+  ArrowUp,
+  ArrowUpDown,
   ArrowUpRight,
   Download,
   Landmark,
@@ -164,7 +167,7 @@ function LeverControls({
         disabled={!changed}
         onClick={() => onValue(baseline)}
       >
-        <RotateCcw size={13} aria-hidden="true" />
+        <RotateCcw size={12} aria-hidden="true" />
       </button>
     </div>
   );
@@ -206,6 +209,125 @@ function ImpactBars({
           </div>
         );
       })}
+    </div>
+  );
+}
+
+type CommunityRow = NationalSimulation["communities"][number];
+
+type CommunitySortKey =
+  | "name"
+  | "revenueDeltaMEur"
+  | "spendingDeltaMEur"
+  | "balanceDeltaMEur"
+  | "netHouseholdImpactEur";
+
+const COMMUNITY_COLUMNS: Array<{ key: CommunitySortKey; label: string }> = [
+  { key: "name", label: "Territorio" },
+  { key: "revenueDeltaMEur", label: "Δ ingresos" },
+  { key: "spendingDeltaMEur", label: "Δ gasto" },
+  { key: "balanceDeltaMEur", label: "Δ saldo" },
+  { key: "netHouseholdImpactEur", label: "€ / hogar·año" },
+];
+
+/** Communities table with click-to-sort headers and a diverging mini-bar. */
+function CommunitiesTable({ rows, selected }: { rows: CommunityRow[]; selected: Scope }) {
+  const [sortKey, setSortKey] = useState<CommunitySortKey>("netHouseholdImpactEur");
+  const [descending, setDescending] = useState(true);
+
+  const sorted = useMemo(() => {
+    const copy = [...rows];
+    copy.sort((left, right) => {
+      const compared =
+        sortKey === "name"
+          ? left.name.localeCompare(right.name, "es")
+          : left[sortKey] - right[sortKey];
+      return descending ? -compared : compared;
+    });
+    return copy;
+  }, [rows, sortKey, descending]);
+
+  const maxHousehold = Math.max(
+    1,
+    ...rows.map((row) => Math.abs(row.netHouseholdImpactEur)),
+  );
+
+  const toggleSort = (key: CommunitySortKey) => {
+    if (key === sortKey) {
+      setDescending((current) => !current);
+      return;
+    }
+    setSortKey(key);
+    setDescending(key !== "name");
+  };
+
+  return (
+    <div className="table-scroll">
+      <table className="map-data-table">
+        <caption>
+          Cambios anuales por comunidad: ingresos y gasto públicos, saldo y hogar medio. Pulsa
+          una cabecera para reordenar.
+        </caption>
+        <thead>
+          <tr>
+            {COMMUNITY_COLUMNS.map((column) => {
+              const active = column.key === sortKey;
+              return (
+                <th
+                  key={column.key}
+                  scope="col"
+                  aria-sort={active ? (descending ? "descending" : "ascending") : undefined}
+                >
+                  <button
+                    type="button"
+                    className={`lab-sort${active ? " active" : ""}`}
+                    onClick={() => toggleSort(column.key)}
+                  >
+                    {column.label}
+                    {active ? (
+                      descending ? (
+                        <ArrowDown size={12} aria-hidden="true" />
+                      ) : (
+                        <ArrowUp size={12} aria-hidden="true" />
+                      )
+                    ) : (
+                      <ArrowUpDown size={12} aria-hidden="true" />
+                    )}
+                  </button>
+                </th>
+              );
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          {sorted.map((community) => {
+            const impact = community.netHouseholdImpactEur;
+            const barWidth = (Math.abs(impact) / maxHousehold) * 50;
+            return (
+              <tr
+                key={community.code}
+                className={selected === community.code ? "lab-row-selected" : undefined}
+              >
+                <th scope="row">{community.name}</th>
+                <td>{formatMEur(community.revenueDeltaMEur)}</td>
+                <td>{formatMEur(community.spendingDeltaMEur)}</td>
+                <td>{formatMEur(community.balanceDeltaMEur)}</td>
+                <td>
+                  <span className="lab-cell-value">
+                    {signedInteger.format(Math.round(impact))} €
+                    <span className="lab-cell-bar" aria-hidden="true">
+                      <i
+                        className={impact < -0.005 ? "negative" : impact > 0.005 ? "positive" : ""}
+                        style={{ width: `${Math.min(50, Math.max(impact === 0 ? 0 : 1, barWidth))}%` }}
+                      />
+                    </span>
+                  </span>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 }
@@ -358,7 +480,7 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
           </div>
           <div className="lab-scope">
             <label htmlFor="lab-scope-select">
-              <MapPin size={15} aria-hidden="true" /> Ámbito de los cambios
+              <MapPin size={14} aria-hidden="true" /> Ámbito de los cambios
             </label>
             <select
               id="lab-scope-select"
@@ -396,7 +518,7 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
               className={panel === "ingresos" ? "active" : ""}
               onClick={() => setPanel("ingresos")}
             >
-              <Landmark size={15} aria-hidden="true" /> Impuestos
+              <Landmark size={14} aria-hidden="true" /> Impuestos
             </button>
             <button
               type="button"
@@ -405,7 +527,7 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
               className={panel === "gasto" ? "active" : ""}
               onClick={() => setPanel("gasto")}
             >
-              <Scale size={15} aria-hidden="true" /> Gasto público
+              <Scale size={14} aria-hidden="true" /> Gasto público
             </button>
           </div>
 
@@ -985,13 +1107,13 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
                 <div className="lab-chips">
                   {result.distribution.mostAffected.map((group) => (
                     <span key={`peor-${group.id}`} className="lab-chip lab-chip-neg">
-                      <ArrowDownRight size={13} aria-hidden="true" />
+                      <ArrowDownRight size={12} aria-hidden="true" />
                       {group.label}: {signedInteger.format(Math.round(group.netPerHouseholdEur))} €
                     </span>
                   ))}
                   {result.distribution.leastAffected.map((group) => (
                     <span key={`mejor-${group.id}`} className="lab-chip lab-chip-pos">
-                      <ArrowUpRight size={13} aria-hidden="true" />
+                      <ArrowUpRight size={12} aria-hidden="true" />
                       {group.label}: {signedInteger.format(Math.round(group.netPerHouseholdEur))} €
                     </span>
                   ))}
@@ -1017,38 +1139,7 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
 
           <div className="lab-table-card">
             <h2>Comunidades autónomas</h2>
-            <div className="table-scroll">
-              <table className="map-data-table">
-                <caption>
-                  Cambios anuales por comunidad: ingresos y gasto públicos, saldo y hogar medio.
-                </caption>
-                <thead>
-                  <tr>
-                    <th scope="col">Territorio</th>
-                    <th scope="col">Δ ingresos</th>
-                    <th scope="col">Δ gasto</th>
-                    <th scope="col">Δ saldo</th>
-                    <th scope="col">€ / hogar·año</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[...result.communities]
-                    .sort((left, right) => right.netHouseholdImpactEur - left.netHouseholdImpactEur)
-                    .map((community) => (
-                      <tr
-                        key={community.code}
-                        className={scope === community.code ? "lab-row-selected" : undefined}
-                      >
-                        <th scope="row">{community.name}</th>
-                        <td>{formatMEur(community.revenueDeltaMEur)}</td>
-                        <td>{formatMEur(community.spendingDeltaMEur)}</td>
-                        <td>{formatMEur(community.balanceDeltaMEur)}</td>
-                        <td>{signedInteger.format(Math.round(community.netHouseholdImpactEur))} €</td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-            </div>
+            <CommunitiesTable rows={result.communities} selected={scope} />
           </div>
 
           <Notice tone="warning" title="Referencia aproximada, no una liquidación oficial">

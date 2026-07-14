@@ -227,7 +227,7 @@ export default function HouseholdPage() {
                         }))
                       }
                     >
-                      <Trash2 size={18} aria-hidden="true" />
+                      <Trash2 size={17} aria-hidden="true" />
                     </button>
                   ) : null}
                 </div>
@@ -307,7 +307,7 @@ export default function HouseholdPage() {
                       }))
                     }
                   >
-                    <Minus size={18} aria-hidden="true" />
+                    <Minus size={17} aria-hidden="true" />
                   </button>
                 </div>
               ))}

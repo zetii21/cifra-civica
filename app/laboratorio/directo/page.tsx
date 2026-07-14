@@ -24,7 +24,7 @@ export default function DirectoPage() {
             fact-card con el efecto en ingresos, déficit y hogares. Misma vara de medir para
             todos los partidos.{" "}
             <Link href="/laboratorio">
-              <ArrowLeft size={15} aria-hidden="true" /> Volver al laboratorio
+              <ArrowLeft size={14} aria-hidden="true" /> Volver al laboratorio
             </Link>
           </p>
         </div>

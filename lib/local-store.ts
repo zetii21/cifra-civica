@@ -48,3 +48,35 @@ export async function deleteLocalHousehold(): Promise<void> {
   });
   database.close();
 }
+
+/**
+ * Device-local presentation preference (theme). Not personal data: it never
+ * leaves the device and follows the same IndexedDB pattern already reviewed
+ * for local saves.
+ */
+export type ThemePreference = "system" | "light" | "dark";
+
+const THEME_KEY = "theme-preference";
+
+export async function saveThemePreference(preference: ThemePreference): Promise<void> {
+  const database = await openDatabase();
+  await new Promise<void>((resolve, reject) => {
+    const transaction = database.transaction(STORE_NAME, "readwrite");
+    transaction.objectStore(STORE_NAME).put(preference, THEME_KEY);
+    transaction.oncomplete = () => resolve();
+    transaction.onerror = () => reject(transaction.error);
+  });
+  database.close();
+}
+
+export async function loadThemePreference(): Promise<ThemePreference | null> {
+  const database = await openDatabase();
+  const result = await new Promise<ThemePreference | undefined>((resolve, reject) => {
+    const transaction = database.transaction(STORE_NAME, "readonly");
+    const request = transaction.objectStore(STORE_NAME).get(THEME_KEY);
+    request.onsuccess = () => resolve(request.result as ThemePreference | undefined);
+    request.onerror = () => reject(request.error);
+  });
+  database.close();
+  return result ?? null;
+}

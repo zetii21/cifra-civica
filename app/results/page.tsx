@@ -74,7 +74,7 @@ function ResultCard({ scenario, isBaseline }: { scenario: ScenarioResult; isBase
           </StatusBadge>
           <h2>{scenario.scenarioName}</h2>
         </div>
-        <span className="confidence-chip"><ShieldAlert size={15} aria-hidden="true" /> Incertidumbre alta</span>
+        <span className="confidence-chip"><ShieldAlert size={14} aria-hidden="true" /> Incertidumbre alta</span>
       </div>
 
       <div className="result-number-block">
@@ -194,7 +194,7 @@ export default function ResultsPage() {
     <div className="results-page">
       <div className="results-hero">
         <div className="shell">
-          <Link className="back-link no-print" href="/calculator/scenarios"><ArrowLeft size={16} aria-hidden="true" /> Editar comparación</Link>
+          <Link className="back-link no-print" href="/calculator/scenarios"><ArrowLeft size={17} aria-hidden="true" /> Editar comparación</Link>
           <div className="results-title-row">
             <div>
               <p className="eyebrow">Tu comparación · estimación informativa</p>

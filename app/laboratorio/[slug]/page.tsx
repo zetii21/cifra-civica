@@ -81,7 +81,7 @@ export default async function CommunityLabPage({
             preseleccionadas: IRPF {community.regime === "foral" ? "foral" : "autonómico"},
             tributos propios y gasto gestionado.{" "}
             <Link href="/laboratorio">
-              <ArrowLeft size={15} aria-hidden="true" /> Laboratorio de toda España
+              <ArrowLeft size={14} aria-hidden="true" /> Laboratorio de toda España
             </Link>
           </p>
           <div className="lab-header-badges">

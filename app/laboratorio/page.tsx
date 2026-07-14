@@ -27,7 +27,7 @@ export default function LaboratorioPage() {
             toda España o comunidad a comunidad, y mira al instante quién gana, quién pierde
             y qué pasa con el déficit.{" "}
             <Link href="/methodology/statistical-study">
-              Cómo se calcula y valida <ArrowRight size={15} aria-hidden="true" />
+              Cómo se calcula y valida <ArrowRight size={14} aria-hidden="true" />
             </Link>
           </p>
           <div className="lab-header-badges">
@@ -38,14 +38,14 @@ export default function LaboratorioPage() {
       </div>
       <div className="shell lab-tools-strip" aria-label="Herramientas del laboratorio">
         <Link href="/laboratorio/comparador">
-          <GitCompareArrows size={15} aria-hidden="true" /> Comparador de paquetes
+          <GitCompareArrows size={14} aria-hidden="true" /> Comparador de paquetes
         </Link>
         <Link href="/laboratorio/directo">
-          <Zap size={15} aria-hidden="true" /> Modo directo (debates)
+          <Zap size={14} aria-hidden="true" /> Modo directo (debates)
         </Link>
         <details className="lab-tools-communities">
           <summary>
-            <MapPin size={15} aria-hidden="true" /> Tu comunidad
+            <MapPin size={14} aria-hidden="true" /> Tu comunidad
           </summary>
           <nav aria-label="Laboratorios por comunidad">
             {COMMUNITIES.map((community) => (

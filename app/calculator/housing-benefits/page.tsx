@@ -21,7 +21,7 @@ export default function HousingBenefitsPage() {
       <div className="form-layout">
         <form className="content-card content-card-padding form-card" onSubmit={(event) => event.preventDefault()}>
           <fieldset>
-            <legend><span className="round-icon"><Home size={18} aria-hidden="true" /></span> Vivienda habitual</legend>
+            <legend><span className="round-icon"><Home size={17} aria-hidden="true" /></span> Vivienda habitual</legend>
             <div className="field-grid two-columns">
               <div className="field">
                 <label htmlFor="tenure">Régimen de vivienda</label>
@@ -78,7 +78,7 @@ export default function HousingBenefitsPage() {
           </fieldset>
 
           <fieldset>
-            <legend><span className="round-icon"><PiggyBank size={18} aria-hidden="true" /></span> Ahorro y capital</legend>
+            <legend><span className="round-icon"><PiggyBank size={17} aria-hidden="true" /></span> Ahorro y capital</legend>
             <div className="field-grid two-columns">
               <MoneyInput
                 id="interest"

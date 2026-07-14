@@ -31,7 +31,7 @@ export default async function ScenarioDetailPage({
 
   return (
     <div className="shell page-shell scenario-detail">
-      <Link className="back-link dark-back" href="/scenarios"><ArrowLeft size={16} aria-hidden="true" /> Todos los escenarios</Link>
+      <Link className="back-link dark-back" href="/scenarios"><ArrowLeft size={17} aria-hidden="true" /> Todos los escenarios</Link>
       <div className="scenario-detail-header">
         <div>
           <StatusBadge tone={scenario.synthetic ? "demo" : "warning"}>
@@ -94,7 +94,7 @@ export default async function ScenarioDetailPage({
               {scenario.sources.map((source) => (
                 <a href={source.href} key={source.id} rel="noreferrer" target={source.href.startsWith("http") ? "_blank" : undefined}>
                   <span><strong>{source.title}</strong><small>{source.publisher} · revisado {source.reviewedAt}</small></span>
-                  <ExternalLink size={16} aria-hidden="true" />
+                  <ExternalLink size={17} aria-hidden="true" />
                 </a>
               ))}
             </div>
@@ -117,7 +117,7 @@ export default async function ScenarioDetailPage({
             <ul>{scenario.limitations.map((limitation) => <li key={limitation}>{limitation}</li>)}</ul>
           </div>
           <Link className="button" href="/calculator/household">
-            Probar en calculadora <ArrowRight size={16} aria-hidden="true" />
+            Probar en calculadora <ArrowRight size={17} aria-hidden="true" />
           </Link>
         </aside>
       </div>

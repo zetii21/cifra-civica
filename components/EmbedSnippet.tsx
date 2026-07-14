@@ -34,7 +34,7 @@ export function EmbedSnippet() {
   return (
     <details className="embed-snippet">
       <summary>
-        <Code2 size={15} aria-hidden="true" /> Insertar en tu web o medio (widget embebible)
+        <Code2 size={14} aria-hidden="true" /> Insertar en tu web o medio (widget embebible)
       </summary>
       <div className="embed-snippet-body">
         <div className="field">

@@ -151,7 +151,7 @@ export function LabScoreboard({
         ref={idSuffix === "full" ? traySummaryRef : undefined}
       >
         <strong>{changes.length}</strong>
-        <ChevronDown size={13} aria-hidden="true" />
+        <ChevronDown size={12} aria-hidden="true" />
       </summary>
       <div className="lab-changes-panel" id={`lab-changes-panel-${idSuffix}`}>
         {changes.length === 0 ? (
@@ -181,6 +181,15 @@ export function LabScoreboard({
             <RotateCcw size={14} aria-hidden="true" /> Restablecer todo
           </button>
         ) : null}
+        {/* On small screens the panel becomes a bottom sheet; give it its own
+            close control because the summary toggle stays at the top. */}
+        <button
+          type="button"
+          className="button button-quiet lab-changes-close"
+          onClick={(event) => event.currentTarget.closest("details")?.removeAttribute("open")}
+        >
+          Cerrar
+        </button>
       </div>
     </details>
   );

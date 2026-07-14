@@ -32,7 +32,7 @@ export default function Home() {
             </p>
             <div className="hero-actions">
               <Link className="button" href="/calculator">
-                Calcular mi impacto <ArrowRight size={18} aria-hidden="true" />
+                Calcular mi impacto <ArrowRight size={17} aria-hidden="true" />
               </Link>
               <Link className="button button-quiet" href="/scenarios">
                 Explorar políticas
@@ -147,7 +147,7 @@ export default function Home() {
             Cada cifra sale de un manifiesto auditable: son estados y evaluaciones deterministas,
             nunca pesos de una IA ni personas.
           </p>
-          <Link href="/methodology/statistical-study">Ver las pruebas <ArrowRight size={16} aria-hidden="true" /></Link>
+          <Link href="/methodology/statistical-study">Ver las pruebas <ArrowRight size={17} aria-hidden="true" /></Link>
         </div>
       </section>
 
@@ -292,7 +292,7 @@ export default function Home() {
             <h2>Convierte una propuesta en una cifra que puedas comprobar.</h2>
           </div>
           <Link className="button button-light" href="/calculator">
-            Calcular mi impacto <ArrowRight size={18} aria-hidden="true" />
+            Calcular mi impacto <ArrowRight size={17} aria-hidden="true" />
           </Link>
         </div>
       </section>

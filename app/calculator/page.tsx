@@ -30,7 +30,7 @@ export default function CalculatorStartPage() {
             <li><LockKeyhole aria-hidden="true" /><div><strong>Sin cuenta</strong><span>La estimación se calcula sin crear un perfil.</span></div></li>
           </ul>
           <Link className="button" href="/calculator/household">
-            Empezar <ArrowRight size={18} aria-hidden="true" />
+            Empezar <ArrowRight size={17} aria-hidden="true" />
           </Link>
         </div>
         <aside className="start-aside">

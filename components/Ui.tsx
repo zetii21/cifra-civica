@@ -24,7 +24,7 @@ export function Notice({
           : Info;
   return (
     <div className={`notice notice-${tone}`} role={tone === "warning" ? "alert" : "note"}>
-      <Icon size={20} aria-hidden="true" />
+      <Icon size={22} aria-hidden="true" />
       <div>
         {title ? <strong>{title}</strong> : null}
         <div>{children}</div>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, Menu } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
   { href: "/calculator", label: "Calculadora" },
@@ -34,8 +35,9 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
+        <ThemeToggle />
         <Link className="button button-small header-cta" href="/calculator">
-          Calcular impacto <ArrowUpRight size={15} aria-hidden="true" />
+          Calcular impacto <ArrowUpRight size={14} aria-hidden="true" />
         </Link>
         <details className="mobile-nav">
           <summary aria-label="Abrir navegación">

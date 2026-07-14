@@ -22,7 +22,7 @@ export default function IncomePage() {
           {household.adults.map((adult, index) => (
             <fieldset className="adult-income" key={adult.id}>
               <legend>
-                <span className="round-icon"><BriefcaseBusiness size={18} aria-hidden="true" /></span>
+                <span className="round-icon"><BriefcaseBusiness size={17} aria-hidden="true" /></span>
                 Persona adulta {index + 1}
               </legend>
               <div className="field-grid two-columns">
@@ -232,7 +232,7 @@ export default function IncomePage() {
             una estimación separada de cotizaciones e IRPF.
           </Notice>
           <div className="aside-card help-card">
-            <CircleHelp size={20} aria-hidden="true" />
+            <CircleHelp size={22} aria-hidden="true" />
             <div><strong>¿No sabes la cifra anual?</strong><p>Multiplica una nómina mensual por 12 y añade pagas extra. Marca “estimación” para elevar la incertidumbre.</p></div>
           </div>
         </aside>

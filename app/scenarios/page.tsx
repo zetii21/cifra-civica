@@ -72,7 +72,7 @@ export default function ScenariosPage() {
               <div><dt>Origen</dt><dd>{scenario.sponsor}</dd></div>
             </dl>
             <Link href={`/scenarios/${scenario.slug}`}>
-              Ver ficha completa <ArrowRight size={16} aria-hidden="true" />
+              Ver ficha completa <ArrowRight size={17} aria-hidden="true" />
             </Link>
           </article>
         ))}

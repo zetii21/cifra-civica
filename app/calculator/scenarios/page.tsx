@@ -71,7 +71,7 @@ export default function ScenarioSelectionPage() {
                     disabled={scenario.id === BASELINE_ID}
                     onChange={() => toggleScenario(scenario.id)}
                   />
-                  <span className="selection-check"><Check size={16} aria-hidden="true" /></span>
+                  <span className="selection-check"><Check size={17} aria-hidden="true" /></span>
                   <div className="scenario-card-top">
                     <StatusBadge tone={scenario.synthetic ? "demo" : "warning"}>
                       {scenario.synthetic ? "DEMO" : "REFERENCIA"}

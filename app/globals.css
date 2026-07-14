@@ -579,6 +579,11 @@ a {
 .person-number, .round-icon { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: var(--green-pale); color: var(--green); font-size: .76rem; font-weight: 740; }
 .icon-button { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink-soft); cursor: pointer; }
 .icon-button:hover { border-color: var(--red); color: var(--red); }
+
+/* UX iteration 3 — manual theme toggle (system → light → dark) */
+.theme-toggle { width: 38px; height: 38px; flex-shrink: 0; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink-soft); cursor: pointer; transition: border-color 150ms ease, color 150ms ease; }
+.theme-toggle:hover { border-color: var(--green); color: var(--green); }
+@media (max-width: 960px) { .theme-toggle { margin-left: auto; } }
 .add-button { margin-top: .9rem; display: inline-flex; align-items: center; gap: .45rem; border: 0; background: transparent; color: var(--green); font-size: .82rem; font-weight: 720; cursor: pointer; }
 .dependant-row { display: grid; grid-template-columns: 1fr 110px 180px 40px; align-items: center; gap: .8rem; padding: .8rem; border: 1px solid var(--line); border-radius: 10px; }
 .dependant-row > span { font-size: .82rem; font-weight: 690; }
@@ -1270,11 +1275,15 @@ body:has(.widget-shell) .skip-link { display: none; }
   .lab-scoreboard-sticky, .deficit-gauge-span, .deficit-gauge-marker { transition: none; }
 }
 
-/* UX iteration 2 — dark mode (semantic token overrides + surface fixes) */
+/* UX iteration 2/3 — dark mode. The same rules exist twice on purpose:
+   once under the system media query (no-JS fallback; skipped when the
+   user forces light) and once under [data-theme="dark"] (manual toggle).
+   `:where()` keeps surface overrides at their original specificity so
+   hover/active states still win. GENERATED IN SYNC — edit both blocks. */
 :root { color-scheme: light; }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     color-scheme: dark;
     --paper: #0f1d1c;
     --paper-bright: #152523;
@@ -1293,61 +1302,326 @@ body:has(.widget-shell) .skip-link { display: none; }
     --line-dark: #51665f;
     --shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
   }
-
   /* Form surfaces keep readable contrast (they used the white token). */
-  .field input, .field select, .dependant-row input, .dependant-row select,
-  .lab-scope select, .lab-map-metric select, .lever-number,
-  .embed-snippet-body textarea, .scenario-filters input, .scenario-filters select,
-  .money-input input {
+  :where(:root:not([data-theme="light"])) .field input,
+  :where(:root:not([data-theme="light"])) .field select,
+  :where(:root:not([data-theme="light"])) .dependant-row input,
+  :where(:root:not([data-theme="light"])) .dependant-row select,
+  :where(:root:not([data-theme="light"])) .lab-scope select,
+  :where(:root:not([data-theme="light"])) .lab-map-metric select,
+  :where(:root:not([data-theme="light"])) .lever-number,
+  :where(:root:not([data-theme="light"])) .embed-snippet-body textarea,
+  :where(:root:not([data-theme="light"])) .scenario-filters input,
+  :where(:root:not([data-theme="light"])) .scenario-filters select,
+  :where(:root:not([data-theme="light"])) .money-input input {
     background: #0c1817;
     border-color: var(--line-dark);
     color: var(--ink);
   }
-  .preset-tile, .lab-changes-panel li, .compare-metrics > div,
-  .person-row, .scenario-select-card, .directory-card, .aside-card,
-  .advanced-details, .start-checklist li {
+  :where(:root:not([data-theme="light"])) .preset-tile,
+  :where(:root:not([data-theme="light"])) .lab-changes-panel li,
+  :where(:root:not([data-theme="light"])) .compare-metrics > div,
+  :where(:root:not([data-theme="light"])) .person-row,
+  :where(:root:not([data-theme="light"])) .scenario-select-card,
+  :where(:root:not([data-theme="light"])) .directory-card,
+  :where(:root:not([data-theme="light"])) .aside-card,
+  :where(:root:not([data-theme="light"])) .advanced-details,
+  :where(:root:not([data-theme="light"])) .start-checklist li {
     background: #12211f;
   }
-  .preset-tile.active { background: var(--green-pale); }
-  .comparison-bars, .result-number-block > div:first-child,
-  .lab-bar-track, .lab-challenge-track, .deficit-gauge-track {
+  :where(:root:not([data-theme="light"])) .preset-tile.active {
+    background: var(--green-pale);
+  }
+  :where(:root:not([data-theme="light"])) .comparison-bars,
+  :where(:root:not([data-theme="light"])) .result-number-block > div:first-child,
+  :where(:root:not([data-theme="light"])) .lab-bar-track,
+  :where(:root:not([data-theme="light"])) .lab-challenge-track,
+  :where(:root:not([data-theme="light"])) .deficit-gauge-track {
     background: #0c1817;
   }
-  .deficit-gauge-track { background: linear-gradient(90deg, #22332f, #3a2f22 70%, #3a2622); }
-  .feature-calculator, .feature-map { background: #12211f; }
-  .mini-map span { border-color: var(--green-dark); background: var(--green-pale); }
-  .status-demo { border-color: #7a6236; background: #2c2413; color: #e3c891; }
-  .status-official, .status-good { border-color: #3f6d61; background: #1d3531; color: #9ed9c7; }
-  .status-warning { border-color: #7a4438; background: #38201b; color: #eab2a4; }
-  .lab-chip-neg { border-color: #7a4438; background: #38201b; color: #eab2a4; }
-  .lab-chip-pos { border-color: #3f6d61; background: #1d3531; color: #9ed9c7; }
-  .lab-count-badge { border-color: #7a6236; background: #2c2413; color: #e3c891; }
-  .notice-warning { border-color: #7a6236; }
-  .notice-warning > svg { color: #d8a355; }
-  .lab-scoreboard-sticky { background: rgba(15, 29, 28, 0.94); }
-  .spain-map-tooltip { background: rgba(21, 37, 35, 0.97); }
-  .map-overlay-top { background: rgba(21, 37, 35, 0.92); }
-  .lab-quickstart button, .lab-tools-strip > a, .lab-tools-communities > summary,
-  .community-links a, .icon-button, .result-actions button {
+  :where(:root:not([data-theme="light"])) .deficit-gauge-track {
+    background: linear-gradient(90deg, #22332f, #3a2f22 70%, #3a2622);
+  }
+  :where(:root:not([data-theme="light"])) .feature-calculator,
+  :where(:root:not([data-theme="light"])) .feature-map {
     background: #12211f;
   }
-  .spain-map svg { filter: brightness(0.92) saturate(0.92); }
-  .spain-map-region { stroke: #0f1d1c; }
-  .spain-map-inset-label, .spain-map-city-label { fill: var(--ink-soft); }
-  .trust-band, .principles-section, .results-hero, .result-governance,
-  .result-meta-grid span { background-color: #0a1514; }
-  .result-governance dl > div { background: #0a1514; }
-  .site-footer { background: #081211; }
-  .waterfall span { background: var(--line-dark); }
-  .preview-topline, .comparison-bars i { background-color: #22332f; }
-  .comparison-bars > div:last-child i { background: var(--green); }
-  .paper-card { background: var(--paper-bright); }
-  .preview-main-number strong, .coverage-band-inner strong { color: var(--green-dark); }
-  .coverage-band { background: #0c1817; }
-  .hero-section, .feature-section, .sources-section { background: var(--paper); }
-  .source-rail, .content-card, .scenario-filters { background: var(--paper-bright); }
-  .header-cta.button, .final-cta { background: var(--green); color: #06211d; }
-  .final-cta .eyebrow, .final-cta h2 { color: #06211d; }
+  :where(:root:not([data-theme="light"])) .mini-map span {
+    border-color: var(--green-dark); background: var(--green-pale);
+  }
+  :where(:root:not([data-theme="light"])) .status-demo {
+    border-color: #7a6236; background: #2c2413; color: #e3c891;
+  }
+  :where(:root:not([data-theme="light"])) .status-official,
+  :where(:root:not([data-theme="light"])) .status-good {
+    border-color: #3f6d61; background: #1d3531; color: #9ed9c7;
+  }
+  :where(:root:not([data-theme="light"])) .status-warning {
+    border-color: #7a4438; background: #38201b; color: #eab2a4;
+  }
+  :where(:root:not([data-theme="light"])) .lab-chip-neg {
+    border-color: #7a4438; background: #38201b; color: #eab2a4;
+  }
+  :where(:root:not([data-theme="light"])) .lab-chip-pos {
+    border-color: #3f6d61; background: #1d3531; color: #9ed9c7;
+  }
+  :where(:root:not([data-theme="light"])) .lab-count-badge {
+    border-color: #7a6236; background: #2c2413; color: #e3c891;
+  }
+  :where(:root:not([data-theme="light"])) .notice-warning {
+    border-color: #7a6236;
+  }
+  :where(:root:not([data-theme="light"])) .notice-warning > svg {
+    color: #d8a355;
+  }
+  :where(:root:not([data-theme="light"])) .lab-scoreboard-sticky {
+    background: rgba(15, 29, 28, 0.94);
+  }
+  :where(:root:not([data-theme="light"])) .spain-map-tooltip {
+    background: rgba(21, 37, 35, 0.97);
+  }
+  :where(:root:not([data-theme="light"])) .map-overlay-top {
+    background: rgba(21, 37, 35, 0.92);
+  }
+  :where(:root:not([data-theme="light"])) .lab-quickstart button,
+  :where(:root:not([data-theme="light"])) .lab-tools-strip > a,
+  :where(:root:not([data-theme="light"])) .lab-tools-communities > summary,
+  :where(:root:not([data-theme="light"])) .community-links a,
+  :where(:root:not([data-theme="light"])) .icon-button,
+  :where(:root:not([data-theme="light"])) .result-actions button {
+    background: #12211f;
+  }
+  :where(:root:not([data-theme="light"])) .spain-map svg {
+    filter: brightness(0.92) saturate(0.92);
+  }
+  :where(:root:not([data-theme="light"])) .spain-map-region {
+    stroke: #0f1d1c;
+  }
+  :where(:root:not([data-theme="light"])) .spain-map-inset-label,
+  :where(:root:not([data-theme="light"])) .spain-map-city-label {
+    fill: var(--ink-soft);
+  }
+  :where(:root:not([data-theme="light"])) .trust-band,
+  :where(:root:not([data-theme="light"])) .principles-section,
+  :where(:root:not([data-theme="light"])) .results-hero,
+  :where(:root:not([data-theme="light"])) .result-governance,
+  :where(:root:not([data-theme="light"])) .result-meta-grid span {
+    background-color: #0a1514;
+  }
+  :where(:root:not([data-theme="light"])) .result-governance dl > div {
+    background: #0a1514;
+  }
+  :where(:root:not([data-theme="light"])) .site-footer {
+    background: #081211;
+  }
+  :where(:root:not([data-theme="light"])) .waterfall span {
+    background: var(--line-dark);
+  }
+  :where(:root:not([data-theme="light"])) .preview-topline,
+  :where(:root:not([data-theme="light"])) .comparison-bars i {
+    background-color: #22332f;
+  }
+  :where(:root:not([data-theme="light"])) .comparison-bars > div:last-child i {
+    background: var(--green);
+  }
+  :where(:root:not([data-theme="light"])) .paper-card {
+    background: var(--paper-bright);
+  }
+  :where(:root:not([data-theme="light"])) .preview-main-number strong,
+  :where(:root:not([data-theme="light"])) .coverage-band-inner strong {
+    color: var(--green-dark);
+  }
+  :where(:root:not([data-theme="light"])) .coverage-band {
+    background: #0c1817;
+  }
+  :where(:root:not([data-theme="light"])) .hero-section,
+  :where(:root:not([data-theme="light"])) .feature-section,
+  :where(:root:not([data-theme="light"])) .sources-section {
+    background: var(--paper);
+  }
+  :where(:root:not([data-theme="light"])) .source-rail,
+  :where(:root:not([data-theme="light"])) .content-card,
+  :where(:root:not([data-theme="light"])) .scenario-filters {
+    background: var(--paper-bright);
+  }
+  :where(:root:not([data-theme="light"])) .header-cta.button,
+  :where(:root:not([data-theme="light"])) .final-cta {
+    background: var(--green); color: #06211d;
+  }
+  :where(:root:not([data-theme="light"])) .final-cta .eyebrow,
+  :where(:root:not([data-theme="light"])) .final-cta h2 {
+    color: #06211d;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0f1d1c;
+  --paper-bright: #152523;
+  --ink: #e6eee9;
+  --ink-soft: #9fb3ac;
+  --green: #57a894;
+  --green-dark: #8fd0be;
+  --green-pale: #1d3531;
+  --mint: #8fd0be;
+  --amber: #d8a355;
+  --amber-pale: #33290f;
+  --red: #d98a7b;
+  --red-pale: #38201b;
+  --blue-pale: #16282d;
+  --line: #2c3d39;
+  --line-dark: #51665f;
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+}
+/* Form surfaces keep readable contrast (they used the white token). */
+:where(:root[data-theme="dark"]) .field input,
+  :where(:root[data-theme="dark"]) .field select,
+  :where(:root[data-theme="dark"]) .dependant-row input,
+  :where(:root[data-theme="dark"]) .dependant-row select,
+  :where(:root[data-theme="dark"]) .lab-scope select,
+  :where(:root[data-theme="dark"]) .lab-map-metric select,
+  :where(:root[data-theme="dark"]) .lever-number,
+  :where(:root[data-theme="dark"]) .embed-snippet-body textarea,
+  :where(:root[data-theme="dark"]) .scenario-filters input,
+  :where(:root[data-theme="dark"]) .scenario-filters select,
+  :where(:root[data-theme="dark"]) .money-input input {
+  background: #0c1817;
+  border-color: var(--line-dark);
+  color: var(--ink);
+}
+:where(:root[data-theme="dark"]) .preset-tile,
+  :where(:root[data-theme="dark"]) .lab-changes-panel li,
+  :where(:root[data-theme="dark"]) .compare-metrics > div,
+  :where(:root[data-theme="dark"]) .person-row,
+  :where(:root[data-theme="dark"]) .scenario-select-card,
+  :where(:root[data-theme="dark"]) .directory-card,
+  :where(:root[data-theme="dark"]) .aside-card,
+  :where(:root[data-theme="dark"]) .advanced-details,
+  :where(:root[data-theme="dark"]) .start-checklist li {
+  background: #12211f;
+}
+:where(:root[data-theme="dark"]) .preset-tile.active {
+  background: var(--green-pale);
+}
+:where(:root[data-theme="dark"]) .comparison-bars,
+  :where(:root[data-theme="dark"]) .result-number-block > div:first-child,
+  :where(:root[data-theme="dark"]) .lab-bar-track,
+  :where(:root[data-theme="dark"]) .lab-challenge-track,
+  :where(:root[data-theme="dark"]) .deficit-gauge-track {
+  background: #0c1817;
+}
+:where(:root[data-theme="dark"]) .deficit-gauge-track {
+  background: linear-gradient(90deg, #22332f, #3a2f22 70%, #3a2622);
+}
+:where(:root[data-theme="dark"]) .feature-calculator,
+  :where(:root[data-theme="dark"]) .feature-map {
+  background: #12211f;
+}
+:where(:root[data-theme="dark"]) .mini-map span {
+  border-color: var(--green-dark); background: var(--green-pale);
+}
+:where(:root[data-theme="dark"]) .status-demo {
+  border-color: #7a6236; background: #2c2413; color: #e3c891;
+}
+:where(:root[data-theme="dark"]) .status-official,
+  :where(:root[data-theme="dark"]) .status-good {
+  border-color: #3f6d61; background: #1d3531; color: #9ed9c7;
+}
+:where(:root[data-theme="dark"]) .status-warning {
+  border-color: #7a4438; background: #38201b; color: #eab2a4;
+}
+:where(:root[data-theme="dark"]) .lab-chip-neg {
+  border-color: #7a4438; background: #38201b; color: #eab2a4;
+}
+:where(:root[data-theme="dark"]) .lab-chip-pos {
+  border-color: #3f6d61; background: #1d3531; color: #9ed9c7;
+}
+:where(:root[data-theme="dark"]) .lab-count-badge {
+  border-color: #7a6236; background: #2c2413; color: #e3c891;
+}
+:where(:root[data-theme="dark"]) .notice-warning {
+  border-color: #7a6236;
+}
+:where(:root[data-theme="dark"]) .notice-warning > svg {
+  color: #d8a355;
+}
+:where(:root[data-theme="dark"]) .lab-scoreboard-sticky {
+  background: rgba(15, 29, 28, 0.94);
+}
+:where(:root[data-theme="dark"]) .spain-map-tooltip {
+  background: rgba(21, 37, 35, 0.97);
+}
+:where(:root[data-theme="dark"]) .map-overlay-top {
+  background: rgba(21, 37, 35, 0.92);
+}
+:where(:root[data-theme="dark"]) .lab-quickstart button,
+  :where(:root[data-theme="dark"]) .lab-tools-strip > a,
+  :where(:root[data-theme="dark"]) .lab-tools-communities > summary,
+  :where(:root[data-theme="dark"]) .community-links a,
+  :where(:root[data-theme="dark"]) .icon-button,
+  :where(:root[data-theme="dark"]) .result-actions button {
+  background: #12211f;
+}
+:where(:root[data-theme="dark"]) .spain-map svg {
+  filter: brightness(0.92) saturate(0.92);
+}
+:where(:root[data-theme="dark"]) .spain-map-region {
+  stroke: #0f1d1c;
+}
+:where(:root[data-theme="dark"]) .spain-map-inset-label,
+  :where(:root[data-theme="dark"]) .spain-map-city-label {
+  fill: var(--ink-soft);
+}
+:where(:root[data-theme="dark"]) .trust-band,
+  :where(:root[data-theme="dark"]) .principles-section,
+  :where(:root[data-theme="dark"]) .results-hero,
+  :where(:root[data-theme="dark"]) .result-governance,
+  :where(:root[data-theme="dark"]) .result-meta-grid span {
+  background-color: #0a1514;
+}
+:where(:root[data-theme="dark"]) .result-governance dl > div {
+  background: #0a1514;
+}
+:where(:root[data-theme="dark"]) .site-footer {
+  background: #081211;
+}
+:where(:root[data-theme="dark"]) .waterfall span {
+  background: var(--line-dark);
+}
+:where(:root[data-theme="dark"]) .preview-topline,
+  :where(:root[data-theme="dark"]) .comparison-bars i {
+  background-color: #22332f;
+}
+:where(:root[data-theme="dark"]) .comparison-bars > div:last-child i {
+  background: var(--green);
+}
+:where(:root[data-theme="dark"]) .paper-card {
+  background: var(--paper-bright);
+}
+:where(:root[data-theme="dark"]) .preview-main-number strong,
+  :where(:root[data-theme="dark"]) .coverage-band-inner strong {
+  color: var(--green-dark);
+}
+:where(:root[data-theme="dark"]) .coverage-band {
+  background: #0c1817;
+}
+:where(:root[data-theme="dark"]) .hero-section,
+  :where(:root[data-theme="dark"]) .feature-section,
+  :where(:root[data-theme="dark"]) .sources-section {
+  background: var(--paper);
+}
+:where(:root[data-theme="dark"]) .source-rail,
+  :where(:root[data-theme="dark"]) .content-card,
+  :where(:root[data-theme="dark"]) .scenario-filters {
+  background: var(--paper-bright);
+}
+:where(:root[data-theme="dark"]) .header-cta.button,
+  :where(:root[data-theme="dark"]) .final-cta {
+  background: var(--green); color: #06211d;
+}
+:where(:root[data-theme="dark"]) .final-cta .eyebrow,
+  :where(:root[data-theme="dark"]) .final-cta h2 {
+  color: #06211d;
 }
 
 /* UX iteration 2 — challenge celebration */
@@ -1370,3 +1644,37 @@ body:has(.widget-shell) .skip-link { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .challenge-achievement > svg { animation: none; }
 }
+
+/* UX iteration 3 — sortable communities table with diverging mini-bar */
+.map-data-table th .lab-sort { display: inline-flex; align-items: center; gap: .3rem; margin: 0; padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; white-space: nowrap; }
+.map-data-table th .lab-sort svg { color: var(--ink-soft); opacity: .55; }
+.map-data-table th .lab-sort:hover { color: var(--green); }
+.map-data-table th .lab-sort:hover svg { color: inherit; opacity: 1; }
+.map-data-table th .lab-sort.active svg { color: var(--green); opacity: 1; }
+.lab-cell-value { display: inline-grid; gap: .3rem; min-width: 92px; }
+.lab-cell-bar { position: relative; height: 5px; border-radius: 999px; background: color-mix(in srgb, var(--line) 55%, transparent); overflow: hidden; }
+.lab-cell-bar::after { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--line-dark); opacity: .7; }
+.lab-cell-bar i { position: absolute; top: 0; bottom: 0; left: 50%; border-radius: 999px; background: var(--line-dark); }
+.lab-cell-bar i.positive { background: var(--green); }
+.lab-cell-bar i.negative { left: auto; right: 50%; background: var(--red); }
+
+/* UX iteration 3 — the changes tray becomes a bottom sheet on small screens */
+.lab-changes-close { display: none; }
+@media (max-width: 640px) {
+  .lab-changes[open]::before { content: ""; position: fixed; inset: 0; z-index: 105; background: rgba(8, 18, 17, 0.45); }
+  .lab-changes-panel { position: fixed; z-index: 110; inset: auto 0 0 0; top: auto; width: auto; max-width: none; max-height: min(68vh, 480px); padding: .7rem 1rem calc(1rem + env(safe-area-inset-bottom)); border-radius: 18px 18px 0 0; border-bottom: 0; box-shadow: 0 -18px 50px rgba(8, 18, 17, .35); }
+  .lab-changes-panel::before { content: ""; justify-self: center; width: 44px; height: 4px; border-radius: 999px; background: var(--line-dark); opacity: .6; }
+  .lab-changes-close { display: inline-flex; position: sticky; bottom: 0; justify-self: stretch; justify-content: center; }
+  .lab-changes[open] .lab-changes-panel { animation: lab-sheet-up 220ms ease; }
+}
+@keyframes lab-sheet-up {
+  from { transform: translateY(26px); opacity: .6; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lab-changes[open] .lab-changes-panel { animation: none; }
+}
+
+/* UX iteration 3 — skip offscreen rendering for heavy below-the-fold cards */
+.lab-impact-card, .lab-table-card { content-visibility: auto; contain-intrinsic-size: auto 460px; }
+.site-footer { content-visibility: auto; contain-intrinsic-size: auto 430px; }

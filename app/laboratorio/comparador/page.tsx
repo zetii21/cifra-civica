@@ -24,7 +24,7 @@ export default function ComparadorPage() {
             déficit resultante y el impacto por decil de renta y territorio. Cifra Cívica
             nunca ordena por «mejor» ni recomienda voto.{" "}
             <Link href="/laboratorio">
-              <ArrowLeft size={15} aria-hidden="true" /> Volver al laboratorio
+              <ArrowLeft size={14} aria-hidden="true" /> Volver al laboratorio
             </Link>
           </p>
         </div>

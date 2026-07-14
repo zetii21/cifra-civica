@@ -30,7 +30,7 @@ export default function MethodologyPage() {
         {sections.map(({ href, icon: Icon, title, text }) => (
           <Link className="method-card" href={href} key={href}>
             <Icon aria-hidden="true" />
-            <h2>{title}</h2><p>{text}</p><span>Leer sección <ArrowRight size={16} aria-hidden="true" /></span>
+            <h2>{title}</h2><p>{text}</p><span>Leer sección <ArrowRight size={17} aria-hidden="true" /></span>
           </Link>
         ))}
       </div>
