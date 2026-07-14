@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState, type KeyboardEvent } from "react";
+import { useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import mapAsset from "@/data/fixtures/geography/spain-ccaa-svg.json";
 
 interface MapCommunity {
@@ -66,13 +66,16 @@ export function SpainMap({
   compact = false,
 }: SpainMapProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const hatchId = useId().replace(/[^a-zA-Z0-9_-]/g, "");
   const [hover, setHover] = useState<{ code: string; x: number; y: number } | null>(null);
 
-  const maxAbs = useMemo(() => {
-    const magnitudes = asset.communities.map((community) =>
-      Math.abs(values[community.code] ?? 0),
-    );
-    return Math.max(1e-9, ...magnitudes);
+  const { maxAbs, minValue, maxValue } = useMemo(() => {
+    const present = asset.communities.map((community) => values[community.code] ?? 0);
+    return {
+      maxAbs: Math.max(1e-9, ...present.map((value) => Math.abs(value))),
+      minValue: Math.min(...present),
+      maxValue: Math.max(...present),
+    };
   }, [values]);
 
   const fillFor = (code: string): string => {
@@ -117,6 +120,17 @@ export function SpainMap({
         role="group"
         aria-label={`Mapa de España por comunidades autónomas: ${metricLabel}`}
       >
+        <defs>
+          <pattern
+            id={`hatch-${hatchId}`}
+            width="7"
+            height="7"
+            patternUnits="userSpaceOnUse"
+            patternTransform="rotate(45)"
+          >
+            <line x1="0" y1="0" x2="0" y2="7" stroke="#571f16" strokeWidth="1.6" strokeOpacity="0.5" />
+          </pattern>
+        </defs>
         <rect
           className="spain-map-inset-frame"
           x={asset.canariasInset.x}
@@ -136,12 +150,17 @@ export function SpainMap({
           const marker = CITY_MARKERS[community.code];
           const isSelected = selectedCode === community.code;
           const value = values[community.code] ?? 0;
+          const negative = value < -1e-9;
           const shared = {
             role: "button" as const,
             tabIndex: 0,
             "aria-pressed": isSelected,
             "aria-label": `${community.name}: ${formatValue(value)}`,
-            onClick: () => toggle(community.code),
+            onClick: (event: React.MouseEvent) => {
+              toggle(community.code);
+              // Touch users get the tooltip pinned at the tap point.
+              handleMove(event, community.code);
+            },
             onKeyDown: (event: KeyboardEvent) => handleKey(event, community.code),
             onMouseMove: (event: React.MouseEvent) => handleMove(event, community.code),
             onMouseLeave: () => setHover(null),
@@ -160,6 +179,16 @@ export function SpainMap({
                   fill={fillFor(community.code)}
                   {...shared}
                 />
+                {negative ? (
+                  <circle
+                    cx={marker.x}
+                    cy={marker.y}
+                    r={8}
+                    fill={`url(#hatch-${hatchId})`}
+                    pointerEvents="none"
+                    aria-hidden="true"
+                  />
+                ) : null}
                 {compact ? null : (
                   <text className="spain-map-city-label" x={marker.x + 12} y={marker.y + 4}>
                     {community.name}
@@ -169,13 +198,22 @@ export function SpainMap({
             );
           }
           return (
-            <path
-              key={community.code}
-              className={`spain-map-region${isSelected ? " selected" : ""}`}
-              d={community.path}
-              fill={fillFor(community.code)}
-              {...shared}
-            />
+            <g key={community.code}>
+              <path
+                className={`spain-map-region${isSelected ? " selected" : ""}`}
+                d={community.path}
+                fill={fillFor(community.code)}
+                {...shared}
+              />
+              {negative ? (
+                <path
+                  d={community.path}
+                  fill={`url(#hatch-${hatchId})`}
+                  pointerEvents="none"
+                  aria-hidden="true"
+                />
+              ) : null}
+            </g>
           );
         })}
       </svg>
@@ -189,6 +227,11 @@ export function SpainMap({
           <span>{formatValue(values[hovered.code] ?? 0)}</span>
           <small>{metricLabel}</small>
         </div>
+      ) : null}
+      {Math.abs(minValue) > 1e-9 || Math.abs(maxValue) > 1e-9 ? (
+        <p className="spain-map-scale">
+          Rango del escenario: {formatValue(minValue)} · {formatValue(maxValue)}
+        </p>
       ) : null}
       <p className="spain-map-attribution">{asset.source.attribution}</p>
     </div>

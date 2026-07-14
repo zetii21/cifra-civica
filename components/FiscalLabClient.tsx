@@ -1,14 +1,16 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import {
   ArrowDownRight,
   ArrowUpRight,
   Download,
   Landmark,
+  Landmark as LandmarkIcon,
   MapPin,
   RotateCcw,
   Scale,
+  SlidersHorizontal,
   Target,
   Users,
 } from "lucide-react";
@@ -17,6 +19,8 @@ import { SpainMap } from "./SpainMap";
 import { GovernmentPresets } from "./GovernmentPresets";
 import { HouseholdProfileCard } from "./HouseholdProfileCard";
 import { EmbedSnippet } from "./EmbedSnippet";
+import { LabScoreboard } from "./LabScoreboard";
+import { listActiveChanges, type ActiveChange } from "./labChanges";
 import { downloadShareCard } from "./labShareCard";
 import {
   buildPresetSettings,
@@ -103,6 +107,78 @@ function countActiveChanges(settings: PolicySettings): number {
   );
 }
 
+/** Lever control anatomy: slider + numeric stepper + per-lever reset + dot. */
+function LeverControls({
+  id,
+  ariaLabel,
+  min,
+  max,
+  step,
+  value,
+  baseline,
+  onValue,
+}: {
+  id: string;
+  ariaLabel: string;
+  min: number;
+  max: number;
+  step: number;
+  value: number;
+  baseline: number;
+  onValue: (value: number) => void;
+}) {
+  const changed = value !== baseline;
+  const clamp = (raw: number) => Math.min(max, Math.max(min, raw));
+  return (
+    <div className="lab-lever-controls">
+      <input
+        id={id}
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        aria-label={ariaLabel}
+        onChange={(event) => onValue(Number(event.target.value))}
+      />
+      <input
+        type="number"
+        className="lever-number"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        aria-label={`${ariaLabel} (valor exacto)`}
+        onChange={(event) => {
+          if (event.target.value === "") return;
+          const raw = Number(event.target.value);
+          if (Number.isFinite(raw)) onValue(clamp(raw));
+        }}
+      />
+      <button
+        type="button"
+        className="icon-button lever-reset"
+        aria-label={`Restablecer ${ariaLabel}`}
+        title="Restablecer esta palanca"
+        disabled={!changed}
+        onClick={() => onValue(baseline)}
+      >
+        <RotateCcw size={13} aria-hidden="true" />
+      </button>
+    </div>
+  );
+}
+
+function ChangedDot({ changed }: { changed: boolean }) {
+  return changed ? (
+    <i className="lever-dot" aria-label="palanca modificada" title="Palanca modificada" />
+  ) : null;
+}
+
+function CountBadge({ count }: { count: number }) {
+  return count > 0 ? <em className="lab-count-badge">{count}</em> : null;
+}
+
 function ImpactBars({
   groups,
   ariaLabel,
@@ -170,6 +246,41 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
 
   const scopeCommunity = scope === "estado" ? undefined : COMMUNITY_BY_CODE.get(scope);
   const activeChanges = countActiveChanges(settings);
+  const changeList = useMemo(() => listActiveChanges(settings), [settings]);
+  const undoChange = (change: ActiveChange) => update((draft) => change.undo(draft));
+
+  const presetsRef = useRef<HTMLDivElement | null>(null);
+  const irpfGroupRef = useRef<HTMLDetailsElement | null>(null);
+  const challengeRef = useRef<HTMLDivElement | null>(null);
+
+  const goToPresets = () => {
+    presetsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  const goToIrpf = () => {
+    setPanel("ingresos");
+    setScope("estado");
+    window.setTimeout(() => {
+      const group = irpfGroupRef.current;
+      if (!group) return;
+      group.open = true;
+      group.scrollIntoView({ behavior: "smooth", block: "start" });
+      group.querySelector<HTMLInputElement>("input[type=range]")?.focus({ preventScroll: true });
+    }, 60);
+  };
+  const goToChallenge = () => {
+    challengeRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
+  const stateChangedCount = settings.irpfStateBracketDeltas.filter((delta) => delta !== 0).length;
+  const savingsChangedCount = settings.irpfSavingsBracketDeltas.filter(
+    (delta) => delta !== 0,
+  ).length;
+  const spendingChangedCount =
+    Object.keys(settings.spendingMultipliers).length +
+    Object.values(settings.spendingRegionalMultipliers).reduce(
+      (sum, overrides) => sum + Object.keys(overrides).length,
+      0,
+    );
 
   const mapValues = useMemo(() => {
     const values: Record<string, number> = {};
@@ -196,48 +307,43 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
 
   return (
     <div className="lab-layout">
-      <section className="lab-summary" aria-label="Resumen del escenario">
-        <div>
-          <span>Ingresos públicos</span>
-          <strong className={result.totals.revenueDeltaMEur < 0 ? "lab-neg" : "lab-pos"}>
-            {formatMEur(result.totals.revenueDeltaMEur)}
-          </strong>
-          <small>sobre {integerFormat.format(Math.round(result.totals.revenueBaselineMEur))} M€</small>
-        </div>
-        <div>
-          <span>Gasto público</span>
-          <strong className={result.totals.spendingDeltaMEur > 0 ? "lab-neg" : "lab-pos"}>
-            {formatMEur(result.totals.spendingDeltaMEur)}
-          </strong>
-          <small>sobre {integerFormat.format(Math.round(result.totals.spendingBaselineMEur))} M€</small>
-        </div>
-        <div>
-          <span>Saldo público</span>
-          <strong className={result.totals.totalBalanceDeltaMEur < 0 ? "lab-neg" : "lab-pos"}>
-            {formatMEur(result.totals.totalBalanceDeltaMEur)}
-          </strong>
-          <small>
-            déficit {decimalFormat.format(baselineDeficitShare)} % → {decimalFormat.format(deficitShare)} % del PIB
-          </small>
-        </div>
-        <div>
-          <span>Cambios activos</span>
-          <strong>{activeChanges}</strong>
-          <small>{integerFormat.format(result.evaluationCount)} evaluaciones por recálculo</small>
-        </div>
-        <button type="button" className="button button-quiet lab-reset" onClick={resetAll}>
-          <RotateCcw size={15} aria-hidden="true" /> Restablecer todo
+      <nav className="lab-quickstart" aria-label="Puntos de partida rápidos">
+        <span>Empieza en 5 segundos:</span>
+        <button type="button" onClick={goToPresets}>
+          <LandmarkIcon size={14} aria-hidden="true" /> Prueba un paquete de gobierno
         </button>
-      </section>
+        <button type="button" onClick={goToIrpf}>
+          <SlidersHorizontal size={14} aria-hidden="true" /> Toca el IRPF por tramos
+        </button>
+        <button type="button" onClick={goToChallenge}>
+          <Target size={14} aria-hidden="true" /> Reto: cierra el déficit
+        </button>
+      </nav>
+
+      <LabScoreboard
+        revenueDeltaMEur={result.totals.revenueDeltaMEur}
+        revenueBaselineMEur={result.totals.revenueBaselineMEur}
+        spendingDeltaMEur={result.totals.spendingDeltaMEur}
+        spendingBaselineMEur={result.totals.spendingBaselineMEur}
+        balanceDeltaMEur={result.totals.totalBalanceDeltaMEur}
+        deficitBeforeShare={baselineDeficitShare}
+        deficitAfterShare={deficitShare}
+        evaluationCount={result.evaluationCount}
+        changes={changeList}
+        onUndo={undoChange}
+        onResetAll={resetAll}
+      />
 
       <div className="lab-columns">
         <section className="lab-controls" aria-label="Palancas de política fiscal">
-          <GovernmentPresets
-            activePresetId={activePresetId}
-            modified={presetModified}
-            onApply={applyPreset}
-            onClear={resetAll}
-          />
+          <div ref={presetsRef}>
+            <GovernmentPresets
+              activePresetId={activePresetId}
+              modified={presetModified}
+              onApply={applyPreset}
+              onClear={resetAll}
+            />
+          </div>
           <div className="lab-scope">
             <label htmlFor="lab-scope-select">
               <MapPin size={15} aria-hidden="true" /> Ámbito de los cambios
@@ -293,9 +399,10 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
 
           {panel === "ingresos" && scope === "estado" ? (
             <div className="lab-group-stack">
-              <details className="lab-group" open>
+              <details className="lab-group" open ref={irpfGroupRef}>
                 <summary>
                   IRPF — escala general estatal
+                  <CountBadge count={stateChangedCount} />
                   <StatusBadge tone="official">por tramos</StatusBadge>
                 </summary>
                 <p className="field-help">
@@ -306,30 +413,29 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
                   {schedules.stateGeneral.map((bracket, index) => {
                     const delta = settings.irpfStateBracketDeltas[index] ?? 0;
                     const next = schedules.stateGeneral[index + 1];
+                    const rangeLabel = next
+                      ? `${integerFormat.format(bracket.thresholdEur)} – ${integerFormat.format(next.thresholdEur)} €`
+                      : `Más de ${integerFormat.format(bracket.thresholdEur)} €`;
                     return (
                       <div className="lab-bracket-row" key={bracket.thresholdEur}>
                         <span>
-                          {next
-                            ? `${integerFormat.format(bracket.thresholdEur)} – ${integerFormat.format(next.thresholdEur)} €`
-                            : `Más de ${integerFormat.format(bracket.thresholdEur)} €`}
+                          <ChangedDot changed={delta !== 0} />
+                          {rangeLabel}
                         </span>
-                        <label>
-                          <span className="sr-only">
-                            Variación del tramo {index + 1} en puntos porcentuales
-                          </span>
-                          <input
-                            type="range"
-                            min={-5}
-                            max={5}
-                            step={0.25}
-                            value={delta}
-                            onChange={(event) =>
-                              update((draft) => {
-                                draft.irpfStateBracketDeltas[index] = Number(event.target.value);
-                              })
-                            }
-                          />
-                        </label>
+                        <LeverControls
+                          id={`irpf-state-${index}`}
+                          ariaLabel={`variación del tramo ${rangeLabel} en puntos porcentuales`}
+                          min={-5}
+                          max={5}
+                          step={0.25}
+                          value={delta}
+                          baseline={0}
+                          onValue={(value) =>
+                            update((draft) => {
+                              draft.irpfStateBracketDeltas[index] = value;
+                            })
+                          }
+                        />
                         <b>
                           {decimalFormat.format(bracket.ratePercent)} % →{" "}
                           {decimalFormat.format(Math.max(0, bracket.ratePercent + delta))} %
@@ -343,6 +449,7 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
               <details className="lab-group" open>
                 <summary>
                   Ahorro y ganancias del patrimonio
+                  <CountBadge count={savingsChangedCount} />
                   <StatusBadge tone="official">por tramos</StatusBadge>
                 </summary>
                 <p className="field-help">
@@ -352,30 +459,29 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
                   {schedules.savings.map((bracket, index) => {
                     const delta = settings.irpfSavingsBracketDeltas[index] ?? 0;
                     const next = schedules.savings[index + 1];
+                    const rangeLabel = next
+                      ? `${integerFormat.format(bracket.thresholdEur)} – ${integerFormat.format(next.thresholdEur)} €`
+                      : `Más de ${integerFormat.format(bracket.thresholdEur)} €`;
                     return (
                       <div className="lab-bracket-row" key={bracket.thresholdEur}>
                         <span>
-                          {next
-                            ? `${integerFormat.format(bracket.thresholdEur)} – ${integerFormat.format(next.thresholdEur)} €`
-                            : `Más de ${integerFormat.format(bracket.thresholdEur)} €`}
+                          <ChangedDot changed={delta !== 0} />
+                          {rangeLabel}
                         </span>
-                        <label>
-                          <span className="sr-only">
-                            Variación del tramo de ahorro {index + 1} en puntos porcentuales
-                          </span>
-                          <input
-                            type="range"
-                            min={-5}
-                            max={8}
-                            step={0.25}
-                            value={delta}
-                            onChange={(event) =>
-                              update((draft) => {
-                                draft.irpfSavingsBracketDeltas[index] = Number(event.target.value);
-                              })
-                            }
-                          />
-                        </label>
+                        <LeverControls
+                          id={`irpf-savings-${index}`}
+                          ariaLabel={`variación del tramo de ahorro ${rangeLabel} en puntos porcentuales`}
+                          min={-5}
+                          max={8}
+                          step={0.25}
+                          value={delta}
+                          baseline={0}
+                          onValue={(value) =>
+                            update((draft) => {
+                              draft.irpfSavingsBracketDeltas[index] = value;
+                            })
+                          }
+                        />
                         <b>
                           {decimalFormat.format(bracket.ratePercent)} % →{" "}
                           {decimalFormat.format(Math.max(0, bracket.ratePercent + delta))} %
@@ -391,9 +497,15 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
                   (instrument) => instrument.group === group,
                 );
                 if (instruments.length === 0) return null;
+                const groupChanged = instruments.filter(
+                  (instrument) => settings.instrumentRates[instrument.id] !== undefined,
+                ).length;
                 return (
                   <details className="lab-group" key={group} open={group === "especiales"}>
-                    <summary>{label}</summary>
+                    <summary>
+                      {label}
+                      <CountBadge count={groupChanged} />
+                    </summary>
                     {instruments.map((instrument) => {
                       const rate =
                         settings.instrumentRates[instrument.id] ?? instrument.baselineRate;
@@ -403,19 +515,22 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
                       return (
                         <div className="lab-lever" key={instrument.id}>
                           <div className="lab-lever-heading">
-                            <label htmlFor={`lever-${instrument.id}`}>{instrument.name}</label>
+                            <label htmlFor={`lever-${instrument.id}`}>
+                              <ChangedDot changed={rate !== instrument.baselineRate} />
+                              {instrument.name}
+                            </label>
                             <b>{formatRate(rate, instrument.rateUnit, instrument.unitLabel)}</b>
                           </div>
-                          <input
+                          <LeverControls
                             id={`lever-${instrument.id}`}
-                            type="range"
+                            ariaLabel={instrument.name}
                             min={instrument.minRate}
                             max={instrument.maxRate}
                             step={instrument.step}
                             value={rate}
-                            onChange={(event) =>
+                            baseline={instrument.baselineRate}
+                            onValue={(value) =>
                               update((draft) => {
-                                const value = Number(event.target.value);
                                 if (value === instrument.baselineRate) {
                                   delete draft.instrumentRates[instrument.id];
                                 } else {
@@ -461,26 +576,27 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
                   {scopeCommunity.regime === "foral" ? "foral" : "autonómica"} en puntos.
                 </p>
                 <div className="lab-bracket-row">
-                  <span>Todos los tramos</span>
-                  <label>
-                    <span className="sr-only">
-                      Variación de la escala autonómica de {scopeCommunity.name}
-                    </span>
-                    <input
-                      type="range"
-                      min={-4}
-                      max={4}
-                      step={0.25}
-                      value={settings.irpfAutonomousDeltas[scopeCommunity.code] ?? 0}
-                      onChange={(event) =>
-                        update((draft) => {
-                          const value = Number(event.target.value);
-                          if (value === 0) delete draft.irpfAutonomousDeltas[scopeCommunity.code];
-                          else draft.irpfAutonomousDeltas[scopeCommunity.code] = value;
-                        })
-                      }
+                  <span>
+                    <ChangedDot
+                      changed={(settings.irpfAutonomousDeltas[scopeCommunity.code] ?? 0) !== 0}
                     />
-                  </label>
+                    Todos los tramos
+                  </span>
+                  <LeverControls
+                    id={`irpf-auto-${scopeCommunity.code}`}
+                    ariaLabel={`variación de la escala autonómica de ${scopeCommunity.name} en puntos`}
+                    min={-4}
+                    max={4}
+                    step={0.25}
+                    value={settings.irpfAutonomousDeltas[scopeCommunity.code] ?? 0}
+                    baseline={0}
+                    onValue={(value) =>
+                      update((draft) => {
+                        if (value === 0) delete draft.irpfAutonomousDeltas[scopeCommunity.code];
+                        else draft.irpfAutonomousDeltas[scopeCommunity.code] = value;
+                      })
+                    }
+                  />
                   <b>
                     {signedInteger.format(settings.irpfAutonomousDeltas[scopeCommunity.code] ?? 0)}{" "}
                     puntos
@@ -498,19 +614,22 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
                   return (
                     <div className="lab-lever" key={instrument.id}>
                       <div className="lab-lever-heading">
-                        <label htmlFor={`regional-${instrument.id}`}>{instrument.name}</label>
+                        <label htmlFor={`regional-${instrument.id}`}>
+                          <ChangedDot changed={override !== undefined} />
+                          {instrument.name}
+                        </label>
                         <b>{formatRate(rate, instrument.rateUnit, instrument.unitLabel)}</b>
                       </div>
-                      <input
+                      <LeverControls
                         id={`regional-${instrument.id}`}
-                        type="range"
+                        ariaLabel={`${instrument.name} en ${scopeCommunity.name}`}
                         min={instrument.minRate}
                         max={instrument.maxRate}
                         step={instrument.step}
                         value={rate}
-                        onChange={(event) =>
+                        baseline={instrument.baselineRate}
+                        onValue={(value) =>
                           update((draft) => {
-                            const value = Number(event.target.value);
                             const overrides = draft.instrumentRegionalRates[instrument.id] ?? {};
                             if (value === instrument.baselineRate) {
                               delete overrides[scopeCommunity.code];
@@ -543,7 +662,10 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
             <div className="lab-group-stack">
               {scope === "estado" ? (
                 <details className="lab-group" open>
-                  <summary>Partidas de gasto — conjunto de España</summary>
+                  <summary>
+                    Partidas de gasto — conjunto de España
+                    <CountBadge count={spendingChangedCount} />
+                  </summary>
                   {SPENDING_PROGRAMS.map((program) => {
                     const multiplier = settings.spendingMultipliers[program.id] ?? 1;
                     const resultRow = result.spending.find((entry) => entry.id === program.id);
@@ -551,28 +673,43 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
                     return (
                       <div className="lab-lever" key={program.id}>
                         <div className="lab-lever-heading">
-                          <label htmlFor={`spend-${program.id}`}>{program.name}</label>
+                          <label htmlFor={`spend-${program.id}`}>
+                            <ChangedDot changed={multiplier !== 1} />
+                            {program.name}
+                          </label>
                           <b>
                             {integerFormat.format(Math.round(program.baselineMEur * multiplier))}{" "}
                             M€
                           </b>
                         </div>
-                        <input
-                          id={`spend-${program.id}`}
-                          type="range"
-                          min={program.minMultiplier * 100}
-                          max={program.maxMultiplier * 100}
-                          step={1}
-                          value={multiplier * 100}
-                          disabled={locked}
-                          onChange={(event) =>
-                            update((draft) => {
-                              const value = Number(event.target.value) / 100;
-                              if (value === 1) delete draft.spendingMultipliers[program.id];
-                              else draft.spendingMultipliers[program.id] = value;
-                            })
-                          }
-                        />
+                        {locked ? (
+                          <input
+                            id={`spend-${program.id}`}
+                            type="range"
+                            min={program.minMultiplier * 100}
+                            max={program.maxMultiplier * 100}
+                            step={1}
+                            value={multiplier * 100}
+                            disabled
+                            aria-label={program.name}
+                          />
+                        ) : (
+                          <LeverControls
+                            id={`spend-${program.id}`}
+                            ariaLabel={`${program.name} (porcentaje de la referencia)`}
+                            min={program.minMultiplier * 100}
+                            max={program.maxMultiplier * 100}
+                            step={1}
+                            value={Math.round(multiplier * 100)}
+                            baseline={100}
+                            onValue={(value) =>
+                              update((draft) => {
+                                if (value === 100) delete draft.spendingMultipliers[program.id];
+                                else draft.spendingMultipliers[program.id] = value / 100;
+                              })
+                            }
+                          />
+                        )}
                         <div className="lab-lever-meta">
                           <span>
                             {locked
@@ -611,28 +748,31 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
                     return (
                       <div className="lab-lever" key={program.id}>
                         <div className="lab-lever-heading">
-                          <label htmlFor={`spend-regional-${program.id}`}>{program.name}</label>
+                          <label htmlFor={`spend-regional-${program.id}`}>
+                            <ChangedDot changed={override !== undefined} />
+                            {program.name}
+                          </label>
                           <b>
                             {integerFormat.format(Math.round(baselineHere * multiplier))} M€ en{" "}
                             {scopeCommunity!.shortName}
                           </b>
                         </div>
-                        <input
+                        <LeverControls
                           id={`spend-regional-${program.id}`}
-                          type="range"
+                          ariaLabel={`${program.name} en ${scopeCommunity!.name} (porcentaje de la referencia)`}
                           min={program.minMultiplier * 100}
                           max={program.maxMultiplier * 100}
                           step={1}
-                          value={multiplier * 100}
-                          onChange={(event) =>
+                          value={Math.round(multiplier * 100)}
+                          baseline={Math.round((settings.spendingMultipliers[program.id] ?? 1) * 100)}
+                          onValue={(value) =>
                             update((draft) => {
-                              const value = Number(event.target.value) / 100;
                               const overrides =
                                 draft.spendingRegionalMultipliers[program.id] ?? {};
-                              if (value === (draft.spendingMultipliers[program.id] ?? 1)) {
+                              if (value === Math.round((draft.spendingMultipliers[program.id] ?? 1) * 100)) {
                                 delete overrides[scopeCommunity!.code];
                               } else {
-                                overrides[scopeCommunity!.code] = value;
+                                overrides[scopeCommunity!.code] = value / 100;
                               }
                               if (Object.keys(overrides).length === 0) {
                                 delete draft.spendingRegionalMultipliers[program.id];
@@ -688,13 +828,13 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
               onSelect={(code) => setScope((code as Scope) ?? "estado")}
             />
             <div className="lab-map-legend" aria-hidden="true">
-              <span><i className="legend-negative" /> Empeora</span>
+              <span><i className="legend-negative legend-hatch" /> Empeora (color + rayado)</span>
               <span><i className="legend-neutral" /> Sin cambio</span>
               <span><i className="legend-positive" /> Mejora</span>
             </div>
           </div>
 
-          <div className="lab-challenge-card">
+          <div className="lab-challenge-card" ref={challengeRef}>
             <div className="lab-challenge-heading">
               <Target size={17} aria-hidden="true" />
               <div>
