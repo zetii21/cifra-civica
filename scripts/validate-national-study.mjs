@@ -73,6 +73,24 @@ assert.ok(
 assert.equal(report.invariants.passed, true);
 assert.equal(report.invariants.monotonicity.violations, 0);
 assert.ok(report.invariants.additivity.pairsChecked >= 40);
+assert.ok(
+  report.invariants.crossTerritoryAdditivity.pairsChecked >= 100,
+  "cross-territory additivity must cover the community pairs",
+);
+assert.ok(
+  report.invariants.crossTerritoryAdditivity.maxGapMEur < 1e-6,
+  "changes in two communities must compose exactly (disjoint unit sets)",
+);
+assert.ok(
+  report.invariants.quantileConvergence.worstRelativeGap < 0.15,
+  "quantile-grid discretisation must stay within the declared tolerance",
+);
+assert.ok(report.quantileConvergence.resolutions.length >= 4);
+assert.ok(report.lafferPeaks.length >= 20);
+assert.ok(report.responseSurfaces.elasticitySensitivity.surfaces.length >= 20);
+assert.ok(report.deficitFrontier.feasibleCombos > 0);
+assert.ok(report.deficitFrontier.leastRegressive.length > 0);
+assert.ok(report.engineEquivalence.comparisons >= 60);
 assert.ok(report.coverage.microUnits >= 400_000);
 assert.ok(
   report.coverage.parameterCaseApplications >= 200_000_000_000,

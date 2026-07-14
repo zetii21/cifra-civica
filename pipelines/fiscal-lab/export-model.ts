@@ -93,6 +93,32 @@ const GOLDEN_SCENARIOS: GoldenScenario[] = [
     settings.spendingMultipliers.sanidad = 1.04;
     settings.spendingRegionalMultipliers.carreteras = { "07": 1.3 };
   }),
+  scenario("cotizaciones_down1", "Cotizaciones sociales: 36,5 % → 35,5 %", (settings) => {
+    settings.instrumentRates.cotizaciones = 35.5;
+  }),
+  scenario("igic_up2", "IGIC canario: 7 % → 9 %", (settings) => {
+    settings.instrumentRates.igic = 9;
+  }),
+  scenario("electricidad_down", "Impuesto eléctrico: 5,11 % → 2,11 %", (settings) => {
+    settings.instrumentRates.electricidad = 2.11;
+  }),
+  scenario("itp_madrid_60", "ITP-AJD en Madrid: índice 60", (settings) => {
+    settings.instrumentRegionalRates.itp_ajd = { "13": 60 };
+  }),
+  scenario("defensa_carreteras_down", "Defensa -20 % y carreteras -25 %", (settings) => {
+    settings.spendingMultipliers.defensa = 0.8;
+    settings.spendingMultipliers.carreteras = 0.75;
+  }),
+  scenario("imv_doble", "Ingreso mínimo vital: +100 %", (settings) => {
+    settings.spendingMultipliers.imv = 2;
+  }),
+  scenario("ahorro_primer_tramo_up2", "Ahorro: +2 puntos en el primer tramo", (settings) => {
+    settings.irpfSavingsBracketDeltas[0] = 2;
+  }),
+  scenario("foral_y_comun_auto", "Autonómico: +1 punto en País Vasco y -1 en Galicia", (settings) => {
+    settings.irpfAutonomousDeltas["16"] = 1;
+    settings.irpfAutonomousDeltas["12"] = -1;
+  }),
 ];
 
 async function main(): Promise<void> {

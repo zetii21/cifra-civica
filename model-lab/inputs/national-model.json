@@ -44869,6 +44869,1160 @@
      42.458486503542694
     ]
    }
+  },
+  {
+   "id": "cotizaciones_down1",
+   "description": "Cotizaciones sociales: 36,5 % → 35,5 %",
+   "settings": {
+    "irpfStateBracketDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "irpfAutonomousDeltas": {},
+    "irpfSavingsBracketDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "instrumentRates": {
+     "cotizaciones": 35.5
+    },
+    "instrumentRegionalRates": {},
+    "spendingMultipliers": {},
+    "spendingRegionalMultipliers": {}
+   },
+   "expected": {
+    "revenueDeltaMEur": -3577.900168887223,
+    "spendingDeltaMEur": 0,
+    "stateBalanceDeltaMEur": -3577.9001688872318,
+    "regionalBalanceDeltaMEur": -6.863842827442568e-12,
+    "irpfDeltaMEur": -2.9103830456733704e-11,
+    "communities": {
+     "10": {
+      "revenueDeltaMEur": 0,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 154.25171128941457
+     },
+     "11": {
+      "revenueDeltaMEur": -9.237055564881302e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 131.77531751029866
+     },
+     "12": {
+      "revenueDeltaMEur": -5.115907697472721e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 151.879799580012
+     },
+     "13": {
+      "revenueDeltaMEur": -7.048583938740194e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 268.8606922595315
+     },
+     "14": {
+      "revenueDeltaMEur": 1.2079226507921703e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 166.82292827268657
+     },
+     "15": {
+      "revenueDeltaMEur": -2.2737367544323206e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 218.54429580938847
+     },
+     "16": {
+      "revenueDeltaMEur": 8.185452315956354e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 226.98999373688878
+     },
+     "17": {
+      "revenueDeltaMEur": -4.973799150320701e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 180.38576796965398
+     },
+     "18": {
+      "revenueDeltaMEur": -4.529709940470639e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 151.95057301877225
+     },
+     "19": {
+      "revenueDeltaMEur": -6.838973831690964e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 154.61637254541773
+     },
+     "01": {
+      "revenueDeltaMEur": -5.684341886080801e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 147.97640562628882
+     },
+     "02": {
+      "revenueDeltaMEur": -1.5916157281026244e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 194.6509690080704
+     },
+     "03": {
+      "revenueDeltaMEur": 2.842170943040401e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 135.70053973401045
+     },
+     "04": {
+      "revenueDeltaMEur": 2.2737367544323206e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 198.10222732381564
+     },
+     "05": {
+      "revenueDeltaMEur": -3.979039320256561e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 141.7316748332997
+     },
+     "06": {
+      "revenueDeltaMEur": -3.410605131648481e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 153.0702088199631
+     },
+     "07": {
+      "revenueDeltaMEur": -1.8758328224066645e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 153.11524271487949
+     },
+     "08": {
+      "revenueDeltaMEur": -3.979039320256561e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 148.88984022892006
+     },
+     "09": {
+      "revenueDeltaMEur": -3.296918293926865e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 225.23442731375667
+     }
+    },
+    "decilesNetPerHouseholdEur": [
+     23.24954273376336,
+     47.412176014476444,
+     81.99460590928561,
+     110.35748721264925,
+     149.51544738642895,
+     183.51037983652466,
+     213.7004422485826,
+     258.48653955258146,
+     319.52071685369464,
+     477.99648886561386
+    ]
+   }
+  },
+  {
+   "id": "igic_up2",
+   "description": "IGIC canario: 7 % → 9 %",
+   "settings": {
+    "irpfStateBracketDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "irpfAutonomousDeltas": {},
+    "irpfSavingsBracketDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "instrumentRates": {
+     "igic": 9
+    },
+    "instrumentRegionalRates": {},
+    "spendingMultipliers": {},
+    "spendingRegionalMultipliers": {}
+   },
+   "expected": {
+    "revenueDeltaMEur": 551.8367346939631,
+    "spendingDeltaMEur": 0,
+    "stateBalanceDeltaMEur": -3.822719918389339e-12,
+    "regionalBalanceDeltaMEur": 551.8367346938708,
+    "irpfDeltaMEur": -2.9103830456733704e-11,
+    "communities": {
+     "10": {
+      "revenueDeltaMEur": 0,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 2.541805019349421e-13
+     },
+     "11": {
+      "revenueDeltaMEur": -9.237055564881302e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -1.6831888234594312e-14
+     },
+     "12": {
+      "revenueDeltaMEur": -5.115907697472721e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 1.0958281082888653e-13
+     },
+     "13": {
+      "revenueDeltaMEur": -7.048583938740194e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 3.964373686716281e-13
+     },
+     "14": {
+      "revenueDeltaMEur": 1.2079226507921703e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -1.8161305722837012e-14
+     },
+     "15": {
+      "revenueDeltaMEur": -2.2737367544323206e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 0
+     },
+     "16": {
+      "revenueDeltaMEur": 8.185452315956354e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 0
+     },
+     "17": {
+      "revenueDeltaMEur": -4.973799150320701e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 9.403947134357928e-14
+     },
+     "18": {
+      "revenueDeltaMEur": -4.529709940470639e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -1.3850677273122128e-13
+     },
+     "19": {
+      "revenueDeltaMEur": -6.838973831690964e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 3.952597244769785e-14
+     },
+     "01": {
+      "revenueDeltaMEur": -5.684341886080801e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 2.133843593920142e-14
+     },
+     "02": {
+      "revenueDeltaMEur": -1.5916157281026244e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -4.3302906469411394e-14
+     },
+     "03": {
+      "revenueDeltaMEur": 2.842170943040401e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 1.807757444349305e-13
+     },
+     "04": {
+      "revenueDeltaMEur": 2.2737367544323206e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 2.8979630502226356e-13
+     },
+     "05": {
+      "revenueDeltaMEur": 551.8367346938771,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -613.1519274376416
+     },
+     "06": {
+      "revenueDeltaMEur": -3.410605131648481e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -1.183588362071876e-13
+     },
+     "07": {
+      "revenueDeltaMEur": -1.8758328224066645e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 1.0411480312348205e-13
+     },
+     "08": {
+      "revenueDeltaMEur": -3.979039320256561e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -1.5872328340016394e-13
+     },
+     "09": {
+      "revenueDeltaMEur": -3.296918293926865e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 1.420775608679577e-13
+     }
+    },
+    "decilesNetPerHouseholdEur": [
+     -15.984416917396496,
+     -18.811052942456474,
+     -21.603746722697785,
+     -24.292475263008217,
+     -25.36660461669949,
+     -27.914123410518723,
+     -30.038148815501838,
+     -33.57866349193265,
+     -38.058482858717,
+     -51.694059518062595
+    ]
+   }
+  },
+  {
+   "id": "electricidad_down",
+   "description": "Impuesto eléctrico: 5,11 % → 2,11 %",
+   "settings": {
+    "irpfStateBracketDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "irpfAutonomousDeltas": {},
+    "irpfSavingsBracketDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "instrumentRates": {
+     "electricidad": 2.11
+    },
+    "instrumentRegionalRates": {},
+    "spendingMultipliers": {},
+    "spendingRegionalMultipliers": {}
+   },
+   "expected": {
+    "revenueDeltaMEur": -787.9795190735022,
+    "spendingDeltaMEur": 0,
+    "stateBalanceDeltaMEur": -3.822719918389339e-12,
+    "regionalBalanceDeltaMEur": -787.9795190735398,
+    "irpfDeltaMEur": -2.9103830456733704e-11,
+    "communities": {
+     "10": {
+      "revenueDeltaMEur": -82.43516681615706,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 38.88451264913095
+     },
+     "11": {
+      "revenueDeltaMEur": -14.892298143849823,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 33.84613214511301
+     },
+     "12": {
+      "revenueDeltaMEur": -41.92275356978898,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 37.09978192016689
+     },
+     "13": {
+      "revenueDeltaMEur": -128.4696325718469,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 47.581345396978115
+     },
+     "14": {
+      "revenueDeltaMEur": -23.22800738440876,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 40.75089014808764
+     },
+     "15": {
+      "revenueDeltaMEur": -12.054701431148834,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 46.36423627364848
+     },
+     "16": {
+      "revenueDeltaMEur": -40.411210193374686,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 42.990649141896675
+     },
+     "17": {
+      "revenueDeltaMEur": -5.280159286211649,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 39.1122910089749
+     },
+     "18": {
+      "revenueDeltaMEur": -1.27688592713971,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 44.03054921171243
+     },
+     "19": {
+      "revenueDeltaMEur": -1.2882610851081762,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 47.71337352252255
+     },
+     "01": {
+      "revenueDeltaMEur": -126.18224801290803,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 38.70621104690415
+     },
+     "02": {
+      "revenueDeltaMEur": -22.325197927196893,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 39.86642486999157
+     },
+     "03": {
+      "revenueDeltaMEur": -16.09814637244432,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 34.25137526052007
+     },
+     "04": {
+      "revenueDeltaMEur": -20.763493037570477,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 43.25727716160592
+     },
+     "05": {
+      "revenueDeltaMEur": -33.663851090697506,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 37.40427898966354
+     },
+     "06": {
+      "revenueDeltaMEur": -9.480493404817427,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 37.92197361926822
+     },
+     "07": {
+      "revenueDeltaMEur": -37.329063881150006,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 36.2418095933478
+     },
+     "08": {
+      "revenueDeltaMEur": -31.168193582142344,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 38.47925133597755
+     },
+     "09": {
+      "revenueDeltaMEur": -139.70975535557818,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 44.77876774217159
+     }
+    },
+    "decilesNetPerHouseholdEur": [
+     24.204322132887782,
+     28.321428932008775,
+     30.44388528182415,
+     32.56543427423131,
+     36.75659248818983,
+     38.91527413598073,
+     43.15524538214428,
+     47.41680272191607,
+     55.84942049226001,
+     72.66002979100412
+    ]
+   }
+  },
+  {
+   "id": "itp_madrid_60",
+   "description": "ITP-AJD en Madrid: índice 60",
+   "settings": {
+    "irpfStateBracketDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "irpfAutonomousDeltas": {},
+    "irpfSavingsBracketDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "instrumentRates": {},
+    "instrumentRegionalRates": {
+     "itp_ajd": {
+      "13": 60
+     }
+    },
+    "spendingMultipliers": {},
+    "spendingRegionalMultipliers": {}
+   },
+   "expected": {
+    "revenueDeltaMEur": -649.4810388311744,
+    "spendingDeltaMEur": 0,
+    "stateBalanceDeltaMEur": -3.822719918389339e-12,
+    "regionalBalanceDeltaMEur": -649.4810388311812,
+    "irpfDeltaMEur": -2.9103830456733704e-11,
+    "communities": {
+     "10": {
+      "revenueDeltaMEur": 0,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 2.541805019349421e-13
+     },
+     "11": {
+      "revenueDeltaMEur": -9.237055564881302e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -1.6831888234594312e-14
+     },
+     "12": {
+      "revenueDeltaMEur": -5.115907697472721e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 1.0958281082888653e-13
+     },
+     "13": {
+      "revenueDeltaMEur": -649.4810388311814,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 240.54853290043536
+     },
+     "14": {
+      "revenueDeltaMEur": 1.2079226507921703e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -1.8161305722837012e-14
+     },
+     "15": {
+      "revenueDeltaMEur": -2.2737367544323206e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 0
+     },
+     "16": {
+      "revenueDeltaMEur": 8.185452315956354e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 0
+     },
+     "17": {
+      "revenueDeltaMEur": -4.973799150320701e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 9.403947134357928e-14
+     },
+     "18": {
+      "revenueDeltaMEur": -4.529709940470639e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -1.3850677273122128e-13
+     },
+     "19": {
+      "revenueDeltaMEur": -6.838973831690964e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 3.952597244769785e-14
+     },
+     "01": {
+      "revenueDeltaMEur": -5.684341886080801e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 2.133843593920142e-14
+     },
+     "02": {
+      "revenueDeltaMEur": -1.5916157281026244e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -4.3302906469411394e-14
+     },
+     "03": {
+      "revenueDeltaMEur": 2.842170943040401e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 1.807757444349305e-13
+     },
+     "04": {
+      "revenueDeltaMEur": 2.2737367544323206e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 2.8979630502226356e-13
+     },
+     "05": {
+      "revenueDeltaMEur": -3.979039320256561e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 8.52938472597239e-14
+     },
+     "06": {
+      "revenueDeltaMEur": -3.410605131648481e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -1.183588362071876e-13
+     },
+     "07": {
+      "revenueDeltaMEur": -1.8758328224066645e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 1.0411480312348205e-13
+     },
+     "08": {
+      "revenueDeltaMEur": -3.979039320256561e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -1.5872328340016394e-13
+     },
+     "09": {
+      "revenueDeltaMEur": -3.296918293926865e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 1.420775608679577e-13
+     }
+    },
+    "decilesNetPerHouseholdEur": [
+     4.664237619595427,
+     7.528262249137869,
+     12.023375308942063,
+     17.246809165636307,
+     24.34403342431716,
+     30.817462883689373,
+     38.77990687261355,
+     49.33091945772904,
+     63.89289739500451,
+     90.13313457783016
+    ]
+   }
+  },
+  {
+   "id": "defensa_carreteras_down",
+   "description": "Defensa -20 % y carreteras -25 %",
+   "settings": {
+    "irpfStateBracketDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "irpfAutonomousDeltas": {},
+    "irpfSavingsBracketDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "instrumentRates": {},
+    "instrumentRegionalRates": {},
+    "spendingMultipliers": {
+     "defensa": 0.8,
+     "carreteras": 0.75
+    },
+    "spendingRegionalMultipliers": {}
+   },
+   "expected": {
+    "revenueDeltaMEur": 0,
+    "spendingDeltaMEur": -7400.000000000116,
+    "stateBalanceDeltaMEur": 6049.999999999995,
+    "regionalBalanceDeltaMEur": 1349.999999999993,
+    "irpfDeltaMEur": -2.9103830456733704e-11,
+    "communities": {
+     "10": {
+      "revenueDeltaMEur": 0,
+      "spendingDeltaMEur": -120.26657037804775,
+      "netHouseholdImpactEur": -353.4811563220929
+     },
+     "11": {
+      "revenueDeltaMEur": -9.237055564881302e-14,
+      "spendingDeltaMEur": -44.85972469074014,
+      "netHouseholdImpactEur": -443.69134931943057
+     },
+     "12": {
+      "revenueDeltaMEur": -5.115907697472721e-13,
+      "spendingDeltaMEur": -93.54199589361225,
+      "netHouseholdImpactEur": -400.9343217772424
+     },
+     "13": {
+      "revenueDeltaMEur": -7.048583938740194e-12,
+      "spendingDeltaMEur": -102.42801998809857,
+      "netHouseholdImpactEur": -319.33239749141404
+     },
+     "14": {
+      "revenueDeltaMEur": 1.2079226507921703e-12,
+      "spendingDeltaMEur": -37.53916240724175,
+      "netHouseholdImpactEur": -395.6945598028489
+     },
+     "15": {
+      "revenueDeltaMEur": -2.2737367544323206e-13,
+      "spendingDeltaMEur": -20.740706440565752,
+      "netHouseholdImpactEur": -413.6355823648789
+     },
+     "16": {
+      "revenueDeltaMEur": 8.185452315956354e-12,
+      "spendingDeltaMEur": -41.26328566192843,
+      "netHouseholdImpactEur": -311.2311516886709
+     },
+     "17": {
+      "revenueDeltaMEur": -4.973799150320701e-14,
+      "spendingDeltaMEur": -10.342422295872728,
+      "netHouseholdImpactEur": -387.784723555027
+     },
+     "18": {
+      "revenueDeltaMEur": -4.529709940470639e-14,
+      "spendingDeltaMEur": -0.44157461448427804,
+      "netHouseholdImpactEur": -293.2587500309365
+     },
+     "19": {
+      "revenueDeltaMEur": -6.838973831690964e-14,
+      "spendingDeltaMEur": -0.45221496664052574,
+      "netHouseholdImpactEur": -322.5715389675404
+     },
+     "01": {
+      "revenueDeltaMEur": -5.684341886080801e-13,
+      "spendingDeltaMEur": -285.4274465913435,
+      "netHouseholdImpactEur": -433.2355899287456
+     },
+     "02": {
+      "revenueDeltaMEur": -1.5916157281026244e-12,
+      "spendingDeltaMEur": -64.68802093390768,
+      "netHouseholdImpactEur": -475.3706009133679
+     },
+     "03": {
+      "revenueDeltaMEur": 2.842170943040401e-14,
+      "spendingDeltaMEur": -29.524317145548196,
+      "netHouseholdImpactEur": -334.1843666957597
+     },
+     "04": {
+      "revenueDeltaMEur": 2.2737367544323206e-13,
+      "spendingDeltaMEur": -19.64741025651131,
+      "netHouseholdImpactEur": -323.41736689367275
+     },
+     "05": {
+      "revenueDeltaMEur": -3.979039320256561e-13,
+      "spendingDeltaMEur": -35.7196621885234,
+      "netHouseholdImpactEur": -313.59136403272794
+     },
+     "06": {
+      "revenueDeltaMEur": -3.410605131648481e-13,
+      "spendingDeltaMEur": -15.6945194304653,
+      "netHouseholdImpactEur": -353.42027695272736
+     },
+     "07": {
+      "revenueDeltaMEur": -1.8758328224066645e-12,
+      "spendingDeltaMEur": -139.92595103073486,
+      "netHouseholdImpactEur": -512.30084982251
+     },
+     "08": {
+      "revenueDeltaMEur": -3.979039320256561e-13,
+      "spendingDeltaMEur": -106.3396794495391,
+      "netHouseholdImpactEur": -527.1847738868646
+     },
+     "09": {
+      "revenueDeltaMEur": -3.296918293926865e-12,
+      "spendingDeltaMEur": -181.15731563619457,
+      "netHouseholdImpactEur": -361.79160410909196
+     }
+    },
+    "decilesNetPerHouseholdEur": [
+     -302.71516549293983,
+     -326.06710502842293,
+     -350.26946118962826,
+     -367.86605834466263,
+     -385.0691216883097,
+     -395.945209418332,
+     -410.7048067863805,
+     -419.6701332661981,
+     -434.074840847293,
+     -457.4891594117544
+    ]
+   }
+  },
+  {
+   "id": "imv_doble",
+   "description": "Ingreso mínimo vital: +100 %",
+   "settings": {
+    "irpfStateBracketDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "irpfAutonomousDeltas": {},
+    "irpfSavingsBracketDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "instrumentRates": {},
+    "instrumentRegionalRates": {},
+    "spendingMultipliers": {
+     "imv": 2
+    },
+    "spendingRegionalMultipliers": {}
+   },
+   "expected": {
+    "revenueDeltaMEur": 0,
+    "spendingDeltaMEur": 6000,
+    "stateBalanceDeltaMEur": -5100.000000000005,
+    "regionalBalanceDeltaMEur": -900.000000000007,
+    "irpfDeltaMEur": -2.9103830456733704e-11,
+    "communities": {
+     "10": {
+      "revenueDeltaMEur": 0,
+      "spendingDeltaMEur": 105.27787885209786,
+      "netHouseholdImpactEur": 331.06251211351554
+     },
+     "11": {
+      "revenueDeltaMEur": -9.237055564881302e-14,
+      "spendingDeltaMEur": 28.447645057199185,
+      "netHouseholdImpactEur": 431.0249251090786
+     },
+     "12": {
+      "revenueDeltaMEur": -5.115907697472721e-13,
+      "spendingDeltaMEur": 41.37144079555043,
+      "netHouseholdImpactEur": 244.07929672891117
+     },
+     "13": {
+      "revenueDeltaMEur": -7.048583938740194e-12,
+      "spendingDeltaMEur": 94.47910960410412,
+      "netHouseholdImpactEur": 233.2817521088995
+     },
+     "14": {
+      "revenueDeltaMEur": 1.2079226507921703e-12,
+      "spendingDeltaMEur": 29.624416712316723,
+      "netHouseholdImpactEur": 346.4844059920085
+     },
+     "15": {
+      "revenueDeltaMEur": -2.2737367544323206e-13,
+      "spendingDeltaMEur": 7.929713584255332,
+      "netHouseholdImpactEur": 203.3259893398803
+     },
+     "16": {
+      "revenueDeltaMEur": 8.185452315956354e-12,
+      "spendingDeltaMEur": 27.91144023575419,
+      "netHouseholdImpactEur": 197.95347684932048
+     },
+     "17": {
+      "revenueDeltaMEur": -4.973799150320701e-14,
+      "spendingDeltaMEur": 4.663902339548405,
+      "netHouseholdImpactEur": 230.31616491597072
+     },
+     "18": {
+      "revenueDeltaMEur": -4.529709940470639e-14,
+      "spendingDeltaMEur": 2.8375671255662938,
+      "netHouseholdImpactEur": 652.3142817393777
+     },
+     "19": {
+      "revenueDeltaMEur": -6.838973831690964e-14,
+      "spendingDeltaMEur": 2.9059422370257226,
+      "netHouseholdImpactEur": 717.5166017347464
+     },
+     "01": {
+      "revenueDeltaMEur": -5.684341886080801e-13,
+      "spendingDeltaMEur": 239.40645604999787,
+      "netHouseholdImpactEur": 489.58375470347215
+     },
+     "02": {
+      "revenueDeltaMEur": -1.5916157281026244e-12,
+      "spendingDeltaMEur": 18.231863601649003,
+      "netHouseholdImpactEur": 217.04599525772622
+     },
+     "03": {
+      "revenueDeltaMEur": 2.842170943040401e-14,
+      "spendingDeltaMEur": 17.24762186564091,
+      "netHouseholdImpactEur": 244.64711866157336
+     },
+     "04": {
+      "revenueDeltaMEur": 2.2737367544323206e-13,
+      "spendingDeltaMEur": 18.827446809361394,
+      "netHouseholdImpactEur": 261.49231679668634
+     },
+     "05": {
+      "revenueDeltaMEur": -3.979039320256561e-13,
+      "spendingDeltaMEur": 56.377078743337435,
+      "netHouseholdImpactEur": 417.60799069138847
+     },
+     "06": {
+      "revenueDeltaMEur": -3.410605131648481e-13,
+      "spendingDeltaMEur": 9.023715367606194,
+      "netHouseholdImpactEur": 240.63240980283172
+     },
+     "07": {
+      "revenueDeltaMEur": -1.8758328224066645e-12,
+      "spendingDeltaMEur": 36.56898888804476,
+      "netHouseholdImpactEur": 236.6924847122639
+     },
+     "08": {
+      "revenueDeltaMEur": -3.979039320256561e-13,
+      "spendingDeltaMEur": 43.536952549272065,
+      "netHouseholdImpactEur": 358.32882756602504
+     },
+     "09": {
+      "revenueDeltaMEur": -3.296918293926865e-12,
+      "spendingDeltaMEur": 115.3308195816723,
+      "netHouseholdImpactEur": 246.4333751745136
+     }
+    },
+    "decilesNetPerHouseholdEur": [
+     1271.9128478226,
+     800.7723472970008,
+     439.2044064904903,
+     259.20841851101005,
+     148.3355832916482,
+     85.0558027830002,
+     50.523411256245744,
+     27.166077937059317,
+     16.80880332481329,
+     6.685696784351458
+    ]
+   }
+  },
+  {
+   "id": "ahorro_primer_tramo_up2",
+   "description": "Ahorro: +2 puntos en el primer tramo",
+   "settings": {
+    "irpfStateBracketDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "irpfAutonomousDeltas": {},
+    "irpfSavingsBracketDeltas": [
+     2,
+     0,
+     0,
+     0,
+     0
+    ],
+    "instrumentRates": {},
+    "instrumentRegionalRates": {},
+    "spendingMultipliers": {},
+    "spendingRegionalMultipliers": {}
+   },
+   "expected": {
+    "revenueDeltaMEur": 407.8730438891798,
+    "spendingDeltaMEur": 0,
+    "stateBalanceDeltaMEur": 191.96646710439745,
+    "regionalBalanceDeltaMEur": 215.906576784751,
+    "irpfDeltaMEur": 407.8730438891507,
+    "communities": {
+     "10": {
+      "revenueDeltaMEur": 18.417048529474584,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -17.374574084409833
+     },
+     "11": {
+      "revenueDeltaMEur": 3.096982683056382,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -14.077194013893212
+     },
+     "12": {
+      "revenueDeltaMEur": 10.208327028979454,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -18.06783544952173
+     },
+     "13": {
+      "revenueDeltaMEur": 46.01609593427088,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -34.085996988353
+     },
+     "14": {
+      "revenueDeltaMEur": 5.593317231728449,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -19.625674497288657
+     },
+     "15": {
+      "revenueDeltaMEur": 4.904595901157563,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -18.863830389066607
+     },
+     "16": {
+      "revenueDeltaMEur": 19.035513779209396,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -20.250546573619914
+     },
+     "17": {
+      "revenueDeltaMEur": 1.3692679247395212,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -20.285450736882346
+     },
+     "18": {
+      "revenueDeltaMEur": 0.29742038235008295,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -20.51175050690522
+     },
+     "19": {
+      "revenueDeltaMEur": 0.30165217818433376,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -22.344605791436877
+     },
+     "01": {
+      "revenueDeltaMEur": 26.201431074890365,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -16.074497591957915
+     },
+     "02": {
+      "revenueDeltaMEur": 5.85076031546258,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -20.89557255522907
+     },
+     "03": {
+      "revenueDeltaMEur": 4.484381347528895,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -19.08247381927163
+     },
+     "04": {
+      "revenueDeltaMEur": 5.010470702350503,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -20.876961259792655
+     },
+     "05": {
+      "revenueDeltaMEur": 7.2945022224494664,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -16.210004938777615
+     },
+     "06": {
+      "revenueDeltaMEur": 2.586437102630171,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -20.69149682104417
+     },
+     "07": {
+      "revenueDeltaMEur": 9.932432644467696,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -19.286276979552422
+     },
+     "08": {
+      "revenueDeltaMEur": 7.145218305306656,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -17.642514334091462
+     },
+     "09": {
+      "revenueDeltaMEur": 38.16072149651404,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -24.462000959305804
+     }
+    },
+    "decilesNetPerHouseholdEur": [
+     -0.3751756922593437,
+     -0.9216531399518051,
+     -1.9996083177452468,
+     -3.4550910302346742,
+     -5.88623211463055,
+     -9.16075931836142,
+     -14.245520435212633,
+     -23.50520022073917,
+     -52.318477265260846,
+     -101.2509905620191
+    ]
+   }
+  },
+  {
+   "id": "foral_y_comun_auto",
+   "description": "Autonómico: +1 punto en País Vasco y -1 en Galicia",
+   "settings": {
+    "irpfStateBracketDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "irpfAutonomousDeltas": {
+     "12": -1,
+     "16": 1
+    },
+    "irpfSavingsBracketDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "instrumentRates": {},
+    "instrumentRegionalRates": {},
+    "spendingMultipliers": {},
+    "spendingRegionalMultipliers": {}
+   },
+   "expected": {
+    "revenueDeltaMEur": 77.71628784679342,
+    "spendingDeltaMEur": 0,
+    "stateBalanceDeltaMEur": -3.822719918389339e-12,
+    "regionalBalanceDeltaMEur": 77.71628784672833,
+    "irpfDeltaMEur": 77.71628784670611,
+    "communities": {
+     "10": {
+      "revenueDeltaMEur": 0,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 2.541805019349421e-13
+     },
+     "11": {
+      "revenueDeltaMEur": -9.237055564881302e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -1.6831888234594312e-14
+     },
+     "12": {
+      "revenueDeltaMEur": -218.99639727771643,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 193.8021214847045
+     },
+     "13": {
+      "revenueDeltaMEur": -7.048583938740194e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 3.964373686716281e-13
+     },
+     "14": {
+      "revenueDeltaMEur": 1.2079226507921703e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -1.8161305722837012e-14
+     },
+     "15": {
+      "revenueDeltaMEur": -2.2737367544323206e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 0
+     },
+     "16": {
+      "revenueDeltaMEur": 296.7126851244593,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -315.6517926855854
+     },
+     "17": {
+      "revenueDeltaMEur": -4.973799150320701e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 9.403947134357928e-14
+     },
+     "18": {
+      "revenueDeltaMEur": -4.529709940470639e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -1.3850677273122128e-13
+     },
+     "19": {
+      "revenueDeltaMEur": -6.838973831690964e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 3.952597244769785e-14
+     },
+     "01": {
+      "revenueDeltaMEur": -5.684341886080801e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 2.133843593920142e-14
+     },
+     "02": {
+      "revenueDeltaMEur": -1.5916157281026244e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -4.3302906469411394e-14
+     },
+     "03": {
+      "revenueDeltaMEur": 2.842170943040401e-14,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 1.807757444349305e-13
+     },
+     "04": {
+      "revenueDeltaMEur": 2.2737367544323206e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 2.8979630502226356e-13
+     },
+     "05": {
+      "revenueDeltaMEur": -3.979039320256561e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 8.52938472597239e-14
+     },
+     "06": {
+      "revenueDeltaMEur": -3.410605131648481e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -1.183588362071876e-13
+     },
+     "07": {
+      "revenueDeltaMEur": -1.8758328224066645e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 1.0411480312348205e-13
+     },
+     "08": {
+      "revenueDeltaMEur": -3.979039320256561e-13,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": -1.5872328340016394e-13
+     },
+     "09": {
+      "revenueDeltaMEur": -3.296918293926865e-12,
+      "spendingDeltaMEur": 0,
+      "netHouseholdImpactEur": 1.420775608679577e-13
+     }
+    },
+    "decilesNetPerHouseholdEur": [
+     -0.6963187141461163,
+     -3.1880779214269457,
+     -3.4530210457455546,
+     -3.270615876938383,
+     -3.3061638339887702,
+     -3.508644724886457,
+     -3.931888939074815,
+     -4.639886176579107,
+     -5.791385018731728,
+     -8.697597913998429
+    ]
+   }
   }
  ]
 }

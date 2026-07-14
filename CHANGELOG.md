@@ -25,6 +25,7 @@ Los cambios materiales indican versiones de aplicación, modelo, política, dato
 - Modo directo (`/laboratorio/directo`): coste o recaudación de una promesa en segundos y fact-card PNG para debates.
 - Widget embebible para medios (`/widget/{paquete}`): solo agregados públicos, sin cookies, único origen autorizado a ser enmarcado (CSP `frame-ancestors *` solo en esa ruta) y fragmento de inserción copiable.
 - Páginas por comunidad (`/laboratorio/{comunidad}`): ficha fiscal con su escala de IRPF, gasto de referencia localizado y el laboratorio preseleccionado en su ámbito.
+- Refinamiento del estudio nacional: bandas de sensibilidad de elasticidades (0,5×–1,5×), análisis de convergencia de la malla de cuantiles (K = 11–151), invariante exacta de aditividad entre territorios (171 pares), picos de recaudación por instrumento en mallas de 201 puntos y frontera de cierre del déficit ordenada por menor coste para los deciles bajos; 20 escenarios dorados de equivalencia entre motores (antes 12).
 
 ### Limitations
 

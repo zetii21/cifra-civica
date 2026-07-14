@@ -319,7 +319,11 @@ def compute_irpf(
 
 
 def attenuate(
-    baseline: IrpfOutput, adjusted: IrpfOutput, model: Model, counter: Counter
+    baseline: IrpfOutput,
+    adjusted: IrpfOutput,
+    model: Model,
+    counter: Counter,
+    elasticity: float = TAXABLE_INCOME_ELASTICITY,
 ) -> tuple[np.ndarray, np.ndarray]:
     """Applies the behavioural attenuation used by the TypeScript engine.
 
@@ -341,7 +345,7 @@ def attenuate(
         np.maximum(
             0.45,
             1.0
-            - TAXABLE_INCOME_ELASTICITY
+            - elasticity
             * np.minimum(1.6, np.abs(mech) / np.maximum(1.0, base_unit))
             * (1.0 + 2.0 * avg_rate),
         ),
@@ -375,6 +379,7 @@ def irpf_revenue_delta(
     adjustment: IrpfAdjustment,
     counter: Counter,
     community_filter: set[int] | None = None,
+    elasticity: float = TAXABLE_INCOME_ELASTICITY,
 ) -> tuple[float, np.ndarray, np.ndarray]:
     """Returns (national delta M€, per-community delta (19,), unit deltas €)."""
     adjusted = compute_irpf(model, adjustment, counter, community_filter)
@@ -390,13 +395,17 @@ def irpf_revenue_delta(
         merged = baseline.unit_total_eur.copy()
         merged[mask] = adjusted.unit_total_eur[mask]
         adjusted = IrpfOutput(by_community=adjusted.by_community, unit_total_eur=merged)
-    by_community, unit_delta = attenuate(baseline, adjusted, model, counter)
+    by_community, unit_delta = attenuate(baseline, adjusted, model, counter, elasticity)
     delta_by_comm = by_community.sum(axis=1) - baseline.by_community.sum(axis=1)
     return float(delta_by_comm.sum()), delta_by_comm, unit_delta
 
 
 def instrument_curve(
-    instrument: dict, rates: np.ndarray, model: Model, counter: Counter
+    instrument: dict,
+    rates: np.ndarray,
+    model: Model,
+    counter: Counter,
+    elasticity_scale: float = 1.0,
 ) -> np.ndarray:
     """National revenue delta (M€) for a grid of statutory rates."""
     codes = model.community_codes
@@ -411,7 +420,7 @@ def instrument_curve(
     baseline_regional = instrument["baselineRevenueMEur"] * weights
     ratio = rates[:, None] / instrument["baselineRate"]
     base_factor = np.clip(
-        1.0 + instrument["baseElasticity"] * (ratio - 1.0),
+        1.0 + instrument["baseElasticity"] * elasticity_scale * (ratio - 1.0),
         MIN_BASE_FACTOR,
         MAX_BASE_FACTOR,
     )
@@ -899,6 +908,292 @@ def _sweep_package_matrix(task: tuple[list[float]]) -> dict:
     }
 
 
+def _sweep_elasticity_state(task: tuple[int, list[float], float]) -> dict:
+    """State-bracket curve under a scaled taxable-income elasticity."""
+    bracket, grid, scale = task
+    model, baseline = _WORKER_MODEL, _WORKER_BASELINE
+    assert model is not None and baseline is not None
+    counter = Counter()
+    elasticity = TAXABLE_INCOME_ELASTICITY * scale
+    deltas = []
+    for value in grid:
+        adjustment = zero_adjustment(model)
+        adjustment.state_deltas[bracket] = value
+        national, _comm, _units = irpf_revenue_delta(
+            model, baseline, adjustment, counter, elasticity=elasticity
+        )
+        deltas.append(round(national, 3))
+    return {
+        "lever": f"irpf_state_bracket_{bracket + 1}",
+        "elasticityScale": scale,
+        "grid": grid,
+        "revenueDeltaMEur": deltas,
+        "cells": counter.value,
+        "variants": len(grid),
+    }
+
+
+def _sweep_elasticity_savings(task: tuple[int, list[float], float]) -> dict:
+    """Savings-bracket curve under a scaled taxable-income elasticity."""
+    bracket, grid, scale = task
+    model, baseline = _WORKER_MODEL, _WORKER_BASELINE
+    assert model is not None and baseline is not None
+    counter = Counter()
+    elasticity = TAXABLE_INCOME_ELASTICITY * scale
+    deltas = []
+    for value in grid:
+        adjustment = zero_adjustment(model)
+        adjustment.savings_deltas[bracket] = value
+        national, _comm, _units = irpf_revenue_delta(
+            model, baseline, adjustment, counter, elasticity=elasticity
+        )
+        deltas.append(round(national, 3))
+    return {
+        "lever": f"irpf_savings_bracket_{bracket + 1}",
+        "elasticityScale": scale,
+        "grid": grid,
+        "revenueDeltaMEur": deltas,
+        "cells": counter.value,
+        "variants": len(grid),
+    }
+
+
+def _sweep_auto_pair(task: tuple[int, int, list[float]]) -> dict:
+    """Two communities changing their scales at once: additivity must be exact
+    because their unit sets are disjoint and attenuation is per-unit."""
+    comm_a, comm_b, grid = task
+    model, baseline = _WORKER_MODEL, _WORKER_BASELINE
+    assert model is not None and baseline is not None
+    counter = Counter()
+    code_a = model.community_codes[comm_a]
+    code_b = model.community_codes[comm_b]
+    singles_a = np.zeros(len(grid))
+    singles_b = np.zeros(len(grid))
+    variants = 0
+    for i, value in enumerate(grid):
+        adjustment = zero_adjustment(model)
+        adjustment.autonomous_deltas[code_a] = value
+        singles_a[i], _, _ = irpf_revenue_delta(
+            model, baseline, adjustment, counter, community_filter={comm_a}
+        )
+        variants += 1
+    for j, value in enumerate(grid):
+        adjustment = zero_adjustment(model)
+        adjustment.autonomous_deltas[code_b] = value
+        singles_b[j], _, _ = irpf_revenue_delta(
+            model, baseline, adjustment, counter, community_filter={comm_b}
+        )
+        variants += 1
+    max_gap = 0.0
+    for i, value_a in enumerate(grid):
+        for j, value_b in enumerate(grid):
+            adjustment = zero_adjustment(model)
+            adjustment.autonomous_deltas[code_a] = value_a
+            adjustment.autonomous_deltas[code_b] = value_b
+            combined, _, _ = irpf_revenue_delta(
+                model, baseline, adjustment, counter, community_filter={comm_a, comm_b}
+            )
+            max_gap = max(max_gap, abs(combined - (singles_a[i] + singles_b[j])))
+            variants += 1
+    return {
+        "lever": f"irpf_auto_pair_{code_a}_{code_b}",
+        "variants": variants,
+        "cells": counter.value,
+        "maxAdditivityGapMEur": float(max_gap),
+    }
+
+
+def convergence_family(reference: dict[int, list[float]], grid: list[float]) -> dict:
+    """Recomputes state-bracket curves at other quantile resolutions and
+    reports the gap against the K=101 reference (discretisation error)."""
+    counter = Counter()
+    resolutions = []
+    variants = 0
+    for quantiles in (11, 25, 51, 151):
+        model = load_model()
+        expand(model, quantiles)
+        baseline = compute_irpf(model, zero_adjustment(model), counter)
+        targets = np.array(
+            [
+                model.raw["irpfBaselineByCommunity"][code]["state"]
+                + model.raw["irpfBaselineByCommunity"][code]["autonomous"]
+                + model.raw["irpfBaselineByCommunity"][code]["savings"]
+                for code in model.community_codes
+            ]
+        )
+        model.factors = model.factors * (targets / baseline.by_community.sum(axis=1))
+        baseline = compute_irpf(model, zero_adjustment(model), counter)
+        max_gap = 0.0
+        for bracket, expected in reference.items():
+            for value, ref_delta in zip(grid, expected):
+                adjustment = zero_adjustment(model)
+                adjustment.state_deltas[bracket] = value
+                national, _comm, _units = irpf_revenue_delta(
+                    model, baseline, adjustment, counter
+                )
+                gap = abs(national - ref_delta) / max(50.0, abs(ref_delta))
+                max_gap = max(max_gap, gap)
+                variants += 1
+        resolutions.append(
+            {
+                "quantilesPerSegment": quantiles,
+                "microUnits": model.n_units,
+                "maxRelativeGapVsReference": round(float(max_gap), 6),
+            }
+        )
+    return {
+        "referenceQuantiles": 101,
+        "bracketsChecked": len(reference),
+        "gridPointsPerBracket": len(grid),
+        "resolutions": resolutions,
+        "cells": counter.value,
+        "variants": variants,
+    }
+
+
+def laffer_family(model: Model, counter: Counter, steps: int) -> list[dict]:
+    """Locates the revenue-maximising statutory rate of every instrument on a
+    dense grid; an interior peak indicates the modelled Laffer turning point."""
+    peaks = []
+    for instrument in model.raw["instruments"]:
+        grid = np.linspace(instrument["minRate"], instrument["maxRate"], steps)
+        curve = instrument_curve(instrument, grid, model, counter)
+        peak_index = int(np.argmax(curve))
+        peaks.append(
+            {
+                "instrument": instrument["id"],
+                "baselineRate": instrument["baselineRate"],
+                "peakRate": round(float(grid[peak_index]), 4),
+                "peakRevenueDeltaMEur": round(float(curve[peak_index]), 3),
+                "interiorPeak": bool(0 < peak_index < steps - 1),
+            }
+        )
+    return peaks
+
+
+def deficit_frontier(
+    model: Model,
+    state_singles: list[dict],
+    counter: Counter,
+    baseline_deficit_meur: float,
+) -> dict:
+    """Composes state-bracket revenue curves with analytic spending cuts (one
+    bracket rise plus up to two distinct programme cuts) and reports packages
+    that close the deficit with the least net burden on the three lowest
+    deciles. IRPF-bracket and spending levers are additive by construction,
+    so the composition is exact."""
+    decile_of_band = np.array(
+        [band["decile"] for band in model.raw["incomeBands"]], dtype=np.int32
+    )
+    unit_decile = decile_of_band[model.unit_band]
+    households_by_decile = np.bincount(
+        unit_decile, weights=model.unit_households, minlength=10
+    )
+
+    # Spending cut options: (program, multiplier) with the share of each
+    # programme's benefit received by deciles 1-3.
+    cut_labels: list[tuple[str, float]] = []
+    cut_delta: list[float] = []
+    cut_bottom_share: list[float] = []
+    for program in model.raw["spendingPrograms"]:
+        low = program["minMultiplier"]
+        if low >= 1:
+            continue
+        allocation = allocator_multipliers(model, program["incidence"], counter)
+        weights = np.array(
+            [program["regionalWeights"][code] for code in model.community_codes]
+        )
+        community_amount = weights[model.unit_comm] * allocation
+        bottom_share = float(
+            np.bincount(unit_decile, weights=community_amount, minlength=10)[:3].sum()
+        )
+        counter.add(model.n_units * 3)
+        for multiplier in np.linspace(low, 1.0, 11)[:-1]:
+            cut_labels.append((program["id"], round(float(multiplier), 3)))
+            cut_delta.append(program["baselineMEur"] * (float(multiplier) - 1.0))
+            cut_bottom_share.append(bottom_share)
+    cut_delta_arr = np.array(cut_delta)
+    cut_bottom_arr = np.array(cut_bottom_share)
+
+    # Pairs of distinct programmes (including "second cut = none").
+    n_cuts = len(cut_labels)
+    pair_a, pair_b = np.triu_indices(n_cuts, k=1)
+    same_program = np.array(
+        [cut_labels[a][0] == cut_labels[b][0] for a, b in zip(pair_a, pair_b)]
+    )
+    pair_a, pair_b = pair_a[~same_program], pair_b[~same_program]
+    counter.add(n_cuts * n_cuts)
+
+    rev_labels: list[tuple[str, float]] = []
+    rev_delta: list[float] = []
+    rev_bottom_cost: list[float] = []
+    for surface in state_singles:
+        for value, revenue, deciles in zip(
+            surface["grid"],
+            surface["revenueDeltaMEur"],
+            surface["decileNetPerHouseholdEur"],
+        ):
+            if value <= 0:
+                continue
+            rev_labels.append((surface["lever"], float(value)))
+            rev_delta.append(float(revenue))
+            rev_bottom_cost.append(
+                -sum(deciles[d] * households_by_decile[d] for d in range(3)) / 1e6
+            )
+    rev_delta_arr = np.array(rev_delta)
+    rev_bottom_arr = np.array(rev_bottom_cost)
+
+    # Balance and bottom-decile cost over (revenue option × cut pair).
+    cut_pair_delta = cut_delta_arr[pair_a] + cut_delta_arr[pair_b]
+    cut_pair_bottom = (
+        -cut_delta_arr[pair_a] * cut_bottom_arr[pair_a]
+        - cut_delta_arr[pair_b] * cut_bottom_arr[pair_b]
+    )
+    balance = baseline_deficit_meur + rev_delta_arr[:, None] - cut_pair_delta[None, :]
+    bottom_cost = rev_bottom_arr[:, None] + cut_pair_bottom[None, :]
+    counter.add(int(balance.size) * 4)
+    scanned = int(balance.size)
+    feasible_mask = balance >= 0
+    feasible = int(feasible_mask.sum())
+
+    best: list[dict] = []
+    if feasible > 0:
+        flat_cost = np.where(feasible_mask, bottom_cost, np.inf).ravel()
+        order = np.argsort(flat_cost)[:10]
+        for flat_index in order:
+            if not np.isfinite(flat_cost[flat_index]):
+                break
+            row, column = divmod(int(flat_index), balance.shape[1])
+            lever, delta_points = rev_labels[row]
+            program_a, mult_a = cut_labels[pair_a[column]]
+            program_b, mult_b = cut_labels[pair_b[column]]
+            best.append(
+                {
+                    "irpfLever": lever,
+                    "bracketDeltaPoints": delta_points,
+                    "cuts": [
+                        {"program": program_a, "spendingMultiplier": mult_a},
+                        {"program": program_b, "spendingMultiplier": mult_b},
+                    ],
+                    "balanceMEur": round(float(balance[row, column]), 1),
+                    "bottomThreeDecilesCostMEur": round(
+                        float(bottom_cost[row, column]), 1
+                    ),
+                }
+            )
+
+    return {
+        "criterion": (
+            "Paquetes (subida de un tramo estatal + recorte de dos partidas distintas) "
+            "que dejan el saldo en positivo, ordenados por menor coste neto para los "
+            "deciles 1-3 (carga fiscal más beneficio de gasto perdido)."
+        ),
+        "combosScanned": scanned,
+        "feasibleCombos": feasible,
+        "leastRegressive": best,
+    }
+
+
 def linspace_grid(low: float, high: float, steps: int) -> list[float]:
     return [round(value, 6) for value in np.linspace(low, high, steps)]
 
@@ -971,9 +1266,11 @@ def main() -> None:
     if arguments.smoke:
         fine, pair_grid, cross_grid, auto_grid = 5, 3, 3, 3
         auto_cross_grid, triple_deltas, package_grid = 2, [-2.0, 3.0], 3
+        elasticity_scales, auto_pair_grid, laffer_steps = [0.5], 2, 21
     else:
         fine, pair_grid, cross_grid, auto_grid = 41, 25, 17, 33
         auto_cross_grid, triple_deltas, package_grid = 7, [-2.0, 1.0, 3.0], 9
+        elasticity_scales, auto_pair_grid, laffer_steps = [0.5, 0.75, 1.25, 1.5], 4, 201
 
     n_state = len(model.schedules["stateGeneral"])
     n_savings = len(model.schedules["savings"])
@@ -1014,9 +1311,26 @@ def main() -> None:
         (a, b, triple_deltas) for a in range(n_state) for b in range(a + 1, n_state)
     ]
     package_tasks = [(linspace_grid(-3, 3, package_grid),)]
+    elasticity_state_tasks = [
+        (bracket, linspace_grid(-5, 5, fine), scale)
+        for scale in elasticity_scales
+        for bracket in range(n_state)
+    ]
+    elasticity_savings_tasks = [
+        (bracket, linspace_grid(-5, 5, fine), scale)
+        for scale in elasticity_scales
+        for bracket in range(n_savings)
+    ]
+    auto_pair_tasks = [
+        (a, b, linspace_grid(-3, 3, auto_pair_grid))
+        for a in range(len(model.community_codes))
+        for b in range(a + 1, len(model.community_codes))
+    ]
 
     surfaces: list[dict] = []
     pair_summaries: list[dict] = []
+    elasticity_surfaces: list[dict] = []
+    auto_pair_results: list[dict] = []
     total_cells = baseline_cells + counter2.value
     total_variants = 0
 
@@ -1049,6 +1363,24 @@ def main() -> None:
                 _sweep_package_matrix,
                 package_tasks,
                 pair_summaries,
+            ),
+            (
+                "elasticity bands (state)",
+                _sweep_elasticity_state,
+                elasticity_state_tasks,
+                elasticity_surfaces,
+            ),
+            (
+                "elasticity bands (savings)",
+                _sweep_elasticity_savings,
+                elasticity_savings_tasks,
+                elasticity_surfaces,
+            ),
+            (
+                "cross-territory pairs",
+                _sweep_auto_pair,
+                auto_pair_tasks,
+                auto_pair_results,
             ),
         ):
             for outcome in pool.map(worker, tasks):
@@ -1096,6 +1428,42 @@ def main() -> None:
         total_variants += steps
     total_cells += counter3.value
 
+    # Refinement families: quantile-grid convergence, Laffer peaks and the
+    # deficit-closure frontier (composed exactly from committed curves).
+    convergence_grid = linspace_grid(-5, 5, 21 if not arguments.smoke else 3)
+    state_reference: dict[int, list[float]] = {}
+    for surface in surfaces:
+        if not surface["lever"].startswith("irpf_state_bracket_"):
+            continue
+        bracket = int(surface["lever"].rsplit("_", 1)[1]) - 1
+        lookup = dict(zip(surface["grid"], surface["revenueDeltaMEur"]))
+        if all(value in lookup for value in convergence_grid):
+            state_reference[bracket] = [lookup[value] for value in convergence_grid]
+    convergence = convergence_family(state_reference, convergence_grid)
+    total_cells += convergence.pop("cells")
+    total_variants += convergence.pop("variants")
+    print(
+        f"[3/4] Convergence family complete — worst discretisation gap "
+        f"{max(entry['maxRelativeGapVsReference'] for entry in convergence['resolutions']):.4f}",
+        flush=True,
+    )
+
+    counter4 = Counter()
+    laffer = laffer_family(model, counter4, laffer_steps)
+    total_variants += laffer_steps * len(model.raw["instruments"])
+    frontier = deficit_frontier(
+        model,
+        [
+            entry
+            for entry in surfaces
+            if entry["lever"].startswith("irpf_state_bracket_")
+        ],
+        counter4,
+        baseline_deficit_meur=-51_000.0,
+    )
+    total_variants += frontier["combosScanned"]
+    total_cells += counter4.value
+
     # ------------------------------------------------------------------
     # Phase 4 — invariants over the collected surfaces.
     # ------------------------------------------------------------------
@@ -1117,6 +1485,12 @@ def main() -> None:
         ),
         default=0.0,
     )
+    cross_territory_max = max(
+        (entry["maxAdditivityGapMEur"] for entry in auto_pair_results), default=0.0
+    )
+    convergence_worst = max(
+        entry["maxRelativeGapVsReference"] for entry in convergence["resolutions"]
+    )
 
     invariants = {
         "baselineNeutralMaxMEur": float(abs(neutral[0])),
@@ -1130,10 +1504,19 @@ def main() -> None:
             "pairsChecked": len(pair_summaries),
             "maxGapShare": float(additivity_max),
         },
+        "crossTerritoryAdditivity": {
+            "pairsChecked": len(auto_pair_results),
+            "maxGapMEur": float(cross_territory_max),
+        },
+        "quantileConvergence": {
+            "worstRelativeGap": float(convergence_worst),
+        },
         "passed": bool(
             abs(neutral[0]) < 1e-6
             and baseline_neutral_gap < 1e-6
             and monotonic_violations == 0
+            and cross_territory_max < 1e-6
+            and convergence_worst < 0.15
         ),
     }
 
@@ -1190,7 +1573,18 @@ def main() -> None:
             "irpf": surfaces,
             "instrumentsAndSpending": instrument_surfaces,
             "interactionSummaries": pair_summaries,
+            "elasticitySensitivity": {
+                "note": (
+                    "Curvas de ingreso bajo elasticidades escaladas (0,5×–1,5× del valor "
+                    "central) para acotar la incertidumbre de comportamiento de cada palanca."
+                ),
+                "scales": elasticity_scales,
+                "surfaces": elasticity_surfaces,
+            },
         },
+        "quantileConvergence": convergence,
+        "lafferPeaks": laffer,
+        "deficitFrontier": frontier,
         "environment": versions,
         "limitations": [
             "Los agregados de partida son referencias aproximadas redondeadas de 2024, no liquidaciones.",

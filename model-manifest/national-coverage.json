@@ -4,8 +4,8 @@
   "metric": "executed_parameter_case_applications",
   "metricVersion": "1.0.0",
   "asOf": "2026-07-14",
-  "declaredEvaluatedCount": 1142095215544,
-  "variantEvaluations": 45449,
+  "declaredEvaluatedCount": 1235010684304,
+  "variantEvaluations": 1316685,
   "microUnits": 498940,
   "targetRange": {
     "minimum": 200000000000,

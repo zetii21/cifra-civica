@@ -101,3 +101,12 @@ Una corrida pequeña requiere `--allow-small-report` y no puede presentarse como
 El gate de CI (`scripts/validate-national-study.mjs`) rehash-ea las entradas declaradas: cualquier cambio en `lib/fiscal-lab/` o en el modelo exportado sin reejecutar el estudio bloquea la integración.
 
 Desde la ampliación del estudio, los barridos cubren nueve familias: tramos estatales individuales, tramos del ahorro, escalas autonómicas y forales, pares de tramos estatales, pares de tramos del ahorro, cruces tramo estatal × tramo del ahorro, cruces escala autonómica × tramo estatal, tríos (dos tramos estatales + un tramo del ahorro) y matrices de paquetes gasto × IRPF. Los barridos individuales registran, además de la curva de ingresos, la superficie por comunidad y el impacto por decil en cada punto de la malla.
+
+## Refinamientos del estudio nacional
+
+El estudio incorpora cuatro familias de diagnóstico que acotan sus propias fuentes de error:
+
+- **Convergencia de la malla**: las curvas de los tramos estatales se recalculan a resoluciones K = 11, 25, 51 y 151 cuantiles por segmento y se comparan con la referencia K = 101; la desviación máxima queda registrada y limitada por gate de CI.
+- **Bandas de elasticidad**: cada tramo del IRPF y del ahorro se rebarrre bajo elasticidades escaladas (0,5×, 0,75×, 1,25× y 1,5× del valor central) para acotar la incertidumbre de comportamiento sin recurrir a aleatoriedad.
+- **Aditividad entre territorios**: cambios simultáneos en pares de comunidades deben componer exactamente con la suma de los cambios individuales (conjuntos de unidades disjuntos); la brecha máxima observada se exige por debajo de 1e-6 M€.
+- **Picos de recaudación y frontera de déficit**: mallas densas de 201 puntos localizan el máximo de ingresos de cada instrumento bajo las elasticidades acotadas, y una composición exacta de curvas de tramos y recortes de partidas enumera los paquetes que cierran el déficit ordenados por menor coste para los deciles 1-3.

@@ -184,6 +184,67 @@ export default function StatisticalStudyPage() {
           del informe y obliga a reejecutar el estudio.
         </p>
 
+        <h2>Refinamientos del estudio nacional</h2>
+        <p>
+          Además de los barridos, el estudio acota sus propias fuentes de error y explora
+          la geometría del modelo con cuatro familias de diagnóstico.
+        </p>
+        <div className="table-scroll">
+          <table className="map-data-table">
+            <caption>Diagnósticos comprometidos en el informe firmado</caption>
+            <thead>
+              <tr><th>Diagnóstico</th><th>Resultado</th><th>Qué acota</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Convergencia de la malla de cuantiles</th>
+                <td>
+                  desviación máxima{" "}
+                  {(nationalStudy.invariants.quantileConvergence.worstRelativeGap * 100).toLocaleString("es-ES", { maximumFractionDigits: 2 })}{" "}
+                  % entre resoluciones (K = 11 a 151 frente a K = 101)
+                </td>
+                <td>El error de discretización de la población sintética</td>
+              </tr>
+              <tr>
+                <th scope="row">Bandas de sensibilidad de elasticidades</th>
+                <td>
+                  {nationalStudy.responseSurfaces.elasticitySensitivity.surfaces.length.toLocaleString("es-ES")}{" "}
+                  curvas bajo elasticidades de 0,5× a 1,5× del valor central
+                </td>
+                <td>La incertidumbre de comportamiento de cada palanca del IRPF</td>
+              </tr>
+              <tr>
+                <th scope="row">Aditividad entre territorios</th>
+                <td>
+                  brecha máxima{" "}
+                  {nationalStudy.invariants.crossTerritoryAdditivity.maxGapMEur.toLocaleString("es-ES", { maximumSignificantDigits: 2 })}{" "}
+                  M€ en {nationalStudy.invariants.crossTerritoryAdditivity.pairsChecked.toLocaleString("es-ES")} pares de comunidades
+                </td>
+                <td>Que los cambios autonómicos simultáneos componen exactamente</td>
+              </tr>
+              <tr>
+                <th scope="row">Picos de recaudación (Laffer del modelo)</th>
+                <td>
+                  {nationalStudy.lafferPeaks.filter((peak) => peak.interiorPeak).length.toLocaleString("es-ES")}{" "}
+                  instrumentos con máximo interior en mallas de {" "}
+                  {nationalStudy.lafferPeaks.length.toLocaleString("es-ES")} × 201 puntos
+                </td>
+                <td>Dónde la elasticidad acotada invierte la curva de ingresos</td>
+              </tr>
+              <tr>
+                <th scope="row">Frontera de cierre del déficit</th>
+                <td>
+                  {nationalStudy.deficitFrontier.feasibleCombos.toLocaleString("es-ES")}{" "}
+                  paquetes viables de{" "}
+                  {nationalStudy.deficitFrontier.combosScanned.toLocaleString("es-ES")}{" "}
+                  explorados
+                </td>
+                <td>El coste distributivo mínimo de equilibrar las cuentas en el modelo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <h2>Velocidad y decisión de arquitectura</h2>
         <p>
           El sustituto seleccionado calcula cinco objetivos con una latencia mediana de {" "}
