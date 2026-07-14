@@ -1,0 +1,16 @@
+# Not needed to build or serve the web app on Vercel.
+.github
+.claude
+.venv
+.wrangler
+docs
+infra
+model-lab
+pipelines
+scripts
+services
+tests
+worker
+dist
+public/tiles
+*.log

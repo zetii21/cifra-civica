@@ -42,7 +42,7 @@ export async function generateMetadata(): Promise<Metadata> {
     requestHeaders.get("x-forwarded-proto") ??
     (host.startsWith("localhost") ? "http" : "https");
   const origin = `${protocol}://${host}`;
-  const socialImage = new URL("/og.png", origin).toString();
+  const socialImage = new URL("/og.jpg", origin).toString();
   const description =
     "Compara cómo distintas políticas fiscales podrían afectar a tu hogar con reglas, fuentes y supuestos transparentes.";
   return {
