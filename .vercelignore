@@ -5,7 +5,11 @@
 .wrangler
 docs
 infra
-model-lab
+model-lab/*.py
+model-lab/inputs
+model-lab/artifacts/*.joblib
+model-lab/requirements.txt
+model-lab/README.md
 pipelines
 scripts
 services
