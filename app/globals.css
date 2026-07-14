@@ -1269,3 +1269,104 @@ body:has(.widget-shell) .skip-link { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .lab-scoreboard-sticky, .deficit-gauge-span, .deficit-gauge-marker { transition: none; }
 }
+
+/* UX iteration 2 — dark mode (semantic token overrides + surface fixes) */
+:root { color-scheme: light; }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --paper: #0f1d1c;
+    --paper-bright: #152523;
+    --ink: #e6eee9;
+    --ink-soft: #9fb3ac;
+    --green: #57a894;
+    --green-dark: #8fd0be;
+    --green-pale: #1d3531;
+    --mint: #8fd0be;
+    --amber: #d8a355;
+    --amber-pale: #33290f;
+    --red: #d98a7b;
+    --red-pale: #38201b;
+    --blue-pale: #16282d;
+    --line: #2c3d39;
+    --line-dark: #51665f;
+    --shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Form surfaces keep readable contrast (they used the white token). */
+  .field input, .field select, .dependant-row input, .dependant-row select,
+  .lab-scope select, .lab-map-metric select, .lever-number,
+  .embed-snippet-body textarea, .scenario-filters input, .scenario-filters select,
+  .money-input input {
+    background: #0c1817;
+    border-color: var(--line-dark);
+    color: var(--ink);
+  }
+  .preset-tile, .lab-changes-panel li, .compare-metrics > div,
+  .person-row, .scenario-select-card, .directory-card, .aside-card,
+  .advanced-details, .start-checklist li {
+    background: #12211f;
+  }
+  .preset-tile.active { background: var(--green-pale); }
+  .comparison-bars, .result-number-block > div:first-child,
+  .lab-bar-track, .lab-challenge-track, .deficit-gauge-track {
+    background: #0c1817;
+  }
+  .deficit-gauge-track { background: linear-gradient(90deg, #22332f, #3a2f22 70%, #3a2622); }
+  .feature-calculator, .feature-map { background: #12211f; }
+  .mini-map span { border-color: var(--green-dark); background: var(--green-pale); }
+  .status-demo { border-color: #7a6236; background: #2c2413; color: #e3c891; }
+  .status-official, .status-good { border-color: #3f6d61; background: #1d3531; color: #9ed9c7; }
+  .status-warning { border-color: #7a4438; background: #38201b; color: #eab2a4; }
+  .lab-chip-neg { border-color: #7a4438; background: #38201b; color: #eab2a4; }
+  .lab-chip-pos { border-color: #3f6d61; background: #1d3531; color: #9ed9c7; }
+  .lab-count-badge { border-color: #7a6236; background: #2c2413; color: #e3c891; }
+  .notice-warning { border-color: #7a6236; }
+  .notice-warning > svg { color: #d8a355; }
+  .lab-scoreboard-sticky { background: rgba(15, 29, 28, 0.94); }
+  .spain-map-tooltip { background: rgba(21, 37, 35, 0.97); }
+  .map-overlay-top { background: rgba(21, 37, 35, 0.92); }
+  .lab-quickstart button, .lab-tools-strip > a, .lab-tools-communities > summary,
+  .community-links a, .icon-button, .result-actions button {
+    background: #12211f;
+  }
+  .spain-map svg { filter: brightness(0.92) saturate(0.92); }
+  .spain-map-region { stroke: #0f1d1c; }
+  .spain-map-inset-label, .spain-map-city-label { fill: var(--ink-soft); }
+  .trust-band, .principles-section, .results-hero, .result-governance,
+  .result-meta-grid span { background-color: #0a1514; }
+  .result-governance dl > div { background: #0a1514; }
+  .site-footer { background: #081211; }
+  .waterfall span { background: var(--line-dark); }
+  .preview-topline, .comparison-bars i { background-color: #22332f; }
+  .comparison-bars > div:last-child i { background: var(--green); }
+  .paper-card { background: var(--paper-bright); }
+  .preview-main-number strong, .coverage-band-inner strong { color: var(--green-dark); }
+  .coverage-band { background: #0c1817; }
+  .hero-section, .feature-section, .sources-section { background: var(--paper); }
+  .source-rail, .content-card, .scenario-filters { background: var(--paper-bright); }
+  .header-cta.button, .final-cta { background: var(--green); color: #06211d; }
+  .final-cta .eyebrow, .final-cta h2 { color: #06211d; }
+}
+
+/* UX iteration 2 — challenge celebration */
+.lab-challenge-card.closed { border-color: var(--green); box-shadow: 0 0 0 1px var(--green), 0 14px 40px rgba(20, 106, 94, .18); }
+.challenge-achievement { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin-top: .8rem; padding: .75rem .9rem; border: 1px solid var(--green); border-radius: 12px; background: var(--green-pale); }
+.challenge-achievement > svg { color: var(--green); animation: challenge-pop 600ms ease; }
+.challenge-achievement strong { font-family: Georgia, serif; font-size: 1.05rem; font-weight: 500; }
+.challenge-achievement span { color: var(--ink-soft); font-size: .74rem; }
+.challenge-achievement .button { width: auto; margin-left: auto; display: inline-flex; align-items: center; gap: .4rem; min-height: 38px; padding: .4rem .7rem; font-size: .74rem; }
+@keyframes challenge-pop {
+  0% { transform: scale(.4) rotate(-14deg); opacity: 0; }
+  60% { transform: scale(1.18) rotate(4deg); }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+/* UX iteration 2 — map empty-state hint */
+.lab-map-wrap { position: relative; }
+.lab-map-hint { position: absolute; inset: auto 12% 18%; z-index: 3; padding: .6rem .9rem; border: 1px dashed var(--line-dark); border-radius: 10px; background: color-mix(in srgb, var(--paper-bright) 88%, transparent); color: var(--ink-soft); text-align: center; font-size: .78rem; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .challenge-achievement > svg { animation: none; }
+}

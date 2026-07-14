@@ -12,6 +12,7 @@ import {
   Scale,
   SlidersHorizontal,
   Target,
+  Trophy,
   Users,
 } from "lucide-react";
 import { Notice, StatusBadge } from "./Ui";
@@ -270,6 +271,17 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
   const goToChallenge = () => {
     challengeRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
+
+  const challengeClosed = result.totals.simulatedDeficitMEur >= 0;
+  const challengeTitle = useMemo(() => {
+    if (!challengeClosed) return "";
+    const raisesTaxes = result.totals.revenueDeltaMEur > 500;
+    const cutsSpending = result.totals.spendingDeltaMEur < -500;
+    if (raisesTaxes && cutsSpending) return "Equilibrista fiscal";
+    if (cutsSpending) return "Tijera implacable";
+    if (raisesTaxes) return "Recaudación de hierro";
+    return "Cuentas en orden";
+  }, [challengeClosed, result]);
 
   const stateChangedCount = settings.irpfStateBracketDeltas.filter((delta) => delta !== 0).length;
   const savingsChangedCount = settings.irpfSavingsBracketDeltas.filter(
@@ -816,17 +828,25 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
                 </select>
               </label>
             </div>
-            <SpainMap
-              values={mapValues}
-              formatValue={(value) =>
-                mapMetric === "hogar"
-                  ? formatEurHousehold(value)
-                  : `${signedInteger.format(Math.round(value))} M€ / año`
-              }
-              metricLabel={`${metricInfo.label} (${metricInfo.unit})`}
-              selectedCode={scope === "estado" ? undefined : scope}
-              onSelect={(code) => setScope((code as Scope) ?? "estado")}
-            />
+            <div className="lab-map-wrap">
+              <SpainMap
+                values={mapValues}
+                formatValue={(value) =>
+                  mapMetric === "hogar"
+                    ? formatEurHousehold(value)
+                    : `${signedInteger.format(Math.round(value))} M€ / año`
+                }
+                metricLabel={`${metricInfo.label} (${metricInfo.unit})`}
+                selectedCode={scope === "estado" ? undefined : scope}
+                onSelect={(code) => setScope((code as Scope) ?? "estado")}
+              />
+              {activeChanges === 0 ? (
+                <p className="lab-map-hint">
+                  Mueve una palanca o aplica un paquete y el mapa se coloreará con el
+                  impacto de cada comunidad.
+                </p>
+              ) : null}
+            </div>
             <div className="lab-map-legend" aria-hidden="true">
               <span><i className="legend-negative legend-hatch" /> Empeora (color + rayado)</span>
               <span><i className="legend-neutral" /> Sin cambio</span>
@@ -834,7 +854,10 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
             </div>
           </div>
 
-          <div className="lab-challenge-card" ref={challengeRef}>
+          <div
+            className={`lab-challenge-card${challengeClosed ? " closed" : ""}`}
+            ref={challengeRef}
+          >
             <div className="lab-challenge-heading">
               <Target size={17} aria-hidden="true" />
               <div>
@@ -844,12 +867,50 @@ export function FiscalLabClient({ initialScope }: { initialScope?: CommunityCode
                   Combina impuestos y gasto hasta dejar el saldo en positivo.
                 </p>
               </div>
-              <strong className={result.totals.simulatedDeficitMEur >= 0 ? "lab-pos" : "lab-neg"}>
-                {result.totals.simulatedDeficitMEur >= 0
+              <strong className={challengeClosed ? "lab-pos" : "lab-neg"}>
+                {challengeClosed
                   ? "¡Déficit cerrado!"
                   : `Faltan ${integerFormat.format(Math.round(-result.totals.simulatedDeficitMEur))} M€`}
               </strong>
             </div>
+            {challengeClosed ? (
+              <div className="challenge-achievement" role="status">
+                <Trophy size={22} aria-hidden="true" />
+                <div>
+                  <strong>Título conseguido: {challengeTitle}</strong>
+                  <span>
+                    {" "}
+                    · superávit de {integerFormat.format(Math.round(result.totals.simulatedDeficitMEur))}{" "}
+                    M€ con {activeChanges} palancas
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  className="button"
+                  onClick={() =>
+                    downloadShareCard({
+                      presetName: `Reto superado: ${challengeTitle}`,
+                      balanceDeltaMEur: result.totals.totalBalanceDeltaMEur,
+                      revenueDeltaMEur: result.totals.revenueDeltaMEur,
+                      spendingDeltaMEur: result.totals.spendingDeltaMEur,
+                      deficitBeforeShare: baselineDeficitShare,
+                      deficitAfterShare: deficitShare,
+                      mostAffected: result.distribution.mostAffected.map((group) => ({
+                        label: group.label,
+                        value: group.netPerHouseholdEur,
+                      })),
+                      leastAffected: result.distribution.leastAffected.map((group) => ({
+                        label: group.label,
+                        value: group.netPerHouseholdEur,
+                      })),
+                      activeChanges,
+                    })
+                  }
+                >
+                  <Download size={14} aria-hidden="true" /> Tarjeta del logro
+                </button>
+              </div>
+            ) : null}
             <div
               className="lab-challenge-track"
               role="progressbar"

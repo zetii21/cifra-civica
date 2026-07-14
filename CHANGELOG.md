@@ -26,6 +26,8 @@ Los cambios materiales indican versiones de aplicación, modelo, política, dato
 - Widget embebible para medios (`/widget/{paquete}`): solo agregados públicos, sin cookies, único origen autorizado a ser enmarcado (CSP `frame-ancestors *` solo en esa ruta) y fragmento de inserción copiable.
 - Páginas por comunidad (`/laboratorio/{comunidad}`): ficha fiscal con su escala de IRPF, gasto de referencia localizado y el laboratorio preseleccionado en su ámbito.
 - Refinamiento del estudio nacional: bandas de sensibilidad de elasticidades (0,5×–1,5×), análisis de convergencia de la malla de cuantiles (K = 11–151), invariante exacta de aditividad entre territorios (171 pares), picos de recaudación por instrumento en mallas de 201 puntos y frontera de cierre del déficit ordenada por menor coste para los deciles bajos; 20 escenarios dorados de equivalencia entre motores (antes 12).
+- Iteración UX 1 del laboratorio: marcador fijo al hacer scroll con indicador de déficit antes→después, arranque guiado en tres chips, bandeja de cambios activos con deshacer individual, anatomía de palanca con entrada numérica exacta y reset por palanca, contadores por acordeón, mapa apto para daltonismo (color + rayado, tooltip al toque, rango del escenario) y pase tipográfico de accesibilidad; en móvil los resultados preceden a los controles.
+- Iteración UX 2: modo oscuro completo mediante variables semánticas y `prefers-color-scheme` (con `color-scheme` y `theme-color` adaptativos), celebración del reto con título conseguido y tarjeta del logro, cifras del marcador interpoladas (respetando `prefers-reduced-motion`), gestión de foco y anuncio `aria-live` en la bandeja de cambios, y estado vacío orientativo sobre el mapa.
 
 ### Limitations
 

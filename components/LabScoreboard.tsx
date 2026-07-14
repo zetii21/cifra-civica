@@ -4,6 +4,37 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Info, RotateCcw, Undo2 } from "lucide-react";
 import type { ActiveChange } from "./labChanges";
 
+/**
+ * Tweens a numeric value over ~240 ms so scoreboard figures glide instead of
+ * jumping. The animation lives entirely in requestAnimationFrame callbacks
+ * (state updates never happen synchronously inside the effect body) and it
+ * collapses to a single frame under prefers-reduced-motion.
+ */
+function useTweenedNumber(target: number): number {
+  const [display, setDisplay] = useState(target);
+  const latestDisplay = useRef(target);
+
+  useEffect(() => {
+    const from = latestDisplay.current;
+    if (from === target) return;
+    const duration = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? 0
+      : 240;
+    const startedAt = performance.now();
+    let frame = requestAnimationFrame(function step(now: number) {
+      const progress = duration === 0 ? 1 : Math.min(1, (now - startedAt) / duration);
+      const eased = 1 - (1 - progress) ** 3;
+      const value = progress >= 1 ? target : from + (target - from) * eased;
+      latestDisplay.current = value;
+      setDisplay(value);
+      if (progress < 1) frame = requestAnimationFrame(step);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [target]);
+
+  return display;
+}
+
 const integerFormat = new Intl.NumberFormat("es-ES", { maximumFractionDigits: 0 });
 const signedInteger = new Intl.NumberFormat("es-ES", {
   maximumFractionDigits: 0,
@@ -85,7 +116,12 @@ export function LabScoreboard({
   onResetAll,
 }: LabScoreboardProps) {
   const anchorRef = useRef<HTMLElement | null>(null);
+  const traySummaryRef = useRef<HTMLElement | null>(null);
   const [docked, setDocked] = useState(false);
+
+  const revenueDisplay = useTweenedNumber(revenueDeltaMEur);
+  const spendingDisplay = useTweenedNumber(spendingDeltaMEur);
+  const balanceDisplay = useTweenedNumber(balanceDeltaMEur);
 
   useEffect(() => {
     const node = anchorRef.current;
@@ -98,9 +134,22 @@ export function LabScoreboard({
     return () => observer.disconnect();
   }, []);
 
+  // Undoing the last change would otherwise strand keyboard focus on a
+  // button that just disappeared; return it to the tray toggle instead.
+  const undoWithFocusCare = (change: ActiveChange) => {
+    const wasLast = changes.length === 1;
+    onUndo(change);
+    if (wasLast) {
+      requestAnimationFrame(() => traySummaryRef.current?.focus());
+    }
+  };
+
   const changesTray = (idSuffix: string) => (
     <details className="lab-changes">
-      <summary aria-label={`${changes.length} cambios activos; abrir lista`}>
+      <summary
+        aria-label={`${changes.length} cambios activos; abrir lista`}
+        ref={idSuffix === "full" ? traySummaryRef : undefined}
+      >
         <strong>{changes.length}</strong>
         <ChevronDown size={13} aria-hidden="true" />
       </summary>
@@ -119,7 +168,7 @@ export function LabScoreboard({
                   type="button"
                   className="icon-button lever-undo"
                   aria-label={`Deshacer: ${change.label}`}
-                  onClick={() => onUndo(change)}
+                  onClick={() => undoWithFocusCare(change)}
                 >
                   <Undo2 size={14} aria-hidden="true" />
                 </button>
@@ -142,14 +191,14 @@ export function LabScoreboard({
         <div>
           <span>Ingresos públicos</span>
           <strong className={revenueDeltaMEur < 0 ? "lab-neg" : "lab-pos"}>
-            {signedInteger.format(Math.round(revenueDeltaMEur))} M€
+            {signedInteger.format(Math.round(revenueDisplay))} M€
           </strong>
           <small>sobre {integerFormat.format(Math.round(revenueBaselineMEur))} M€</small>
         </div>
         <div>
           <span>Gasto público</span>
           <strong className={spendingDeltaMEur > 0 ? "lab-neg" : "lab-pos"}>
-            {signedInteger.format(Math.round(spendingDeltaMEur))} M€
+            {signedInteger.format(Math.round(spendingDisplay))} M€
           </strong>
           <small>sobre {integerFormat.format(Math.round(spendingBaselineMEur))} M€</small>
         </div>
@@ -167,7 +216,7 @@ export function LabScoreboard({
             </i>
           </span>
           <strong className={balanceDeltaMEur < 0 ? "lab-neg" : "lab-pos"}>
-            {signedInteger.format(Math.round(balanceDeltaMEur))} M€
+            {signedInteger.format(Math.round(balanceDisplay))} M€
           </strong>
           <DeficitGauge before={deficitBeforeShare} after={deficitAfterShare} />
         </div>
@@ -175,6 +224,9 @@ export function LabScoreboard({
           <span>Cambios activos</span>
           {changesTray("full")}
           <small>toca un cambio para deshacerlo</small>
+          <span className="sr-only" aria-live="polite">
+            {changes.length} cambios activos
+          </span>
         </div>
       </section>
 
